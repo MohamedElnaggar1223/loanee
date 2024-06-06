@@ -33,62 +33,61 @@ export default function Home() {
 	// 	return pos > 0.1 ? 0 : -4
 	// })
 
-	// const rotate = useTransform(scrollYProgress, [0, 0.04, 0.06, 0.08, 0.10], [-4, -2, 0, 2, 4])
-	// const imageVal = useTransform(scrollYProgress, [0, 0.04, 0.06, 0.08, 0.10], ['iphoneFirst.png', 'iphoneSecond.png', 'iphoneThird.png', 'iphoneSecond.png', 'iphoneSecond.png'])
-	// const titleVal = useTransform(scrollYProgress, [0, 0.04, 0.06, 0.08, 0.10], ['Financial Services', 'Personalized Offers', 'Secure Access', 'Financial Guide', 'Product Comparison'])
-	// const textVal = useTransform(scrollYProgress, [0, 0.04, 0.06, 0.08, 0.10], ['Access financial services such as borrowing loans, take a credit card, and opening a bank account.', 'Receive customized offers based on your credit score and enjoy pre-approved financial products for you.', 'Ensure secure login and registration through the trusted UAE PASS system, enhancing your safety.', 'Gain valuable insights into credit reports and make right financial decisions that align with your goals.', 'Easily compare various financial products to choose the ones that best suit your needs.'])
-
+	// const rotate = useTransform(scrollYProgress, [0, 0.08, 0.12, 0.08, 0.20], [-4, -2, 0, 2, 4])
+	// const imageVal = useTransform(scrollYProgress, [0, 0.08, 0.12, 0.08, 2420], ['iphoneFirst.png', 'iphoneSecond.png', 'iphoneThird.png', 'iphoneSecond.png', 'iphoneSecond.png'])
+	// const titleVal = useTransform(scrollYProgress, [0, 0.08, 0.12, 0.08, 0.24], ['Financial Services', 'Personalized Offers', 'Secure Access', 'Financial Guide', 'Product Comparison'])
+	// const textVal = useTransform(scrollYProgress, [0, 0.08, 0.12, 0.08, 0.224, ['Access financial services such as borrowing loans, take a credit card, and opening a bank account.', 'Receive customized offers based on your credit score and enjoy pre-approved financial products for you.', 'Ensure secure login and registration through the trusted UAE PASS system, enhancing your safety.', 'Gain valuable insights into credit reports and make right financial decisions that align with your goals.', 'Easily compare various financial products to choose the ones that best suit your needs.']24
 	const rotateVal = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.04) return -4
-		else if(pos <= 0.06) return -2
-		else if(pos <= 0.08) return 0
-		else if(pos <= 0.10) return 2
-		else if(pos <= 0.12) return 4
+		if(pos <= 0.08) return -4
+		else if(pos <= 0.12) return -2
+		else if(pos <= 0.16) return 0
+		else if(pos <= 0.20) return 2
+		else if(pos <= 0.24) return 4
 	})
 
 	const delay = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.0005) return 0.5
+		if(pos <= 0.001) return 0.5
 		else return 0
 	})
 
 	const duration = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.0005) return 0.1
+		if(pos <= 0.001) return 0.1
 		else return 1
 	})
 
 	const bgInitial = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.0005) return { opacity: 0 }
+		if(pos <= 0.001) return { opacity: 0 }
 		else return { opacity: 1 }
 	})
 
 	const iphoneInitial = useTransform(scrollYProgress, (pos) => {
 		console.log(pos)
-		if(pos <= 0.0005) return { rotate: -4, opacity: 0 }
+		if(pos <= 0.001) return { rotate: -4, opacity: 0 }
 		else return { opacity: 1, filter: 'blur(2px)', rotate: rotatePrev}
 	})
 
 	const imageVal = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.04) return 'iphoneFirst.png'
-		else if(pos <= 0.06) return 'iphoneSecond.png'
-		else if(pos <= 0.08) return 'iphoneThird.png'
-		else if(pos <= 0.10) return 'iphoneSecond.png'
-		else if(pos <= 0.12) return 'iphoneThird.png'
+		if(pos <= 0.08) return 'iphoneFirst.png'
+		else if(pos <= 0.12) return 'iphoneSecond.png'
+		else if(pos <= 0.16) return 'iphoneThird.png'
+		else if(pos <= 0.20) return 'iphoneSecond.png'
+		else if(pos <= 0.24) return 'iphoneThird.png'
 	})
 
 	const titleVal = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.04) return 'Financial Services'
-		else if(pos <= 0.06) return 'Personalized Offers'
-		else if(pos <= 0.08) return 'Secure Access'
-		else if(pos <= 0.10) return 'Financial Guide'
-		else if(pos <= 0.12) return 'Product Comparison'
+		if(pos <= 0.08) return 'Financial Services'
+		else if(pos <= 0.12) return 'Personalized Offers'
+		else if(pos <= 0.16) return 'Secure Access'
+		else if(pos <= 0.20) return 'Financial Guide'
+		else if(pos <= 0.24) return 'Product Comparison'
 	})
 
 	const textVal = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.04) return 'Access financial services such as borrowing loans, take a credit card, and opening a bank account.'
-		else if(pos <= 0.06) return 'Receive customized offers based on your credit score and enjoy pre-approved financial products for you.'
-		else if(pos <= 0.08) return 'Ensure secure login and registration through the trusted UAE PASS system, enhancing your safety.'
-		else if(pos <= 0.10) return 'Gain valuable insights into credit reports and make right financial decisions that align with your goals.'
-		else if(pos <= 0.12) return 'Easily compare various financial products to choose the ones that best suit your needs.'
+		if(pos <= 0.08) return 'Access financial services such as borrowing loans, take a credit card, and opening a bank account.'
+		else if(pos <= 0.12) return 'Receive customized offers based on your credit score and enjoy pre-approved financial products for you.'
+		else if(pos <= 0.16) return 'Ensure secure login and registration through the trusted UAE PASS system, enhancing your safety.'
+		else if(pos <= 0.20) return 'Gain valuable insights into credit reports and make right financial decisions that align with your goals.'
+		else if(pos <= 0.24) return 'Easily compare various financial products to choose the ones that best suit your needs.'
 	})
 
 	useMotionValueEvent(scrollY, 'change', (pos) => {
