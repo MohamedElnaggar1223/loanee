@@ -170,12 +170,12 @@ export default function Home() {
 						<Header />
 						<section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center gap-8 flex-1'>
 							<Image
-								src='/images/secDubaiBg.jpg'
+								src='/images/fourthDubaiBg.png'
 								fill
 								alt='Dubai'
-								className='rounded-t-3xl w-full h-full object-cover absolute z-[-2] blur-[10px]' 
+								className='rounded-t-3xl w-full h-full object-cover absolute z-[-2]' 
 							/>
-							<div className='z-[-1] bg-[rgba(130,51,51,0.35)] w-full h-full top-0 rounded-3xl absolute' />
+							{/* <div className='z-[-1] bg-[rgba(110,37,37,0.35)] w-full h-full top-0 rounded-3xl absolute' /> */}
 							<div ref={mainSection} className='flex flex-col justify-center items-center gap-2.5'>
 								<h1 className='text-white font-bold text-6xl'>Your personal finance</h1>
 								<h1 className='text-white font-bold text-6xl'>assistant is on the way</h1>
