@@ -12,7 +12,7 @@ export default function Home() {
 	const [scrolled, setScrolled] = useState(false)
 	const [rotate, setRotate] = useState(-4)
 	const [rotatePrev, setRotatePrev] = useState(-4)
-	const [image, setImage] = useState('iphoneThird.png')
+	const [image, setImage] = useState('iphoneFirst.png')
 	const [title, setTitle] = useState('Financial Services')
 	const [text, setText] = useState('Access financial services such as borrowing loans, take a credit card, and opening a bank account.')
 	const [textAnimation, setTextAnimation] = useState('enter')
@@ -104,15 +104,15 @@ export default function Home() {
 	const iphoneInitial = useTransform(scrollYProgress, (pos) => {
 		console.log(pos)
 		if(pos <= 0.001) return { opacity: 0 }
-		else return { opacity: 1, filter: 'blur(2px)'}
+		else return { opacity: 1 }
 	})
 
 	const imageVal = useTransform(scrollYProgress, (pos) => {
 		if(pos <= 0.15) return 'iphoneFirst.png'
 		else if(pos <= 0.20) return 'iphoneSecond.png'
 		else if(pos <= 0.30) return 'iphoneThird.png'
-		else if(pos <= 0.35) return 'iphoneSecond.png'
-		else if(pos <= 0.40) return 'iphoneThird.png'
+		else if(pos <= 0.35) return 'iphoneFourth.png'
+		else if(pos <= 0.40) return 'iphoneFifth.png'
 	})
 
 	const titleVal = useTransform(scrollYProgress, (pos) => {
@@ -236,7 +236,7 @@ export default function Home() {
 									width={300}
 									height={614}
 									initial={iphoneInitial.get()}
-									animate={{ opacity: 1, filter: 'blur(0px)' }}
+									animate={{ opacity: 1 }}
 									//@ts-expect-error rotate
 									style={{ rotate: rotateVal, willChange }}
 									transition={{ duration: duration.get(), ease: 'easeInOut', delay: delay.get() ?? 0.5 }}
