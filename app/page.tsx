@@ -15,14 +15,13 @@ export default function Home() {
 	const [text, setText] = useState('Access financial services such as borrowing loans, take a credit card, and opening a bank account.')
 	const [textAnimation, setTextAnimation] = useState('enter')
 	const [demoShown, setDemoShown] = useState(false)
+	const [signUpFormShown, setSignUpFormShown] = useState(false)
 
 	const willChange = useWillChange()
 
 	const mainSection = useRef<HTMLDivElement>(null)
 	const targetRef = useRef<HTMLDivElement>(null)
 	const secondTargetRef = useRef<HTMLDivElement>(null)
-
-	const mainSectionInView = useInView(mainSection, { once: false })
 
 	useEffect(() => {
 		const lenis = new Lenis({
@@ -80,6 +79,8 @@ export default function Home() {
 	}, [demoShown])
 
 	const rotateVal = useTransform(scrollYProgress, [0.15, 0.20, 0.30, 0.35, 0.40], [-4, -2, 0, 2, 4])
+	const tryText = useTransform(scrollYProgress, [0.40, 0.43], [100, 0])
+	const iphoneDemoStart = useTransform(scrollYProgress, [0.40, 0.43], [0, 20])
 
 	const delay = useTransform(scrollYProgress, (pos) => {
 		if(pos <= 0.001) return 0.5
@@ -134,6 +135,10 @@ export default function Home() {
             setScrolled(false);
         }
     });
+
+	useMotionValueEvent(scrollYProgress, 'change', (pos) => {
+		if(pos === 0.43) setSignUpFormShown(true)
+	})
 
 	useMotionValueEvent(imageVal, 'change', (pos) => {
 		console.log(pos)
@@ -270,16 +275,22 @@ export default function Home() {
 								transition={{ duration: 0, delay: 0.15 }}
 								viewport={{ once: true }}
 							/>
+							<div className='max-h-fit overflow-hidden'>
+								<motion.p style={{ y: tryText }} className='font-semibold text-3xl'>
+									Let's try a free demo
+								</motion.p>
+							</div>
 							<MotionImage
 								src={`/images/${image}`}
 								alt='Phone'
 								width={300}
 								height={614}
-								className='max-h-[614px] max-w-[300px] z-[12] mt-8'
+								className='max-h-[614px] max-w-[300px] z-[12]'
 								key='phone'
 								layoutId='phone'
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
+								style={{ y: iphoneDemoStart }}
 								transition={{ duration: 0.5, delay: 0.5, ease: 'easeInOut' }}
 							/>
 						</div>
