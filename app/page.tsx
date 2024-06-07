@@ -237,7 +237,7 @@ export default function Home() {
 									height={614}
 									initial={iphoneInitial.get()}
 									animate={{ opacity: 1, filter: 'blur(0px)' }}
-									// //@ts-expect-error rotate
+									//@ts-expect-error rotate
 									style={{ rotate: rotateVal, willChange }}
 									transition={{ duration: duration.get(), ease: 'easeInOut', delay: delay.get() ?? 0.5 }}
 									className='max-h-[614px] max-w-[300px]'
