@@ -4,18 +4,22 @@ import { AnimatePresence, useInView, motion, useMotionValueEvent, useScroll, use
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Lenis from 'lenis'
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 
 const rotations = [-4, -2, 0, 2, 4]
 //rotations[rotations.indexOf(rotate.get()) > 0 ? rotations.indexOf(rotate.get()) + 1 : rotations.indexOf(rotate.get())]
 export default function Home() {
 	const [scrolled, setScrolled] = useState(false)
 	const [image, setImage] = useState('iphoneFirst.png')
+	const [imageDemo, setImageDemo] = useState('demoIphoneFirst.png')
 	const [title, setTitle] = useState('Financial Services')
 	const [text, setText] = useState('Access financial services such as borrowing loans, take a credit card, and opening a bank account.')
 	const [textAnimation, setTextAnimation] = useState('enter')
 	const [demoShown, setDemoShown] = useState(false)
 	const [signUpFormShown, setSignUpFormShown] = useState(false)
+	const [signUpFormSubmitted, setSignUpFormSubmitted] = useState(false)
+	const [footerShown, setFooterShown] = useState(false)
 
 	const willChange = useWillChange()
 
@@ -25,33 +29,69 @@ export default function Home() {
 
 	useEffect(() => {
 		const lenis = new Lenis({
-		  duration: 1.2,
-		  easing: (t) => 1 - Math.pow(1 - t, 3),
-		  lerp: 0.1,
-		  smoothWheel: true,
-		  touchMultiplier: 0.2,
-		  wheelMultiplier: 0.35,
+			duration: 1.2,
+			easing: (t) => 1 - Math.pow(1 - t, 3),
+			lerp: 0.1,
+			smoothWheel: true,
+			touchMultiplier: 0.2,
+			wheelMultiplier: 0.35,
 		});
-	
-		function raf(time: number) {
-		  lenis.raf(time);
-		  requestAnimationFrame(raf);
-		}
-	
-		requestAnimationFrame(raf);
-	
-		return () => lenis.destroy();
-	  }, []);
 
+		function raf(time: number) {
+			lenis.raf(time);
+			requestAnimationFrame(raf);
+		}
+
+		requestAnimationFrame(raf);
+
+		return () => lenis.destroy();
+	}, []);
+
+	
 	const { scrollY } = useScroll({
 		target: targetRef,
 		offset: ['start start', 'end start']
     })
-
-	const { scrollYProgress } = useScroll({
+	
+	const { scrollYProgress, scrollY: scrollYSecond, scrollX: scrollXSecond } = useScroll({
 		target: secondTargetRef,
-		offset: ['start start', 'end start']
+		offset: ['start start', 'end end']
     })
+	
+	useEffect(() => {
+		// const scrollBack = (e: Event) => {
+		// 	e.preventDefault();
+		// 	console.log(scrollXSecond.getPrevious(), scrollYSecond.getPrevious())
+		// 	if(signUpFormShown) window.scrollTo(scrollXSecond.getPrevious()!, scrollYSecond.getPrevious()!);
+		// };
+
+		// window.addEventListener('scroll', scrollBack);
+
+		// return () => {
+		// 	window.removeEventListener('scroll', scrollBack);
+		// };
+
+		if(signUpFormSubmitted) {
+			const targetElement = secondTargetRef.current;
+            // const specificPoint = 0.40; // 40% of the target element's height
+
+            // // Calculate the exact scroll position within the target element
+            // const elementTop = (targetElement?.getBoundingClientRect()?.top ?? 0) + window.scrollY;
+            // const elementHeight = targetElement?.getBoundingClientRect().height;
+            // const scrollToPosition = elementTop + ((elementHeight ?? 0) * specificPoint);
+
+			// console.log(scrollToPosition, window.scrollY)
+
+            // window.scrollTo({
+            //     top: scrollToPosition,
+            // });
+
+			window.scrollTo({
+				top: document.body.scrollHeight * 0.43,
+			})
+		}
+
+	}, [signUpFormSubmitted]);
 
 	// const translate = useTransform(scrollYProgress, [0, 0.75, 1], ['300px', '0px', '-300px'])
 	// const rotate = useTransform(scrollYProgress, (pos) => {
@@ -74,21 +114,17 @@ export default function Home() {
 	// 	// else cycleRotate()
 	// })
 
-	useEffect(() => {
-		console.log(demoShown)
-	}, [demoShown])
-
 	const rotateVal = useTransform(scrollYProgress, [0.15, 0.20, 0.30, 0.35, 0.40], [-4, -2, 0, 2, 4])
-	const tryText = useTransform(scrollYProgress, [0.40, 0.43], [100, 0])
+	const tryText = useTransform(scrollYProgress, [0.40, 0.43], [-100, 0])
 	const iphoneDemoStart = useTransform(scrollYProgress, [0.40, 0.43], [0, 20])
 
 	const delay = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.001) return 0.5
+		if(pos < 0.15) return 0.5
 		else return 0
 	})
 
 	const duration = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.001) return 0.1
+		if(pos < 0.15) return 0.1
 		else return 1
 	})
 
@@ -98,8 +134,8 @@ export default function Home() {
 	})
 
 	const iphoneInitial = useTransform(scrollYProgress, (pos) => {
-		console.log(pos)
-		if(pos <= 0.001) return { opacity: 0 }
+		// console.log(pos)
+		if(pos < 0.15) return { opacity: 0 }
 		else return { opacity: 1 }
 	})
 
@@ -110,6 +146,23 @@ export default function Home() {
 		else if(pos <= 0.35) return 'iphoneFourth.png'
 		else if(pos <= 0.40) return 'iphoneFifth.png'
 		else return 'showDemo'
+	})
+
+	const imageDemoVal = useTransform(scrollYProgress, (pos) => {
+		console.log(pos)
+		if(pos <= 0.43 || !signUpFormSubmitted) return 'iphoneSecond.png'
+		else if(pos <= 0.48) return 'demoIphoneFirst.png'
+		else if(pos <= 0.53) return 'demoIphoneSecond.png'
+		else if(pos <= 0.58) return 'demoIphoneThird.png'
+		else if(pos <= 0.63) return 'demoIphoneFourth.png'
+		else if(pos <= 0.68) return 'demoIphoneFifth.png'
+		else if(pos <= 0.73) return 'demoIphoneSixth.png'
+		else if(pos <= 0.78) return 'demoIphoneSeventh.png'
+		else if(pos <= 0.83) return 'demoIphoneEighth.png'
+		else if(pos <= 0.88) return 'demoIphoneNinth.png'
+		else if(pos <= 0.93) return 'demoIphoneTenth.png'
+		else if(pos <= 0.98) return 'demoIphoneEleventh.png'
+		else return 'footerShown'
 	})
 
 	const titleVal = useTransform(scrollYProgress, (pos) => {
@@ -136,12 +189,11 @@ export default function Home() {
         }
     });
 
-	useMotionValueEvent(scrollYProgress, 'change', (pos) => {
-		if(pos === 0.43) setSignUpFormShown(true)
+	useMotionValueEvent(tryText, 'change', (pos) => {
+		if(pos === 0 && !signUpFormSubmitted) setSignUpFormShown(true)
 	})
 
 	useMotionValueEvent(imageVal, 'change', (pos) => {
-		console.log(pos)
 		if(pos === 'showDemo') 
 		{
 			setDemoShown(true)
@@ -164,6 +216,20 @@ export default function Home() {
 	useMotionValueEvent(textVal, 'change', (pos) => {
 		setText(pos!)
 	})
+
+	useMotionValueEvent(imageDemoVal, 'change', (pos) => {
+		if(pos === 'footerShown') setFooterShown(true)
+		else
+		{
+			if(footerShown) setFooterShown(false)
+			console.log(pos)
+			setImageDemo(pos!)
+		}
+	})
+
+	useEffect(() => {
+		console.log(imageDemo)
+	}, [imageDemo])
 
 	// useMotionValueEvent(rotateVal, 'change', (pos) => {
 	// 	setRotate(pos!)
@@ -221,7 +287,7 @@ export default function Home() {
 						</section>
 					</motion.section>
 				)}
-				{scrolled && !demoShown && (
+				{scrolled && !demoShown && !footerShown && (
 					<motion.section ref={secondTargetRef} transition={{ duration: 0 }} key="secondHero" className={cn('flex sticky top-0 max-h-screen flex-1 items-center justify-center pl-[15%] z-20')}>
 						<MotionImage
 							src='/images/triangleBg.svg'
@@ -229,9 +295,9 @@ export default function Home() {
 							height={1113}
 							alt='Dubai'
 							className='absolute z-[-1] -left-20'
-							initial={bgInitial.get()}
-							animate={{ opacity: 1}}
-							transition={{ duration: 0, delay: 0.15 }}
+							// initial={bgInitial.get()}
+							// animate={{ opacity: 1}}
+							// transition={{ duration: 0, delay: 0.15 }}
 							viewport={{ once: true }}
 						/>
 						{/* <div className='flex fixed top-0 h-full w-[calc(100vw-6rem)]'> */}
@@ -261,8 +327,8 @@ export default function Home() {
 						{/* </div> */}
 					</motion.section>
 				)}
-				{demoShown && (
-					<motion.section initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} key='demo' className='flex sticky top-0 min-h-screen flex-col items-center justify-center gap-4 z-10'>
+				{demoShown && !footerShown && (
+					<motion.section initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={footerShown ? { y: '-100vh' } : {}} key='demo' className='flex sticky top-0 min-h-screen flex-col items-center justify-center gap-4 z-10'>
 						<div className='relative flex flex-col items-center justify-center gap-4 bg-[#F1E8E6] w-full pt-20 pb-16 rounded-3xl overflow-hidden'>
 							<MotionImage
 								src='/images/demoTriangle.png'
@@ -281,7 +347,7 @@ export default function Home() {
 								</motion.p>
 							</div>
 							<MotionImage
-								src={`/images/${image}`}
+								src={`/images/${imageDemo}`}
 								alt='Phone'
 								width={300}
 								height={614}
@@ -296,7 +362,56 @@ export default function Home() {
 						</div>
 					</motion.section>
 				)}
+				{footerShown && (
+					<motion.section initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex sticky top-0 min-h-screen flex-col items-center justify-center gap-4 z-20'>
+						Footer
+					</motion.section>
+				)}
 			</AnimatePresence>
+			{signUpFormShown && (
+				<Dialog open={signUpFormShown}>
+					<DialogContent className='bg-[#F7F3F6] flex flex-col gap-10 py-10 px-6 z-50 md:min-w-[720px]'>
+						<DialogHeader className='font-bold text-lg'>
+							Please fill out this form for free demo
+						</DialogHeader>
+						<div className='flex flex-col gap-6'>
+							<div className='flex max-md:flex-col gap-6'>
+								<input
+									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[458px]'
+									type='text'
+									placeholder='First Name' 
+								/>
+								<input
+									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[458px]'
+									type='text'
+									placeholder='Job title' 
+								/>
+							</div>
+							<div className='flex max-md:flex-col gap-6'>
+								<input
+									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[458px]'
+									type='text'
+									placeholder='Email id' 
+								/>
+								<input
+									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[458px]'
+									type='text'
+									placeholder='Mobile number' 
+								/>
+							</div>
+						</div>
+						<button 
+							onMouseDown={() => {
+								setSignUpFormShown(false)
+								setSignUpFormSubmitted(true)
+							}}
+							className='rounded-2xl bg-[#EE0000] w-full py-3.5 text-white text-base font-semibold'
+						>
+							Submit form
+						</button>
+					</DialogContent>
+				</Dialog>
+			)}
 		</main>
 	)
 }

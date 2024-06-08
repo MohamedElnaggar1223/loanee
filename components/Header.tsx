@@ -10,7 +10,7 @@ export default function Header()
                 width={150}
                 height={50}
             />
-            <button className='rounded-lg px-6 py-2 font-medium border border-[#000]'>
+            <button className='rounded-[0.5rem] px-6 py-2 font-medium border border-[#000]'>
                 About us
             </button>
         </header>
