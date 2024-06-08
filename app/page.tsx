@@ -6,13 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import Lenis from 'lenis'
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import { X } from "lucide-react"
 
-const rotations = [-4, -2, 0, 2, 4]
-//rotations[rotations.indexOf(rotate.get()) > 0 ? rotations.indexOf(rotate.get()) + 1 : rotations.indexOf(rotate.get())]
 export default function Home() {
 	const [scrolled, setScrolled] = useState(false)
 	const [image, setImage] = useState('iphoneFirst.png')
-	const [imageDemo, setImageDemo] = useState('demoIphoneFirst.png')
+	const [imageDemo, setImageDemo] = useState('iphoneSecond.png')
 	const [title, setTitle] = useState('Financial Services')
 	const [text, setText] = useState('Access financial services such as borrowing loans, take a credit card, and opening a bank account.')
 	const [textAnimation, setTextAnimation] = useState('enter')
@@ -20,6 +19,8 @@ export default function Home() {
 	const [signUpFormShown, setSignUpFormShown] = useState(false)
 	const [signUpFormSubmitted, setSignUpFormSubmitted] = useState(false)
 	const [footerShown, setFooterShown] = useState(false)
+	const [signUpFormClosed, setSignUpFormClosed] = useState(false)
+	const [demoButton, setDemoButton] = useState('skip')
 
 	const willChange = useWillChange()
 
@@ -149,7 +150,9 @@ export default function Home() {
 	})
 
 	const imageDemoVal = useTransform(scrollYProgress, (pos) => {
-		console.log(pos)
+		// if(pos <= 0.43 && signUpFormClosed) {
+		// 	return 'formClosed' 
+		// }
 		if(pos <= 0.43 || !signUpFormSubmitted) return 'iphoneSecond.png'
 		else if(pos <= 0.48) return 'demoIphoneFirst.png'
 		else if(pos <= 0.53) return 'demoIphoneSecond.png'
@@ -222,24 +225,36 @@ export default function Home() {
 		else
 		{
 			if(footerShown) setFooterShown(false)
-			console.log(pos)
 			setImageDemo(pos!)
 		}
 	})
 
-	useEffect(() => {
-		console.log(imageDemo)
-	}, [imageDemo])
+	useMotionValueEvent(scrollYProgress, 'change', (pos) => {
+		if(pos >= 0.93) setDemoButton('restart')
+		if(scrollYProgress.getPrevious()! >= 0.93 && pos <= 0.98) {
+			if(signUpFormClosed) {
+				window.scrollTo({
+					top: document.body.scrollHeight * 0.39,
+				})
+				setSignUpFormClosed(false)
+				setSignUpFormShown(true)
+			}
+			setFooterShown(false)
+			setDemoShown(true)
+		}
+		else if(pos >= 0.98) {
+			setFooterShown(true)
+		}
+	})
 
-	// useMotionValueEvent(rotateVal, 'change', (pos) => {
-	// 	setRotate(pos!)
-	// 	setRotatePrev(rotateVal.getPrevious()!)
-	// })
+	useEffect(() => {
+		if(signUpFormSubmitted) setDemoButton('skip')
+	}, [signUpFormSubmitted])
 
 	const MotionImage = motion(Image)
 
 	return (
-		<main ref={targetRef} className={cn("flex flex-col px-12 pt-6 no-scroll-bar min-h-[600vh]")}>
+		<main ref={targetRef} className={cn("flex flex-col pt-6 no-scroll-bar min-h-[600vh]", !footerShown && 'px-12')}>
 			<AnimatePresence mode='popLayout'>
 				{!scrolled && (
 					<motion.section exit={{ y: "-100vh" }} transition={{ duration: 0.5 }} key="firstHero" className='flex flex-col max-h-screen flex-1 z-30'>
@@ -265,9 +280,9 @@ export default function Home() {
 									<input
 										type='text'
 										placeholder='Enter your email'
-										className='rounded-lg p-3.5 border outline-none border-white w-screen max-w-[468px] bg-[#CBBEBD] text-black placeholder:text-black text-sm' 
+										className='rounded-[0.5rem] p-3.5 border outline-none border-white w-screen max-w-[468px] bg-[#CBBEBD] text-black placeholder:text-black text-sm' 
 									/>
-									<button className='py-3.5 px-8 bg-[#ff0000] text-white font-medium rounded-lg text-sm'>
+									<button className='py-3.5 px-8 bg-[#ff0000] text-white font-medium rounded-[0.5rem] text-sm'>
 										Get Notified
 									</button>
 								</div>
@@ -359,12 +374,96 @@ export default function Home() {
 								style={{ y: iphoneDemoStart }}
 								transition={{ duration: 0.5, delay: 0.5, ease: 'easeInOut' }}
 							/>
+							{demoButton === 'skip' ? (
+								<p onMouseDown={() => window.scrollTo({ top: document.body.scrollHeight })} className='underline cursor-pointer absolute bottom-10 right-10 font-semibold'>Skip Demo</p>
+							) : (
+								<button 
+									onMouseDown={() => {
+										setDemoButton('skip')
+										window.scrollTo({
+											top: document.body.scrollHeight * 0.40,
+										})
+									}}
+									className='absolute bottom-10 right-10 rounded-full text-base font-semibold px-6 py-3 border border-black'
+								>
+									Restart (R)
+								</button>
+							)}
 						</div>
 					</motion.section>
 				)}
 				{footerShown && (
-					<motion.section initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex sticky top-0 min-h-screen flex-col items-center justify-center gap-4 z-20'>
-						Footer
+					<motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
+						<section className='flex flex-col items-center justify-end gap-8 flex-1'>
+							<Image
+								src="/images/logo.svg"
+								alt="Loanee"
+								width={195}
+								height={50}
+							/>
+							<div ref={mainSection} className='flex flex-col justify-center items-center gap-2.5'>
+								<h1 className='text-black font-bold text-6xl'>Your personal finance</h1>
+								<h1 className='text-black font-bold text-6xl'>assistant is coming soon</h1>
+								<h4	className='text-xl font-light text-black mt-2'>Get notified and stay tuned!</h4>
+							</div>
+							<div className='flex items-center justify-center mt-4 gap-4'>
+								<Image
+									src='/images/appstore.png'
+									width={120} 
+									height={40}
+									alt='App Store' 
+								/>
+								<Image
+									src='/images/playstore.png'
+									width={120} 
+									height={40}
+									alt='App Store' 
+								/>
+							</div>
+							<Image
+								src='/images/footerphones.png'
+								width={533}
+								height={410}
+								alt='Footer Phones' 
+							/>
+						</section>
+						<div className='py-6 px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full'>
+							<div className='gap-10 flex'>
+								<p className='text-sm cursor-pointer'>Terms</p>
+								<p className='text-sm cursor-pointer'>Privacy</p>
+								<p className='text-sm cursor-pointer'>Cookie policy</p>
+							</div>
+							<div className='gap-10 flex'>
+								<Image
+									src='/images/twitter.png'
+									width={18}
+									height={18}
+									alt='Twitter'
+									className='cursor-pointer'
+								/>
+								<Image
+									src='/images/instagram.png'
+									width={18}
+									height={18}
+									alt='Instagram'
+									className='cursor-pointer'
+								/>
+								<Image
+									src='/images/facebook.png'
+									width={18}
+									height={18}
+									alt='Facebook'
+									className='cursor-pointer'
+								/>
+								<Image
+									src='/images/linkedin.png'
+									width={18}
+									height={18}
+									alt='Linkedin'
+									className='cursor-pointer'
+								/>
+							</div>
+						</div>
 					</motion.section>
 				)}
 			</AnimatePresence>
@@ -409,6 +508,20 @@ export default function Home() {
 						>
 							Submit form
 						</button>
+						<div 
+							onMouseDown={() => {
+								setDemoShown(false)
+								setSignUpFormShown(false)
+								setFooterShown(true)
+								setSignUpFormClosed(true)
+								window.scrollTo({
+									top: document.body.scrollHeight,
+								})
+							}} 
+							className="absolute right-4 top-4 z-[999999999] cursor-pointer"
+						>
+							<X className="h-4 w-4" />
+						</div>
 					</DialogContent>
 				</Dialog>
 			)}

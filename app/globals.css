@@ -5,3 +5,7 @@
 .overflow-y-hiddenClass {
   overflow-y: hidden;
 }
+
+.gradient-footer {
+  background: linear-gradient(0deg, rgba(238,229,235,1) 0%, rgba(255,255,255,1) 100%);
+}
