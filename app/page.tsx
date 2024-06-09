@@ -7,6 +7,7 @@ import Lenis from 'lenis'
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { X } from "lucide-react"
+import PreloadImages from "@/components/PreloadImages";
 
 const demoImagesRotation = [
 	'iphoneSecond.png',
@@ -358,6 +359,7 @@ export default function Home() {
 
 	return (
 		<main ref={targetRef} className={cn("flex flex-col pt-6 no-scroll-bar min-h-[300vh]", !footerShown && 'px-5 md:px-12')}>
+			<PreloadImages />
 			<AnimatePresence mode={'popLayout'}>
 				{!scrolled && !demoShown && !footerShown && (
 					<motion.section exit={{ y: "-100vh" }} transition={{ duration: 0.5 }} key="firstHero" className='flex flex-col max-h-screen flex-1 z-30'>
