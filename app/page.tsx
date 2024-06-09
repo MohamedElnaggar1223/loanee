@@ -291,12 +291,13 @@ export default function Home() {
 			setDemoShown(false)
 			setScrolled(false)
 		}
-		else if(pos < scrollYProgress.getPrevious()! && footerShown) {
+		else if((pos < scrollYProgress.getPrevious()!) && footerShown) {
 			setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[26.25%] h-[60px]', clicked: false, finished: false})
-			window.scrollTo({
-				top: document.body.scrollHeight * 0.685,
-			})
+			// window.scrollTo({
+			// 	top: document.body.scrollHeight * 0.685,
+			// })
 			setFooterShown(false)
+			// setScrolled(false)
 			setDemoShown(true)
 		}
 		// else if(pos < scrollYProgress.getPrevious()! && demoImagesRotation[1] === imageDemo.image) {
@@ -318,9 +319,6 @@ export default function Home() {
 			let finished = false
 			if(demoImagesRotation[index + 1] === 'demoIphoneEleventh.png') {
 				finished = true
-				// window.scrollTo({
-				// 	top: document.body.scrollHeight * 0.9,
-				// })
 			}
 			setImageDemo(() => ({image: demoImagesRotation[index + 1], clicked: false, clickPos: demoImagesClickPos[index + 1], finished}))
 		}
@@ -329,13 +327,29 @@ export default function Home() {
 				setImageDemo((prev) => ({...prev, clicked: true}))
 			}, 2000)
 		}
+		// else if(imageDemo.finished) {
+		// 	const index = demoImagesRotation.indexOf(imageDemo.image)
+		// 	if(demoImagesRotation[index] === 'demoIphoneEleventh.png') {
+		// 		window.scrollTo({
+		// 			top: document.body.scrollHeight * 0.95,
+		// 		})
+		// 	}
+		// }
 	}, [imageDemo])
+
+	useEffect(() => {
+		if(footerShown) {
+			window.scrollTo({
+				top: document.body.scrollHeight,
+			})
+		}
+	}, [footerShown])
 
 	const MotionImage = motion(Image)
 
 	return (
 		<main ref={targetRef} className={cn("flex flex-col pt-6 no-scroll-bar min-h-[300vh]", !footerShown && 'px-12')}>
-			<AnimatePresence mode='popLayout'>
+			<AnimatePresence mode={'popLayout'}>
 				{!scrolled && !demoShown && !footerShown && (
 					<motion.section exit={{ y: "-100vh" }} transition={{ duration: 0.5 }} key="firstHero" className='flex flex-col max-h-screen flex-1 z-30'>
 						<Header />
