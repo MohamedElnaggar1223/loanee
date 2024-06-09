@@ -8,10 +8,45 @@ import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { X } from "lucide-react"
 
+const demoImagesRotation = [
+	'iphoneSecond.png',
+	'demoIphoneFirst.png',
+	'demoIphoneSecond.png',
+	'demoIphoneThird.png',
+	'demoIphoneFourth.png',
+	'demoIphoneFifth.png',
+	'demoIphoneSixth.png',
+	'demoIphoneSeventh.png',
+	'demoIphoneEighth.png',
+	'demoIphoneNinth.png',
+	'demoIphoneTenth.png',
+	'demoIphoneEleventh.png',
+]
+
+const demoImagesClickPos = [
+	'top-[26.25%] h-[60px]',
+	'top-[26.25%] h-[60px]',
+	'top-[26.25%] h-[60px]',
+	'top-[88.2%] h-[34px]',
+	'top-[88.2%] h-[34px]',
+	'top-[90.75%] h-[34px]',
+	'top-[90.75%] h-[34px]',
+	'top-[800%] h-[34px]',
+	'top-[79.75%] h-[20%]',
+	'top-[90.75%] h-[34px] left-[53.5%] w-[36.25%]',
+	'top-[90.75%] h-[34px] left-[53.5%] w-[36.25%]',
+	'top-[40rem]',
+]
+
 export default function Home() {
 	const [scrolled, setScrolled] = useState(false)
 	const [image, setImage] = useState('iphoneFirst.png')
-	const [imageDemo, setImageDemo] = useState('iphoneSecond.png')
+	const [imageDemo, setImageDemo] = useState({
+		image: 'iphoneSecond.png',
+		clickPos: 'top-[26.25%] h-[60px]',
+		clicked: false,
+		finished: false,
+	})
 	const [title, setTitle] = useState('Financial Services')
 	const [text, setText] = useState('Access financial services such as borrowing loans, take a credit card, and opening a bank account.')
 	const [textAnimation, setTextAnimation] = useState('enter')
@@ -19,7 +54,6 @@ export default function Home() {
 	const [signUpFormShown, setSignUpFormShown] = useState(false)
 	const [signUpFormSubmitted, setSignUpFormSubmitted] = useState(false)
 	const [footerShown, setFooterShown] = useState(false)
-	const [signUpFormClosed, setSignUpFormClosed] = useState(false)
 	const [demoButton, setDemoButton] = useState('skip')
 
 	const willChange = useWillChange()
@@ -35,7 +69,7 @@ export default function Home() {
 			lerp: 0.1,
 			smoothWheel: true,
 			touchMultiplier: 0.2,
-			wheelMultiplier: 0.35,
+			wheelMultiplier: 0.09,
 		});
 
 		function raf(time: number) {
@@ -59,40 +93,40 @@ export default function Home() {
 		offset: ['start start', 'end end']
     })
 	
-	useEffect(() => {
-		// const scrollBack = (e: Event) => {
-		// 	e.preventDefault();
-		// 	console.log(scrollXSecond.getPrevious(), scrollYSecond.getPrevious())
-		// 	if(signUpFormShown) window.scrollTo(scrollXSecond.getPrevious()!, scrollYSecond.getPrevious()!);
-		// };
+	// useEffect(() => {
+	// 	// const scrollBack = (e: Event) => {
+	// 	// 	e.preventDefault();
+	// 	// 	console.log(scrollXSecond.getPrevious(), scrollYSecond.getPrevious())
+	// 	// 	if(signUpFormShown) window.scrollTo(scrollXSecond.getPrevious()!, scrollYSecond.getPrevious()!);
+	// 	// };
 
-		// window.addEventListener('scroll', scrollBack);
+	// 	// window.addEventListener('scroll', scrollBack);
 
-		// return () => {
-		// 	window.removeEventListener('scroll', scrollBack);
-		// };
+	// 	// return () => {
+	// 	// 	window.removeEventListener('scroll', scrollBack);
+	// 	// };
 
-		if(signUpFormSubmitted) {
-			const targetElement = secondTargetRef.current;
-            // const specificPoint = 0.40; // 40% of the target element's height
+	// 	if(signUpFormSubmitted) {
+	// 		const targetElement = secondTargetRef.current;
+    //         // const specificPoint = 0.90; // 40% of the target element's height
 
-            // // Calculate the exact scroll position within the target element
-            // const elementTop = (targetElement?.getBoundingClientRect()?.top ?? 0) + window.scrollY;
-            // const elementHeight = targetElement?.getBoundingClientRect().height;
-            // const scrollToPosition = elementTop + ((elementHeight ?? 0) * specificPoint);
+    //         // // Calculate the exact scroll position within the target element
+    //         // const elementTop = (targetElement?.getBoundingClientRect()?.top ?? 0) + window.scrollY;
+    //         // const elementHeight = targetElement?.getBoundingClientRect().height;
+    //         // const scrollToPosition = elementTop + ((elementHeight ?? 0) * specificPoint);
 
-			// console.log(scrollToPosition, window.scrollY)
+	// 		// console.log(scrollToPosition, window.scrollY)
 
-            // window.scrollTo({
-            //     top: scrollToPosition,
-            // });
+    //         // window.scrollTo({
+    //         //     top: scrollToPosition,
+    //         // });
 
-			window.scrollTo({
-				top: document.body.scrollHeight * 0.43,
-			})
-		}
+	// 		window.scrollTo({
+	// 			top: document.body.scrollHeight * 0.28,
+	// 		})
+	// 	}
 
-	}, [signUpFormSubmitted]);
+	// }, [signUpFormSubmitted]);
 
 	// const translate = useTransform(scrollYProgress, [0, 0.75, 1], ['300px', '0px', '-300px'])
 	// const rotate = useTransform(scrollYProgress, (pos) => {
@@ -100,52 +134,52 @@ export default function Home() {
 	// 	return pos > 0.1 ? 0 : -4
 	// })
 
-	// const rotate = useTransform(scrollYProgress, [0, 0.15, 0.20, 0.15, 0.35], [-4, -2, 0, 2, 4])
-	// const imageVal = useTransform(scrollYProgress, [0, 0.15, 0.20, 0.15, 2420], ['iphoneFirst.png', 'iphoneSecond.png', 'iphoneThird.png', 'iphoneSecond.png', 'iphoneSecond.png'])
-	// const titleVal = useTransform(scrollYProgress, [0, 0.15, 0.20, 0.15, 0.40], ['Financial Services', 'Personalized Offers', 'Secure Access', 'Financial Guide', 'Product Comparison'])
-	// const textVal = useTransform(scrollYProgress, [0, 0.15, 0.20, 0.15, 0.224, ['Access financial services such as borrowing loans, take a credit card, and opening a bank account.', 'Receive customized offers based on your credit score and enjoy pre-approved financial products for you.', 'Ensure secure login and registration through the trusted UAE PASS system, enhancing your safety.', 'Gain valuable insights into credit reports and make right financial decisions that align with your goals.', 'Easily compare various financial products to choose the ones that best suit your needs.']24
+	// const rotate = useTransform(scrollYProgress, [0, 0.50, 0.70, 0.50, 0.70], [-4, -2, 0, 2, 4])
+	// const imageVal = useTransform(scrollYProgress, [0, 0.50, 0.70, 0.50, 2420], ['iphoneFirst.png', 'iphoneSecond.png', 'iphoneThird.png', 'iphoneSecond.png', 'iphoneSecond.png'])
+	// const titleVal = useTransform(scrollYProgress, [0, 0.50, 0.70, 0.50, 0.90], ['Financial Services', 'Personalized Offers', 'Secure Access', 'Financial Guide', 'Product Comparison'])
+	// const textVal = useTransform(scrollYProgress, [0, 0.50, 0.70, 0.50, 0.224, ['Access financial services such as borrowing loans, take a credit card, and opening a bank account.', 'Receive customized offers based on your credit score and enjoy pre-approved financial products for you.', 'Ensure secure login and registration through the trusted UAE PASS system, enhancing your safety.', 'Gain valuable insights into credit reports and make right financial decisions that align with your goals.', 'Easily compare various financial products to choose the ones that best suit your needs.']24
 	
 	// const rotateVal = useTransform(scrollYProgress, (pos) => {
-	// 	if(pos <= 0.15) return -4
-	// 	else if(pos <= 0.20) return -2
-	// 	else if(pos <= 0.30) return 0
-	// 	else if(pos <= 0.35) return 2
-	// 	else if(pos <= 0.40) return 4
-	// 	// if(pos <= 0.15) return -4
+	// 	if(pos <= 0.50) return -4
+	// 	else if(pos <= 0.70) return -2
+	// 	else if(pos <= 0.50) return 0
+	// 	else if(pos <= 0.70) return 2
+	// 	else if(pos <= 0.90) return 4
+	// 	// if(pos <= 0.50) return -4
 	// 	// else cycleRotate()
 	// })
 
-	const rotateVal = useTransform(scrollYProgress, [0.15, 0.20, 0.30, 0.35, 0.40], [-4, -2, 0, 2, 4])
-	const tryText = useTransform(scrollYProgress, [0.40, 0.43], [-100, 0])
-	const iphoneDemoStart = useTransform(scrollYProgress, [0.40, 0.43], [0, 20])
+	const rotateVal = useTransform(scrollYProgress, [0.09, 0.23, 0.37, 0.51, 0.65], [-4, -2, 0, 2, 4])
+	const tryText = useTransform(scrollYProgress, [0.65, 0.68], [-100, 0])
+	const iphoneDemoStart = useTransform(scrollYProgress, [0.65, 0.68], [0, 20])
 
 	const delay = useTransform(scrollYProgress, (pos) => {
-		if(pos < 0.15) return 0.5
+		if(pos < 0.09) return 0.5
 		else return 0
 	})
 
 	const duration = useTransform(scrollYProgress, (pos) => {
-		if(pos < 0.15) return 0.1
+		if(pos < 0.09) return 0.1
 		else return 1
 	})
 
 	const bgInitial = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.001) return { opacity: 0 }
+		if(pos <= 0.09) return { opacity: 0 }
 		else return { opacity: 1 }
 	})
 
 	const iphoneInitial = useTransform(scrollYProgress, (pos) => {
-		// console.log(pos)
-		if(pos < 0.15) return { opacity: 0 }
+		console.log(pos)
+		if(pos < 0.09) return { opacity: 0 }
 		else return { opacity: 1 }
 	})
 
 	const imageVal = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.15) return 'iphoneFirst.png'
-		else if(pos <= 0.20) return 'iphoneSecond.png'
-		else if(pos <= 0.30) return 'iphoneThird.png'
-		else if(pos <= 0.35) return 'iphoneFourth.png'
-		else if(pos <= 0.40) return 'iphoneFifth.png'
+		if(pos <= 0.09) return 'iphoneFirst.png'
+		else if(pos <= 0.23) return 'iphoneSecond.png'
+		else if(pos <= 0.37) return 'iphoneThird.png'
+		else if(pos <= 0.51) return 'iphoneFourth.png'
+		else if(pos <= 0.65) return 'iphoneFifth.png'
 		else return 'showDemo'
 	})
 
@@ -153,35 +187,35 @@ export default function Home() {
 		// if(pos <= 0.43 && signUpFormClosed) {
 		// 	return 'formClosed' 
 		// }
-		if(pos <= 0.43 || !signUpFormSubmitted) return 'iphoneSecond.png'
-		else if(pos <= 0.48) return 'demoIphoneFirst.png'
-		else if(pos <= 0.53) return 'demoIphoneSecond.png'
-		else if(pos <= 0.58) return 'demoIphoneThird.png'
-		else if(pos <= 0.63) return 'demoIphoneFourth.png'
-		else if(pos <= 0.68) return 'demoIphoneFifth.png'
-		else if(pos <= 0.73) return 'demoIphoneSixth.png'
-		else if(pos <= 0.78) return 'demoIphoneSeventh.png'
-		else if(pos <= 0.83) return 'demoIphoneEighth.png'
-		else if(pos <= 0.88) return 'demoIphoneNinth.png'
-		else if(pos <= 0.93) return 'demoIphoneTenth.png'
-		else if(pos <= 0.98) return 'demoIphoneEleventh.png'
-		else return 'footerShown'
+		if(pos <= 0.68 || !signUpFormSubmitted) return 'iphoneSecond.png'
+		else if(pos <= 69) return 'demoIphoneFirst.png'
+		// else if(pos <= 0.53) return 'demoIphoneSecond.png'
+		// else if(pos <= 0.58) return 'demoIphoneThird.png'
+		// else if(pos <= 0.63) return 'demoIphoneFourth.png'
+		// else if(pos <= 0.68) return 'demoIphoneFifth.png'
+		// else if(pos <= 0.73) return 'demoIphoneSixth.png'
+		// else if(pos <= 0.78) return 'demoIphoneSeventh.png'
+		// else if(pos <= 0.83) return 'demoIphoneEighth.png'
+		// else if(pos <= 0.88) return 'demoIphoneNinth.png'
+		// else if(pos <= 0.93) return 'demoIphoneTenth.png'
+		// else if(pos <= 0.98) return 'demoIphoneEleventh.png'
+		// else return 'footerShown'
 	})
 
 	const titleVal = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.15) return 'Financial Services'
-		else if(pos <= 0.20) return 'Personalized Offers'
-		else if(pos <= 0.30) return 'Secure Access'
-		else if(pos <= 0.35) return 'Financial Guide'
-		else if(pos <= 0.40) return 'Product Comparison'
+		if(pos <= 0.09) return 'Financial Services'
+		else if(pos <= 0.23) return 'Personalized Offers'
+		else if(pos <= 0.37) return 'Secure Access'
+		else if(pos <= 0.51) return 'Financial Guide'
+		else if(pos <= 0.65) return 'Product Comparison'
 	})
 
 	const textVal = useTransform(scrollYProgress, (pos) => {
-		if(pos <= 0.15) return 'Access financial services such as borrowing loans, take a credit card, and opening a bank account.'
-		else if(pos <= 0.20) return 'Receive customized offers based on your credit score and enjoy pre-approved financial products for you.'
-		else if(pos <= 0.30) return 'Ensure secure login and registration through the trusted UAE PASS system, enhancing your safety.'
-		else if(pos <= 0.35) return 'Gain valuable insights into credit reports and make right financial decisions that align with your goals.'
-		else if(pos <= 0.40) return 'Easily compare various financial products to choose the ones that best suit your needs.'
+		if(pos <= 0.09) return 'Access financial services such as borrowing loans, take a credit card, and opening a bank account.'
+		else if(pos <= 0.23) return 'Receive customized offers based on your credit score and enjoy pre-approved financial products for you.'
+		else if(pos <= 0.37) return 'Ensure secure login and registration through the trusted UAE PASS system, enhancing your safety.'
+		else if(pos <= 0.51) return 'Gain valuable insights into credit reports and make right financial decisions that align with your goals.'
+		else if(pos <= 0.65) return 'Easily compare various financial products to choose the ones that best suit your needs.'
 	})
 
 	useMotionValueEvent(scrollY, 'change', (pos) => {
@@ -197,13 +231,17 @@ export default function Home() {
 	})
 
 	useMotionValueEvent(imageVal, 'change', (pos) => {
+		console.log(pos)
 		if(pos === 'showDemo') 
 		{
 			setDemoShown(true)
+			setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[26.25%] h-[60px]', clicked: false, finished: false})
+			if(scrolled) setScrolled(false)
 		}
 		else 
 		{
 			if(demoShown) setDemoShown(false)
+			if(!scrolled) setScrolled(true)
 			setImage(pos!)
 			setTextAnimation('exit')
 			setTimeout(() => {
@@ -221,42 +259,84 @@ export default function Home() {
 	})
 
 	useMotionValueEvent(imageDemoVal, 'change', (pos) => {
-		if(pos === 'footerShown') setFooterShown(true)
-		else
-		{
-			if(footerShown) setFooterShown(false)
-			setImageDemo(pos!)
-		}
+	// 	if(pos === 'footerShown') setFooterShown(true)
+	// 	else
+	// 	{
+	// 		if(footerShown) setFooterShown(false)
+		setImageDemo(prev => ({...prev, image: pos!}))
+	// 	}
 	})
 
+	// useMotionValueEvent(scrollYProgress, 'change', (pos) => {
+	// 	if(pos >= 0.93) setDemoButton('restart')
+	// 	if(scrollYProgress.getPrevious()! >= 0.93 && pos <= 0.98) {
+	// 		if(signUpFormClosed) {
+	// 			window.scrollTo({
+	// 				top: document.body.scrollHeight * 0.39,
+	// 			})
+	// 			setSignUpFormClosed(false)
+	// 			setSignUpFormShown(true)
+	// 		}
+	// 		setFooterShown(false)
+	// 		setDemoShown(true)
+	// 	}
+	// 	else if(pos >= 0.98) {
+	// 		setFooterShown(true)
+	// 	}
+	// })
+
 	useMotionValueEvent(scrollYProgress, 'change', (pos) => {
-		if(pos >= 0.93) setDemoButton('restart')
-		if(scrollYProgress.getPrevious()! >= 0.93 && pos <= 0.98) {
-			if(signUpFormClosed) {
-				window.scrollTo({
-					top: document.body.scrollHeight * 0.39,
-				})
-				setSignUpFormClosed(false)
-				setSignUpFormShown(true)
-			}
+		if(pos > scrollYProgress.getPrevious()! && imageDemo.finished) {
+			setFooterShown(true)
+			setDemoShown(false)
+			setScrolled(false)
+		}
+		else if(pos < scrollYProgress.getPrevious()! && footerShown) {
+			setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[26.25%] h-[60px]', clicked: false, finished: false})
+			window.scrollTo({
+				top: document.body.scrollHeight * 0.685,
+			})
 			setFooterShown(false)
 			setDemoShown(true)
 		}
-		else if(pos >= 0.98) {
-			setFooterShown(true)
-		}
+		// else if(pos < scrollYProgress.getPrevious()! && demoImagesRotation[1] === imageDemo.image) {
+		// 	setDemoShown(false)
+		// 	setScrolled(true)
+		// 	window.scrollTo({
+		// 		top: document.body.scrollHeight * 0.645,
+		// 	})
+		// }
 	})
 
 	useEffect(() => {
 		if(signUpFormSubmitted) setDemoButton('skip')
 	}, [signUpFormSubmitted])
 
+	useEffect(() => {
+		if(imageDemo.clicked) {
+			const index = demoImagesRotation.indexOf(imageDemo.image)
+			let finished = false
+			if(demoImagesRotation[index + 1] === 'demoIphoneEleventh.png') {
+				finished = true
+				// window.scrollTo({
+				// 	top: document.body.scrollHeight * 0.9,
+				// })
+			}
+			setImageDemo(() => ({image: demoImagesRotation[index + 1], clicked: false, clickPos: demoImagesClickPos[index + 1], finished}))
+		}
+		else if(imageDemo.image === 'demoIphoneSeventh.png') {
+			setTimeout(() => {
+				setImageDemo((prev) => ({...prev, clicked: true}))
+			}, 2000)
+		}
+	}, [imageDemo])
+
 	const MotionImage = motion(Image)
 
 	return (
-		<main ref={targetRef} className={cn("flex flex-col pt-6 no-scroll-bar min-h-[600vh]", !footerShown && 'px-12')}>
+		<main ref={targetRef} className={cn("flex flex-col pt-6 no-scroll-bar min-h-[300vh]", !footerShown && 'px-12')}>
 			<AnimatePresence mode='popLayout'>
-				{!scrolled && (
+				{!scrolled && !demoShown && !footerShown && (
 					<motion.section exit={{ y: "-100vh" }} transition={{ duration: 0.5 }} key="firstHero" className='flex flex-col max-h-screen flex-1 z-30'>
 						<Header />
 						<section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center gap-8 flex-1'>
@@ -266,7 +346,7 @@ export default function Home() {
 								alt='Dubai'
 								className='rounded-t-3xl w-full h-full object-cover absolute z-[-2]' 
 							/>
-							{/* <div className='z-[-1] bg-[rgba(110,37,37,0.35)] w-full h-full top-0 rounded-3xl absolute' /> */}
+							{/* <div className='z-[-1] bg-[rgba(110,37,37,0.70)] w-full h-full top-0 rounded-3xl absolute' /> */}
 							<div ref={mainSection} className='flex flex-col justify-center items-center gap-2.5'>
 								<h1 className='text-white font-bold text-6xl'>Your personal finance</h1>
 								<h1 className='text-white font-bold text-6xl'>assistant is on the way</h1>
@@ -296,7 +376,7 @@ export default function Home() {
 								initial={{ left: 'calc(50% - 200px)' }}
 								exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.65, width: '300px', height: '614px'}}
 								transition={{ duration: 0.40, ease: 'easeInOut' }}
-								className='fixed -bottom-[550px] w-[400px] h-[818px]'
+								className='fixed -bottom-[600px] w-[400px] h-[818px]'
 								key='phone'
 							/>
 						</section>
@@ -312,7 +392,7 @@ export default function Home() {
 							className='absolute z-[-1] -left-20'
 							// initial={bgInitial.get()}
 							// animate={{ opacity: 1}}
-							// transition={{ duration: 0, delay: 0.15 }}
+							// transition={{ duration: 0, delay: 0.50 }}
 							viewport={{ once: true }}
 						/>
 						{/* <div className='flex fixed top-0 h-full w-[calc(100vw-6rem)]'> */}
@@ -332,7 +412,7 @@ export default function Home() {
 									key='phone'
 									viewport={{ once: true }}
 									priority
-									layoutId={scrolled ? 'phone' : undefined}
+									layoutId={!signUpFormSubmitted ? 'phone' : undefined}
 								/>
 							</div>
 							<motion.div className='flex flex-1 flex-col gap-4 overflow-hidden'>
@@ -353,7 +433,7 @@ export default function Home() {
 								className='absolute z-[11] bottom-0'
 								initial={bgInitial.get()}
 								animate={{ opacity: 1}}
-								transition={{ duration: 0, delay: 0.15 }}
+								transition={{ duration: 0, delay: 0.50 }}
 								viewport={{ once: true }}
 							/>
 							<div className='max-h-fit overflow-hidden'>
@@ -361,28 +441,36 @@ export default function Home() {
 									Let's try a free demo
 								</motion.p>
 							</div>
-							<MotionImage
-								src={`/images/${imageDemo}`}
-								alt='Phone'
-								width={300}
-								height={614}
-								className='max-h-[614px] max-w-[300px] z-[12]'
-								key='phone'
-								layoutId='phone'
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								style={{ y: iphoneDemoStart }}
-								transition={{ duration: 0.5, delay: 0.5, ease: 'easeInOut' }}
-							/>
-							{demoButton === 'skip' ? (
-								<p onMouseDown={() => window.scrollTo({ top: document.body.scrollHeight })} className='underline cursor-pointer absolute bottom-10 right-10 font-semibold'>Skip Demo</p>
+							<div 
+								onMouseDown={() => {
+									if(demoImagesRotation[0] === imageDemo.image) setImageDemo(prev => ({...prev, clicked: !prev.clicked}))
+								}} 
+								className='relative'
+							>
+								<MotionImage
+									src={`/images/${imageDemo.image}`}
+									alt='Phone'
+									width={300}
+									height={614}
+									className='max-h-[614px] max-w-[300px] z-[12]'
+									key='phone'
+									layoutId={!signUpFormSubmitted ? 'phone' : undefined}
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									style={{ y: iphoneDemoStart }}
+									transition={{ duration: 0.5, delay: 0.5, ease: 'easeInOut' }}
+								/>
+								<div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('z-[13] bg-transparent opacity-20 w-full absolute cursor-pointer', imageDemo.clickPos)} />
+							</div>
+							{!imageDemo.finished ? (
+								<p onMouseDown={() => {
+									setImageDemo(prev => ({...prev, clicked: true, image: 'demoIphoneTenth.png'}))
+									setFooterShown(true)
+								}} className='underline cursor-pointer absolute bottom-10 right-10 font-semibold'>Skip Demo</p>
 							) : (
 								<button 
 									onMouseDown={() => {
-										setDemoButton('skip')
-										window.scrollTo({
-											top: document.body.scrollHeight * 0.40,
-										})
+										setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[26.25%] h-[60px]', clicked: false, finished: false})
 									}}
 									className='absolute bottom-10 right-10 rounded-full text-base font-semibold px-6 py-3 border border-black'
 								>
@@ -392,7 +480,7 @@ export default function Home() {
 						</div>
 					</motion.section>
 				)}
-				{footerShown && (
+				{footerShown && signUpFormSubmitted && (
 					<motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
 						<section className='flex flex-col items-center justify-end gap-8 flex-1'>
 							<Image
@@ -508,7 +596,7 @@ export default function Home() {
 						>
 							Submit form
 						</button>
-						<div 
+						{/* <div 
 							onMouseDown={() => {
 								setDemoShown(false)
 								setSignUpFormShown(false)
@@ -521,7 +609,7 @@ export default function Home() {
 							className="absolute right-4 top-4 z-[999999999] cursor-pointer"
 						>
 							<X className="h-4 w-4" />
-						</div>
+						</div> */}
 					</DialogContent>
 				</Dialog>
 			)}
