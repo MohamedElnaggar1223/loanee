@@ -55,6 +55,11 @@ export default function Home() {
 	const [signUpFormSubmitted, setSignUpFormSubmitted] = useState(false)
 	const [footerShown, setFooterShown] = useState(false)
 	const [demoButton, setDemoButton] = useState('skip')
+	const [innerWidth, setInnerWidth] = useState(0)
+
+	useEffect(() => {
+		setInnerWidth(window.innerWidth)
+	}, [])
 
 	const willChange = useWillChange()
 
@@ -348,7 +353,7 @@ export default function Home() {
 	const MotionImage = motion(Image)
 
 	return (
-		<main ref={targetRef} className={cn("flex flex-col pt-6 no-scroll-bar min-h-[300vh]", !footerShown && 'px-12')}>
+		<main ref={targetRef} className={cn("flex flex-col pt-6 no-scroll-bar min-h-[300vh]", !footerShown && 'px-5 md:px-12')}>
 			<AnimatePresence mode={'popLayout'}>
 				{!scrolled && !demoShown && !footerShown && (
 					<motion.section exit={{ y: "-100vh" }} transition={{ duration: 0.5 }} key="firstHero" className='flex flex-col max-h-screen flex-1 z-30'>
@@ -362,42 +367,58 @@ export default function Home() {
 							/>
 							{/* <div className='z-[-1] bg-[rgba(110,37,37,0.70)] w-full h-full top-0 rounded-3xl absolute' /> */}
 							<div ref={mainSection} className='flex flex-col justify-center items-center gap-2.5'>
-								<h1 className='text-white font-bold text-6xl'>Your personal finance</h1>
-								<h1 className='text-white font-bold text-6xl'>assistant is on the way</h1>
+								<h1 className='text-white font-bold max-md:hidden text-6xl'>Your personal finance</h1>
+								<h1 className='text-white font-bold max-md:hidden text-6xl'>assistant is on the way</h1>
+								<h1 className='text-white font-bold md:hidden text-center text-[32px] px-2 leading-[2.25rem]'>Your personal finance assistant is on the way</h1>
 							</div>
 							<div className='flex flex-col justify-center items-center'>
-								<h4 className='text-xl font-light text-white'>Get an overview of your finances, tips to improve your score, and</h4>
-								<h4 className='text-xl font-light text-white'>personalised offers. All in one place.</h4>
+								<h4 className='text-xl max-md:hidden font-light text-white'>Get an overview of your finances, tips to improve your score, and</h4>
+								<h4 className='text-xl max-md:hidden font-light text-white'>personalised offers. All in one place.</h4>
+								<h4 className='text-sm text-center md:hidden font-light text-white'>Get an overview of your finances, tips to improve your score, and personalised offers. All in one place.</h4>
 							</div>
 							<div className='flex flex-col items-center justify-center gap-4'>
-								<div className='flex items-center justify-between gap-4'>
+								<div className='flex items-center justify-between gap-4 max-md:px-6 max-md:h-11'>
 									<input
 										type='text'
 										placeholder='Enter your email'
-										className='rounded-[0.5rem] p-3.5 border outline-none border-white w-screen max-w-[468px] bg-[#CBBEBD] text-black placeholder:text-black text-sm' 
+										className='rounded-[0.5rem] max-md:min-h-full px-3.5 md:p-3.5 border outline-none border-white w-screen max-w-[180px] sm:max-w-[240px] md:max-w-[468px] bg-[#CBBEBD] text-black placeholder:text-black text-sm' 
 									/>
-									<button className='py-3.5 px-8 bg-[#ff0000] text-white font-medium rounded-[0.5rem] text-sm'>
+									<button className='px-4 max-md:min-h-full text-nowrap md:py-3.5 md:px-8 bg-[#ff0000] text-white font-medium rounded-[0.5rem] text-sm'>
 										Get Notified
 									</button>
 								</div>
-								<p className='text-base font-light text-white'>Get notified on launch of your personal finance assistant</p>
+								<p className='text-xs md:text-base font-light text-white'>Get notified on launch of your personal finance assistant</p>
 							</div>
-							<MotionImage
-								src='/images/iphoneHero.png'
-								alt='Phone'
-								width={400}
-								height={818}
-								initial={{ left: 'calc(50% - 200px)' }}
-								exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.65, width: '300px', height: '614px'}}
-								transition={{ duration: 0.40, ease: 'easeInOut' }}
-								className='fixed -bottom-[600px] w-[400px] h-[818px]'
-								key='phone'
-							/>
+							{innerWidth > 768 ? (
+								<MotionImage
+									src='/images/iphoneHero.png'
+									alt='Phone'
+									width={400}
+									height={818}
+									initial={{ left: 'calc(50% - 200px)' }}
+									exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.65, width: '300px', height: '614px'}}
+									transition={{ duration: 0.40, ease: 'easeInOut' }}
+									className='fixed -bottom-[600px] w-[400px] h-[818px]'
+									key='phone'
+								/>
+							) : (
+								<MotionImage
+									src='/images/iphoneHero.png'
+									alt='Phone'
+									width={200}
+									height={409}
+									initial={{ left: 'calc(50% - 100px)' }}
+									exit={{ rotate: -4, position: 'fixed', bottom: '-120px', y: 'calc(50vh - 81px)', left: 'calc(75% - 177px)', opacity: 1, width: '187px', height: '383px'}}
+									transition={{ duration: 0.40, ease: 'easeInOut' }}
+									className='fixed -bottom-[120px] w-[200px] h-[409px]'
+									key='phone'
+								/>
+							)}
 						</section>
 					</motion.section>
 				)}
 				{scrolled && !demoShown && !footerShown && (
-					<motion.section ref={secondTargetRef} transition={{ duration: 0 }} key="secondHero" className={cn('flex sticky top-0 max-h-screen flex-1 items-center justify-center pl-[15%] z-20')}>
+					<motion.section ref={secondTargetRef} transition={{ duration: 0 }} key="secondHero" className={cn('flex sticky top-0 max-h-screen flex-1 items-center justify-center md:pl-[15%] z-20 max-md:flex-col')}>
 						<MotionImage
 							src='/images/triangleBg.svg'
 							width={782}
@@ -411,34 +432,54 @@ export default function Home() {
 						/>
 						{/* <div className='flex fixed top-0 h-full w-[calc(100vw-6rem)]'> */}
 							<div className='flex flex-1 items-center justify-center'>
-								<MotionImage
-									src={`/images/${image}`}
-									alt='Phone'
-									width={300}
-									height={614}
-									initial={iphoneInitial.get()}
-									animate={{ opacity: 1 }}
-									//@ts-expect-error rotate
-									style={{ rotate: rotateVal, willChange }}
-									transition={{ duration: duration.get(), ease: 'easeInOut', delay: delay.get() ?? 0.5 }}
-									exit={scrolled ? { opacity: 0 } : undefined}
-									className='max-h-[614px] max-w-[300px]'
-									key='phone'
-									viewport={{ once: true }}
-									priority
-									layoutId={!signUpFormSubmitted ? 'phone' : undefined}
-								/>
+								{innerWidth > 768 ? (
+									<MotionImage
+										src={`/images/${image}`}
+										alt='Phone'
+										width={300}
+										height={614}
+										initial={iphoneInitial.get()}
+										animate={{ opacity: 1 }}
+										//@ts-expect-error rotate
+										style={{ rotate: rotateVal, willChange }}
+										transition={{ duration: duration.get(), ease: 'easeInOut', delay: delay.get() ?? 0.5 }}
+										exit={scrolled ? { opacity: 0 } : undefined}
+										className='max-h-[614px] max-w-[300px]'
+										key='phone'
+										viewport={{ once: true }}
+										priority
+										layoutId={!signUpFormSubmitted ? 'phone' : undefined}
+									/>
+								) : (
+									<MotionImage
+										src={`/images/${image}`}
+										alt='Phone'
+										width={187}
+										height={383}
+										initial={iphoneInitial.get()}
+										animate={{ opacity: 1 }}
+										//@ts-expect-error rotate
+										style={{ rotate: rotateVal, willChange }}
+										transition={{ duration: duration.get(), ease: 'easeInOut', delay: delay.get() ?? 0.5 }}
+										exit={scrolled ? { opacity: 0 } : undefined}
+										className='max-h-[383px] max-w-[187px]'
+										key='phone'
+										viewport={{ once: true }}
+										priority
+										layoutId={!signUpFormSubmitted ? 'phone' : undefined}
+									/>
+								)}
 							</div>
 							<motion.div className='flex flex-1 flex-col gap-4 overflow-hidden'>
 								<motion.p variants={{ enter: { opacity: [0, 1], y: ['300px', '0px'] }, exit: { opacity: [0, 1], y: ['0px', '-300px'] }}} animate={textAnimation} transition={{ duration: 0.3, ease: 'easeInOut', delay: delay.get() ?? 0.5 }} className='uppercase font-bold text-[#ff0000] text-sm'>{title}</motion.p>
-								<motion.p variants={{ enter: { opacity: [0, 1], y: ['300px', '0px'] }, exit: { opacity: [0, 1], y: ['0px', '-300px'] }}} animate={textAnimation} transition={{ duration: 0.3, ease: 'easeInOut', delay: delay.get() ?? 0.5 }} className='font-semibold max-w-[380px] text-[32px] leading-[2.75rem]'>{text}</motion.p>
+								<motion.p variants={{ enter: { opacity: [0, 1], y: ['300px', '0px'] }, exit: { opacity: [0, 1], y: ['0px', '-300px'] }}} animate={textAnimation} transition={{ duration: 0.3, ease: 'easeInOut', delay: delay.get() ?? 0.5 }} className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>{text}</motion.p>
 							</motion.div>
 						{/* </div> */}
 					</motion.section>
 				)}
 				{demoShown && !footerShown && (
 					<motion.section initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={footerShown ? { y: '-100vh' } : {}} key='demo' className='flex sticky top-0 min-h-screen flex-col items-center justify-center gap-4 z-10'>
-						<div className='relative flex flex-col items-center justify-center gap-4 bg-[#F1E8E6] w-full pt-20 pb-16 rounded-3xl overflow-hidden'>
+						<div className='relative flex flex-col items-center justify-center gap-2 md:gap-4 bg-[#F1E8E6] w-full h-[95vh] md:pt-20 md:pb-16 rounded-3xl overflow-hidden'>
 							<MotionImage
 								src='/images/demoTriangle.png'
 								width={782}
@@ -451,7 +492,7 @@ export default function Home() {
 								viewport={{ once: true }}
 							/>
 							<div className='max-h-fit overflow-hidden'>
-								<motion.p style={{ y: tryText }} className='font-semibold text-3xl'>
+								<motion.p style={{ y: tryText }} className='font-semibold text-xl md:text-3xl'>
 									Let's try a free demo
 								</motion.p>
 							</div>
@@ -461,32 +502,49 @@ export default function Home() {
 								}} 
 								className='relative'
 							>
-								<MotionImage
-									src={`/images/${imageDemo.image}`}
-									alt='Phone'
-									width={300}
-									height={614}
-									className='max-h-[614px] max-w-[300px] z-[12]'
-									key='phone'
-									layoutId={!signUpFormSubmitted ? 'phone' : undefined}
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									style={{ y: iphoneDemoStart }}
-									transition={{ duration: 0.5, delay: 0.5, ease: 'easeInOut' }}
-								/>
+								{innerWidth > 768 ? (
+									<MotionImage
+										src={`/images/${imageDemo.image}`}
+										alt='Phone'
+										width={300}
+										height={614}
+										className='max-h-[614px] max-w-[300px] z-[12]'
+										key='phone'
+										layoutId={!signUpFormSubmitted ? 'phone' : undefined}
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										style={{ y: iphoneDemoStart }}
+										transition={{ duration: 0.5, delay: 0.5, ease: 'easeInOut' }}
+									/>
+									) : (
+									<MotionImage
+										src={`/images/${imageDemo.image}`}
+										alt='Phone'
+										width={306}
+										height={624}
+										className='max-h-[624px] max-w-[306px] z-[12]'
+										key='phone'
+										layoutId={!signUpFormSubmitted ? 'phone' : undefined}
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										style={{ y: iphoneDemoStart }}
+										transition={{ duration: 0.5, delay: 0.5, ease: 'easeInOut' }}
+									/>
+
+								)}
 								<div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('z-[13] bg-transparent opacity-20 w-full absolute cursor-pointer', imageDemo.clickPos)} />
 							</div>
 							{!imageDemo.finished ? (
 								<p onMouseDown={() => {
 									setImageDemo(prev => ({...prev, clicked: true, image: 'demoIphoneTenth.png'}))
 									setFooterShown(true)
-								}} className='underline cursor-pointer absolute bottom-10 right-10 font-semibold'>Skip Demo</p>
+								}} className='underline cursor-pointer mt-10 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm'>Skip Demo</p>
 							) : (
 								<button 
 									onMouseDown={() => {
 										setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[26.25%] h-[60px]', clicked: false, finished: false})
 									}}
-									className='absolute bottom-10 right-10 rounded-full text-base font-semibold px-6 py-3 border border-black'
+									className='md:absolute mt-10 z-50 md:bottom-10 md:right-10 md:rounded-full text-sm md:text-base font-semibold px-2 py-1.5 md:px-6 md:py-3 md:border md:border-black max-md:underline'
 								>
 									Restart (R)
 								</button>
@@ -502,24 +560,29 @@ export default function Home() {
 								alt="Loanee"
 								width={195}
 								height={50}
+								className='max-md:max-w-36'
 							/>
 							<div ref={mainSection} className='flex flex-col justify-center items-center gap-2.5'>
-								<h1 className='text-black font-bold text-6xl'>Your personal finance</h1>
-								<h1 className='text-black font-bold text-6xl'>assistant is coming soon</h1>
-								<h4	className='text-xl font-light text-black mt-2'>Get notified and stay tuned!</h4>
+								<h1 className='text-black max-md:hidden font-bold text-6xl'>Your personal finance</h1>
+								<h1 className='text-black max-md:hidden font-bold text-6xl'>assistant is coming soon</h1>
+								<h1 className='text-black font-bold md:hidden text-center text-[32px] px-10 leading-[2.25rem]'>Your personal finance assistant is coming soon</h1>
+								<h4	className='text-xl max-md:hidden font-light text-black mt-2'>Get notified and stay tuned!</h4>
 							</div>
-							<div className='flex items-center justify-center mt-4 gap-4'>
+							<h4	className='text-sm md:hidden font-light text-black mt-4'>Get notified and stay tuned!</h4>
+							<div className='flex items-center justify-center md:mt-4 gap-4'>
 								<Image
 									src='/images/appstore.png'
 									width={120} 
 									height={40}
-									alt='App Store' 
+									alt='App Store'
+									className='max-md:max-w-24'
 								/>
 								<Image
 									src='/images/playstore.png'
 									width={120} 
 									height={40}
 									alt='App Store' 
+									className='max-md:max-w-24'
 								/>
 							</div>
 							<Image
@@ -529,40 +592,40 @@ export default function Home() {
 								alt='Footer Phones' 
 							/>
 						</section>
-						<div className='py-6 px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full'>
-							<div className='gap-10 flex'>
-								<p className='text-sm cursor-pointer'>Terms</p>
-								<p className='text-sm cursor-pointer'>Privacy</p>
-								<p className='text-sm cursor-pointer'>Cookie policy</p>
+						<div className='px-4 py-6 md:px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full'>
+							<div className='gap-4 md:gap-10 flex'>
+								<p className='text-xs md:text-sm cursor-pointer max-md:font-semibold'>Terms</p>
+								<p className='text-xs md:text-sm cursor-pointer max-md:font-semibold'>Privacy</p>
+								<p className='text-xs md:text-sm cursor-pointer max-md:font-semibold'>Cookie policy</p>
 							</div>
-							<div className='gap-10 flex'>
+							<div className='gap-5 md:gap-10 flex'>
 								<Image
 									src='/images/twitter.png'
 									width={18}
 									height={18}
 									alt='Twitter'
-									className='cursor-pointer'
+									className='cursor-pointer max-md:max-w-3'
 								/>
 								<Image
 									src='/images/instagram.png'
 									width={18}
 									height={18}
 									alt='Instagram'
-									className='cursor-pointer'
+									className='cursor-pointer max-md:max-w-3'
 								/>
 								<Image
 									src='/images/facebook.png'
 									width={18}
 									height={18}
 									alt='Facebook'
-									className='cursor-pointer'
+									className='cursor-pointer max-md:max-w-3'
 								/>
 								<Image
 									src='/images/linkedin.png'
 									width={18}
 									height={18}
 									alt='Linkedin'
-									className='cursor-pointer'
+									className='cursor-pointer max-md:max-w-3'
 								/>
 							</div>
 						</div>
@@ -571,31 +634,31 @@ export default function Home() {
 			</AnimatePresence>
 			{signUpFormShown && (
 				<Dialog open={signUpFormShown}>
-					<DialogContent className='bg-[#F7F3F6] flex flex-col gap-10 py-10 px-6 z-50 md:min-w-[720px]'>
+					<DialogContent className='bg-[#F7F3F6] flex flex-col max-md:items-center gap-10 py-10 px-6 z-50 max-md:min-w-[320px] max-md:max-w-[320px] md:min-w-[720px]'>
 						<DialogHeader className='font-bold text-lg'>
 							Please fill out this form for free demo
 						</DialogHeader>
 						<div className='flex flex-col gap-6'>
 							<div className='flex max-md:flex-col gap-6'>
 								<input
-									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[458px]'
+									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[458px]'
 									type='text'
 									placeholder='First Name' 
 								/>
 								<input
-									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[458px]'
+									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[458px]'
 									type='text'
 									placeholder='Job title' 
 								/>
 							</div>
 							<div className='flex max-md:flex-col gap-6'>
 								<input
-									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[458px]'
+									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[458px]'
 									type='text'
 									placeholder='Email id' 
 								/>
 								<input
-									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[458px]'
+									className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[458px]'
 									type='text'
 									placeholder='Mobile number' 
 								/>
