@@ -73,7 +73,7 @@ export default function Home() {
 			easing: (t) => 1 - Math.pow(1 - t, 3),
 			lerp: 0.1,
 			smoothWheel: true,
-			touchMultiplier: 0.09,
+			touchMultiplier: 0.01,
 			wheelMultiplier: 0.09,
 		});
 
