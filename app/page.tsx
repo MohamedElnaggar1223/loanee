@@ -10,6 +10,8 @@ import { X } from "lucide-react"
 
 const demoImagesRotation = [
 	'iphoneSecond.png',
+	'demoIphoneTwelvth.png',
+	'demoIphoneThirteenth.png',
 	'demoIphoneFirst.png',
 	'demoIphoneSecond.png',
 	'demoIphoneThird.png',
@@ -24,7 +26,9 @@ const demoImagesRotation = [
 ]
 
 const demoImagesClickPos = [
-	'top-[26.25%] h-[60px]',
+	'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full',
+	'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full',
+	'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full',
 	'top-[26.25%] h-[60px]',
 	'top-[26.25%] h-[60px]',
 	'top-[88.2%] h-[34px]',
@@ -43,7 +47,7 @@ export default function Home() {
 	const [image, setImage] = useState('iphoneFirst.png')
 	const [imageDemo, setImageDemo] = useState({
 		image: 'iphoneSecond.png',
-		clickPos: 'top-[26.25%] h-[60px]',
+		clickPos: 'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full',
 		clicked: false,
 		finished: false,
 	})
@@ -193,7 +197,7 @@ export default function Home() {
 		// 	return 'formClosed' 
 		// }
 		if(pos <= 0.68 || !signUpFormSubmitted) return 'iphoneSecond.png'
-		else if(pos <= 69) return 'demoIphoneFirst.png'
+		else if(pos <= 69) return 'demoIphoneTwelvth.png'
 		// else if(pos <= 0.53) return 'demoIphoneSecond.png'
 		// else if(pos <= 0.58) return 'demoIphoneThird.png'
 		// else if(pos <= 0.63) return 'demoIphoneFourth.png'
@@ -240,7 +244,7 @@ export default function Home() {
 		if(pos === 'showDemo') 
 		{
 			setDemoShown(true)
-			setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[26.25%] h-[60px]', clicked: false, finished: false})
+			setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full', clicked: false, finished: false})
 			if(scrolled) setScrolled(false)
 		}
 		else 
@@ -297,7 +301,7 @@ export default function Home() {
 			setScrolled(false)
 		}
 		else if((pos < scrollYProgress.getPrevious()!) && footerShown) {
-			setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[26.25%] h-[60px]', clicked: false, finished: false})
+			setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full', clicked: false, finished: false})
 			// window.scrollTo({
 			// 	top: document.body.scrollHeight * 0.685,
 			// })
@@ -396,7 +400,7 @@ export default function Home() {
 									width={400}
 									height={818}
 									initial={{ left: 'calc(50% - 200px)' }}
-									exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.65, width: '300px', height: '614px'}}
+									exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
 									transition={{ duration: 0.40, ease: 'easeInOut' }}
 									className='fixed -bottom-[600px] w-[400px] h-[818px]'
 									key='phone'
@@ -542,7 +546,7 @@ export default function Home() {
 							) : (
 								<button 
 									onMouseDown={() => {
-										setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[26.25%] h-[60px]', clicked: false, finished: false})
+										setImageDemo({image: 'demoIphoneFirst.png', clickPos: 'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full', clicked: false, finished: false})
 									}}
 									className='md:absolute mt-10 z-50 md:bottom-10 md:right-10 md:rounded-full text-sm md:text-base font-semibold px-2 py-1.5 md:px-6 md:py-3 md:border md:border-black max-md:underline'
 								>
