@@ -410,7 +410,7 @@ export default function Home() {
 									initial={{ left: 'calc(50% - 100px)' }}
 									exit={{ rotate: -4, position: 'fixed', bottom: '-120px', y: 'calc(50vh - 81px)', left: 'calc(75% - 177px)', opacity: 1, width: '187px', height: '383px'}}
 									transition={{ duration: 0.40, ease: 'easeInOut' }}
-									className='fixed -bottom-[120px] w-[200px] h-[409px]'
+									className='fixed -bottom-[175px] w-[200px] h-[409px]'
 									key='phone'
 								/>
 							)}
