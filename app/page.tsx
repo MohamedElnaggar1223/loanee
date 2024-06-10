@@ -1,15 +1,43 @@
 'use client'
 import Header from "@/components/Header";
-import { AnimatePresence, useInView, motion, useMotionValueEvent, useScroll, useTransform, useWillChange } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Lenis from 'lenis'
+// import Lenis from 'lenis'
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import Head from "next/head";
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+  } from "@/components/ui/form"
+
+const signUpSchema = z.object({
+    fistName: z.string().min(2, {
+        message: 'Invalid first name'
+    }),
+    jobTitle: z.string().min(2, {
+        message: 'Invalid job title'
+    }),
+    email: z.string().email({
+        message: 'Invalid email'
+    }),
+    mobile: z.string().min(10, {
+        message: 'Invalid mobile number'
+    }).refine(value => {
+        return /^\d+$/.test(value)
+    })
+})
 
 const demoImagesRotation = [
-	'iphoneSecond.png',
 	'demoIphoneTwelvth.png',
 	'demoIphoneThirteenth.png',
 	'demoIphoneFirst.png',
@@ -26,7 +54,6 @@ const demoImagesRotation = [
 ]
 
 const demoImagesClickPos = [
-	'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
 	'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
 	'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
 	'top-[23.45%] h-[75px]',
@@ -59,21 +86,25 @@ export default function Page()
     const [signUpFormShown, setSignUpFormShown] = useState(false)
     const [signUpFormSubmitted, setSignUpFormSubmitted] = useState(false)
     const [imageDemo, setImageDemo] = useState({
-		image: 'iphoneSecond.png',
+		image: 'demoIphoneTwelvth.png',
 		clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
 		clicked: false,
 		finished: false,
         began: false
 	})
 
-    const targetRef = useRef<HTMLDivElement>(null)
+    const form = useForm<z.infer<typeof signUpSchema>>({
+        resolver: zodResolver(signUpSchema),
+        defaultValues: {
+            fistName: '',
+            jobTitle: '',
+            email: '',
+            mobile: ''
+        },
+    })
+
 	const secondTargetRef = useRef<HTMLDivElement>(null)
 
-    const { scrollY } = useScroll({
-		target: targetRef,
-		offset: ['start start', 'end start']
-    })
-	
 	const { scrollYProgress } = useScroll({
 		target: secondTargetRef,
 		offset: ['start end', 'end end']
@@ -86,14 +117,14 @@ export default function Page()
     const tryText = useTransform(scrollYProgress, [(5/6), 1], [-100, 0])
 
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
-        console.log(value === (1 - 0.05))
-        if(value >= 0 && value < ((1/6) / 2)) setImageShown('iphoneHero.png')
+        if(value === 1) setImageShown('demoIphoneTwelvth.png')
+        else if(value >= 0 && value < ((1/6) / 2)) setImageShown('iphoneHero.png')
         else if(value >= ((1/6) / 2) && value < ((2/6)) - 0.05) setImageShown('iphoneFirst.png')
         else if(value >= ((2/6) - 0.05) && value < ((3/6)) - 0.05) setImageShown('iphoneSecond.png')
         else if(value >= ((3/6) - 0.05) && value < ((4/6)) - 0.05) setImageShown('iphoneThird.png')
         else if(value >= ((4/6) - 0.05) && value < ((5/6)) - 0.05) setImageShown('iphoneFourth.png')
         else if(value >= ((5/6) - 0.05) && value < (1 - 0.05)) setImageShown('iphoneFifth.png')
-        else if(value >= (1 - 0.05)) setImageShown('iphoneHero.png')
+        else if(value >= (1 - 0.05)) setImageShown('demoIphoneThirteenth.png')
     })
     
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
@@ -116,7 +147,7 @@ export default function Page()
         else if(value <= 1) {
             setImageDemo({
                 began: false,
-                image: 'iphoneSecond.png',
+                image: 'demoIphoneTwelvth.png',
                 clicked: false,
                 clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
                 finished: false
@@ -163,7 +194,10 @@ export default function Page()
         window.scrollTo(0, 0)
     }, [])
 
-    const MotionImage = motion(Image)
+    function onSubmit(values: z.infer<typeof signUpSchema>) {
+        setSignUpFormShown(false)
+        setSignUpFormSubmitted(true)
+    }
 
     return (
         <>
@@ -186,15 +220,15 @@ export default function Page()
                             className='rounded-t-3xl w-full h-full object-cover absolute z-[-2]' 
                         />
                         {/* <div className='z-[-1] bg-[rgba(110,37,37,0.70)] w-full h-full top-0 rounded-3xl absolute' /> */}
-                        <div className='flex flex-col justify-center items-center gap-2.5'>
-                            <h1 className='text-white font-bold max-md:hidden text-6xl'>Your personal finance</h1>
-                            <h1 className='text-white font-bold max-md:hidden text-6xl'>assistant is on the way</h1>
-                            <h1 className='text-white font-bold md:hidden text-center text-[32px] px-2 leading-[2.25rem]'>Your personal finance assistant is on the way</h1>
+                        <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden'>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden text-6xl'>Your personal finance</motion.h1>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden text-6xl'>assistant is on the way</motion.h1>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[32px] px-2 leading-[2.25rem]'>Your personal finance assistant is on the way</motion.h1>
                         </div>
-                        <div className='flex flex-col justify-center items-center'>
-                            <h4 className='text-xl max-md:hidden font-light text-white'>Get an overview of your finances, tips to improve your score, and</h4>
-                            <h4 className='text-xl max-md:hidden font-light text-white'>personalised offers. All in one place.</h4>
-                            <h4 className='text-sm text-center md:hidden font-light text-white'>Get an overview of your finances, tips to improve your score, and personalised offers. All in one place.</h4>
+                        <div className='flex flex-col justify-center items-center overflow-hidden'>
+                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-xl max-md:hidden font-light text-white'>Get an overview of your finances, tips to improve your score, and</motion.h4>
+                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-xl max-md:hidden font-light text-white'>personalised offers. All in one place.</motion.h4>
+                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-sm text-center md:hidden font-light text-white'>Get an overview of your finances, tips to improve your score, and personalised offers. All in one place.</motion.h4>
                         </div>
                         <div className='flex flex-col items-center justify-center gap-4'>
                             <div className='flex items-center justify-between gap-4 max-md:px-6 max-md:h-11'>
@@ -216,12 +250,12 @@ export default function Page()
                         style={{ top, scale, rotate, left }}
                         className={cn('-top-[250px] w-[400px] h-[818px] z-[99999]', position)}
                     >
-                        <MotionImage
+                        <Image
                             src={`/images/${imageShown}`}
                             alt='Phone'
                             width={400}
                             height={818}
-                            priority
+                            priority={true}
                         />
                         {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                </motion.div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen'>
@@ -275,7 +309,7 @@ export default function Page()
                                     </motion.p>
                                 </div>
                             )}
-                            {footerShown && <MotionImage
+                            {footerShown && <Image
                                 src={`/images/${imageShown}`}
                                 alt='Phone'
                                 width={400}
@@ -288,6 +322,12 @@ export default function Page()
                             {!imageDemo.finished ? (
                                 <p onMouseDown={() => {
                                     setImageDemo(prev => ({...prev, clicked: true, image: 'demoIphoneTenth.png'}))
+                                    setTimeout(() => {
+                                        window.scrollTo({
+                                            top: document.body.scrollHeight,
+                                            behavior: 'smooth'
+                                        })
+                                    }, 200)
                                 }} className='underline cursor-pointer mt-10 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm'>Skip Demo</p>
                             ) : (
                                 <button 
@@ -311,62 +351,93 @@ export default function Page()
                             <DialogHeader className='font-bold text-lg'>
                                 Please fill out this form for free demo
                             </DialogHeader>
-                            <div className='flex flex-col gap-6'>
-                                <div className='flex max-md:flex-col gap-6'>
-                                    <input
-                                        className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[458px]'
-                                        type='text'
-                                        placeholder='First Name' 
-                                    />
-                                    <input
-                                        className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[458px]'
-                                        type='text'
-                                        placeholder='Job title' 
-                                    />
-                                </div>
-                                <div className='flex max-md:flex-col gap-6'>
-                                    <input
-                                        className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[458px]'
-                                        type='text'
-                                        placeholder='Email id' 
-                                    />
-                                    <input
-                                        className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[458px]'
-                                        type='text'
-                                        placeholder='Mobile number' 
-                                    />
-                                </div>
-                            </div>
-                            <button 
-                                onMouseDown={() => {
-                                    setSignUpFormShown(false)
-                                    setSignUpFormSubmitted(true)
-                                }}
-                                className='rounded-2xl bg-[#EE0000] w-full py-3.5 text-white text-base font-semibold'
-                            >
-                                Submit form
-                            </button>
-                            {/* <div 
-                                onMouseDown={() => {
-                                    setDemoShown(false)
-                                    setSignUpFormShown(false)
-                                    setFooterShown(true)
-                                    setSignUpFormClosed(true)
-                                    window.scrollTo({
-                                        top: document.body.scrollHeight,
-                                    })
-                                }} 
-                                className="absolute right-4 top-4 z-[999999999] cursor-pointer"
-                            >
-                                <X className="h-4 w-4" />
-                            </div> */}
+                            <Form {...form}>
+                                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col max-w-full items-center justify-center">
+                                    <div className='flex flex-col gap-8'>
+                                        <div className='flex max-md:flex-col gap-6'>
+                                            <FormField
+                                                control={form.control}
+                                                name="fistName"
+                                                render={({ field }) => (
+                                                    <FormItem className='relative'>
+                                                        <FormControl>
+                                                            <input
+                                                                placeholder="First name" 
+                                                                className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[328px]'
+                                                                {...field} 
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage className='text-red-500 absolute -bottom-6 left-2' />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name="jobTitle"
+                                                render={({ field }) => (
+                                                    <FormItem className='relative'>
+                                                        <FormControl>
+                                                            <input
+                                                                placeholder="Job title" 
+                                                                className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[328px]'
+                                                                {...field} 
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage className='text-red-500 absolute -bottom-6 left-2' />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                        </div>
+                                        <div className='flex max-md:flex-col gap-6'>
+                                            <FormField
+                                                control={form.control}
+                                                name="email"
+                                                render={({ field }) => (
+                                                    <FormItem className='relative'>
+                                                        <FormControl>
+                                                            <input
+                                                                placeholder="Email id" 
+                                                                className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[328px]'
+                                                                {...field} 
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage className='text-red-500 absolute -bottom-6 left-2' />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name="mobile"
+                                                render={({ field }) => (
+                                                    <FormItem className='relative'>
+                                                        <FormControl>
+                                                            <input
+                                                                placeholder="Mobile number" 
+                                                                className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[328px]'
+                                                                {...field} 
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage className='text-red-500 absolute -bottom-6 left-2' />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                        </div>
+                                    </div>
+                                    <button 
+                                        type='submit'
+                                        className='rounded-2xl bg-[#EE0000] w-full py-3.5 text-white text-base font-semibold mt-10'
+                                    >
+                                        Submit form
+                                    </button>
+                                </form>
+                            </Form>
                         </DialogContent>
                     </Dialog>
                 )}
             </section>
             {footerShown && signUpFormSubmitted && (
                 <motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
-                    <section className='flex flex-col items-center justify-end gap-8 flex-1'>
+                    <section className='flex flex-col items-center justify-end gap-6 flex-1'>
                         <Image
                             src="/images/logo.svg"
                             alt="Loanee"
@@ -374,14 +445,14 @@ export default function Page()
                             height={50}
                             className='max-md:max-w-36'
                         />
-                        <div className='flex flex-col justify-center items-center gap-2.5'>
-                            <h1 className='text-black max-md:hidden font-bold text-6xl'>Your personal finance</h1>
-                            <h1 className='text-black max-md:hidden font-bold text-6xl'>assistant is coming soon</h1>
-                            <h1 className='text-black font-bold md:hidden text-center text-[32px] px-10 leading-[2.25rem]'>Your personal finance assistant is coming soon</h1>
-                            <h4	className='text-xl max-md:hidden font-light text-black mt-2'>Get notified and stay tuned!</h4>
+                        <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden'>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold text-6xl'>Your personal finance</motion.h1>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold text-6xl'>assistant is coming soon</motion.h1>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[32px] px-10 leading-[2.25rem]'>Your personal finance assistant is coming soon</motion.h1>
+                            <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text-xl max-md:hidden font-light text-black mt-2'>Get notified and stay tuned!</motion.h4>
                         </div>
                         <h4	className='text-sm md:hidden font-light text-black mt-4'>Get notified and stay tuned!</h4>
-                        <div className='flex items-center justify-center md:mt-4 gap-4'>
+                        <div className='flex items-center justify-center md:mt-2 gap-4'>
                             <Image
                                 src='/images/appstore.png'
                                 width={120} 
