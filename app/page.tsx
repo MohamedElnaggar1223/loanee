@@ -13,10 +13,8 @@ import { useForm } from "react-hook-form"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
   } from "@/components/ui/form"
 
@@ -54,18 +52,18 @@ const demoImagesRotation = [
 ]
 
 const demoImagesClickPos = [
-	'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
-	'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
-	'top-[23.45%] h-[75px]',
-	'top-[23.45%] h-[75px]',
-	'top-[85%] h-[45px]',
-	'top-[85%] h-[45px]',
-	'top-[87.5%] h-[45px]',
-	'top-[87.5%] h-[45px]',
-	'top-[800%] h-[45px]',
+	'top-[85.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+	'top-[85.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+	'top-[23.45%] h-[35px] md:h-[75px]',
+	'top-[23.45%] h-[35px] md:h-[75px]',
+	'top-[85%] h-[30px] md:h-[45px]',
+	'top-[85%] h-[30px] md:h-[45px]',
+	'top-[87.5%] h-[30px] md:h-[45px]',
+	'top-[87.5%] h-[30px] md:h-[45px]',
+	'top-[800%] h-[30px] md:h-[45px]',
 	'top-[75%] h-[25%]',
-	'top-[87.5%] h-[45px] left-[53.5%] w-[36.25%]',
-	'top-[87.5%] h-[45px] left-[53.5%] w-[36.25%]',
+	'top-[87.5%] h-[30px] md:h-[45px] left-[53.5%] w-[36.25%]',
+	'top-[87.5%] h-[30px] md:h-[45px] left-[53.5%] w-[36.25%]',
 	'top-[40rem]',
 ]
 
@@ -87,7 +85,7 @@ export default function Page()
     const [signUpFormSubmitted, setSignUpFormSubmitted] = useState(false)
     const [imageDemo, setImageDemo] = useState({
 		image: 'demoIphoneTwelvth.png',
-		clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
+		clickPos: 'top-[85.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
 		clicked: false,
 		finished: false,
         began: false
@@ -115,8 +113,8 @@ export default function Page()
 		offset: ['start end', 'end end']
     })
 
-    const top = useTransform(scrollYProgress, [0, (1/6), 0.98, 0.99], [-250, 25, 25, innerWidth > 768 ? 25 : 220])
-    const scale = useTransform(scrollYProgress, [0, (1/6), 0.98, 0.99], [1, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 1.5])
+    const top = useTransform(scrollYProgress, [0, (1/6), 0.98, innerWidth > 768 ? 1 : 0.988], [-250, 25, 25, innerWidth > 768 ? 25 : 212])
+    const scale = useTransform(scrollYProgress, [0, (1/6), 0.98, innerWidth > 768 ? 1 : 0.988], [1, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 1.5])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
     const tryText = useTransform(scrollYProgress, [(5/6), 1], [-100, 0])
@@ -149,11 +147,11 @@ export default function Page()
     })
 
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
-        if(value === 1 && !imageDemo.began) {
+        if((value === 1 || (innerWidth < 768 && value >= 0.98)) && !imageDemo.began) {
             setImageDemo(prev => ({...prev, began: true}))
             if(!signUpFormSubmitted) setSignUpFormShown(true)
         }
-        else if(value === 1) {
+        else if((value === 1 || (innerWidth < 768 && value >= 0.98))) {
             if(!signUpFormSubmitted) setSignUpFormShown(true)
         }
         else if(value <= 1) {
@@ -161,7 +159,7 @@ export default function Page()
                 began: false,
                 image: 'demoIphoneTwelvth.png',
                 clicked: false,
-                clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
+                clickPos: 'top-[85.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
                 finished: false
             })
         }
@@ -327,7 +325,7 @@ export default function Page()
                                 </div>
                             ) : (
                                 <div className='max-h-fit overflow-hidden'>
-                                    <motion.p style={{ y: tryText }} className='font-semibold text-xl md:text-3xl mb-auto'>
+                                    <motion.p style={{ y: tryText }} className='font-semibold text-lg md:text-3xl mb-auto'>
                                         Let's try a free demo
                                     </motion.p>
                                 </div>
