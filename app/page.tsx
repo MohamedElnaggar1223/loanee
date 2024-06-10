@@ -92,6 +92,11 @@ export default function Page()
 		finished: false,
         began: false
 	})
+    const [innerWidth, setInnerWidth] = useState(0)
+
+	useEffect(() => {
+		setInnerWidth(window.innerWidth)
+	}, [])
 
     const form = useForm<z.infer<typeof signUpSchema>>({
         resolver: zodResolver(signUpSchema),
@@ -110,13 +115,20 @@ export default function Page()
 		offset: ['start end', 'end end']
     })
 
-    const top = useTransform(scrollYProgress, [0, (1/6)], [-250, 25])
-    const scale = useTransform(scrollYProgress, [0, (1/6)], [1, 0.75])
+    const top = useTransform(scrollYProgress, [0, (1/6), 0.99, 1], [-250, 25, 25, innerWidth > 768 ? 25 : 225])
+    const scale = useTransform(scrollYProgress, [0, (1/6), 0.99, 1], [1, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 1.5])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
-    const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], ['calc(50% - 200px)', 'calc(36.2% - 150px)', 'calc(36.2% - 150px)', 'calc(50% - 200px)'])
+    const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
     const tryText = useTransform(scrollYProgress, [(5/6), 1], [-100, 0])
 
+    const firstFeatureOpacity = useTransform(scrollYProgress, [(1/6), 0.21], [1, innerWidth > 768 ? 1 : 0])
+    const secondFeatureOpacity = useTransform(scrollYProgress, [0.30, 0.309], [1, innerWidth > 768 ? 1 : 0])
+    const thirdFeatureOpacity = useTransform(scrollYProgress, [0.468, 0.476], [1, innerWidth > 768 ? 1 : 0])
+    const fourthFeatureOpacity = useTransform(scrollYProgress, [0.635, 0.644], [1, innerWidth > 768 ? 1 : 0])
+    const fifthFeatureOpacity = useTransform(scrollYProgress, [0.805, 0.814], [1, innerWidth > 768 ? 1 : 0])
+
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
+        console.log(value)
         if(value === 1) setImageShown('demoIphoneTwelvth.png')
         else if(value >= 0 && value < ((1/6) / 2)) setImageShown('iphoneHero.png')
         else if(value >= ((1/6) / 2) && value < ((2/6)) - 0.05) setImageShown('iphoneFirst.png')
@@ -248,54 +260,65 @@ export default function Page()
                 <motion.section ref={secondTargetRef} className={cn('relative flex-1 flex flex-col items-center justify-center w-full')}>
                     <motion.div
                         style={{ top, scale, rotate, left }}
-                        className={cn('-top-[250px] w-[400px] h-[818px] z-[99999]', position)}
+                        // initial={innerWidth > 768 ? {} : { left: 'calc(50% - 100px)' }}
+                        className={cn('-top-[250px] w-[200px] h-[409px] md:w-[400px] md:h-[818px] z-[99999]', position)}
                     >
-                        <Image
-                            src={`/images/${imageShown}`}
-                            alt='Phone'
-                            width={400}
-                            height={818}
-                            priority={true}
-                        />
+                        {innerWidth > 768 ? (
+                            <Image
+                                src={`/images/${imageShown}`}
+                                alt='Phone'
+                                width={400}
+                                height={818}
+                                priority={true}
+                            />
+                        ) : (
+                            <Image
+                                src={`/images/${imageShown}`}
+                                alt='Phone'
+                                width={200}
+                                height={409}
+                                priority={true}
+                            />
+                        )}  
                         {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                </motion.div>
-                    <div className='flex-1 flex items-center justify-center w-full min-h-screen'>
+                    <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <div className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : firstFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
                             <p className='uppercase font-bold text-[#ff0000] text-sm'>Financial Services</p>
                             <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Access financial services such as borrowing loans, take a credit card, and opening a bank account.</p>
-                        </div>
+                        </motion.div>
                         
                     </div>
-                    <div className='flex-1 flex items-center justify-center w-full min-h-screen'>
+                    <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <div className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : secondFeatureOpacity }} className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
                             <p className='uppercase font-bold text-[#ff0000] text-sm'>Personalized Offers</p>
                             <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Receive customized offers based on your credit score and enjoy pre-approved financial products for you.</p>
-                        </div>
+                        </motion.div>
                     </div>
-                    <div className='flex-1 flex items-center justify-center w-full min-h-screen'>
+                    <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <div className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : thirdFeatureOpacity }} className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
                             <p className='uppercase font-bold text-[#ff0000] text-sm'>Secure Access</p>
                             <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Ensure secure login and registration through the trusted UAE PASS system, enhancing your safety.</p>
-                        </div>
+                        </motion.div>
                     </div>
-                    <div className='flex-1 flex items-center justify-center w-full min-h-screen'>
+                    <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <div className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : fourthFeatureOpacity }} className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
                             <p className='uppercase font-bold text-[#ff0000] text-sm'>Financial Guide</p>
                             <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Gain valuable insights into credit reports and make right financial decisions that align with your goals.</p>
-                        </div>
+                        </motion.div>
                     </div>
-                    <div className='flex-1 flex items-center justify-center w-full min-h-screen'>
+                    <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <div className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : fifthFeatureOpacity }} className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
                             <p className='uppercase font-bold text-[#ff0000] text-sm'>Product Comparison</p>
                             <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare various financial products to choose the ones that best suit your needs.</p>
-                        </div>
+                        </motion.div>
                     </div>
-                    <div className='flex-1 flex items-center justify-center w-full min-h-screen px-12'>
-                        <div className='relative flex flex-col items-center justify-start gap-2 md:gap-4 bg-[#F1E8E6] w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden'>
+                    <div className='flex-1 flex items-center justify-center w-full min-h-screen md:px-12'>
+                        <div className='relative flex flex-col items-center justify-start gap-2 md:gap-4 bg-[#F1E8E6] w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden max-md:justify-between max-md:pt-16 max-md:pb-4'>
                             {footerShown ? (
                                 <div className='max-h-fit'>
                                     <motion.p className='font-semibold text-xl md:text-3xl mb-auto'>
@@ -317,7 +340,7 @@ export default function Page()
                                 // initial={{ left: 'calc(50% - 200px)' }}
                                 // exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
                                 // transition={{ duration: 0.40, ease: 'easeInOut' }}
-                                className='absolute scale-75 top-[25px]'
+                                className='absolute scale-90 md:scale-75 top-[25px]'
                             />}
                             {!imageDemo.finished ? (
                                 <p onMouseDown={() => {
