@@ -26,19 +26,19 @@ const demoImagesRotation = [
 ]
 
 const demoImagesClickPos = [
-	'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full',
-	'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full',
-	'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full',
-	'top-[26.25%] h-[60px]',
-	'top-[26.25%] h-[60px]',
-	'top-[88.2%] h-[34px]',
-	'top-[88.2%] h-[34px]',
-	'top-[90.75%] h-[34px]',
-	'top-[90.75%] h-[34px]',
-	'top-[800%] h-[34px]',
-	'top-[79.75%] h-[20%]',
-	'top-[90.75%] h-[34px] left-[53.5%] w-[36.25%]',
-	'top-[90.75%] h-[34px] left-[53.5%] w-[36.25%]',
+	'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
+	'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
+	'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
+	'top-[23.45%] h-[75px]',
+	'top-[23.45%] h-[75px]',
+	'top-[85%] h-[45px]',
+	'top-[85%] h-[45px]',
+	'top-[87.5%] h-[45px]',
+	'top-[87.5%] h-[45px]',
+	'top-[800%] h-[45px]',
+	'top-[75%] h-[25%]',
+	'top-[87.5%] h-[45px] left-[53.5%] w-[36.25%]',
+	'top-[87.5%] h-[45px] left-[53.5%] w-[36.25%]',
 	'top-[40rem]',
 ]
 
@@ -51,7 +51,7 @@ export default function Page()
     const [signUpFormSubmitted, setSignUpFormSubmitted] = useState(false)
     const [imageDemo, setImageDemo] = useState({
 		image: 'iphoneSecond.png',
-		clickPos: 'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full',
+		clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
 		clicked: false,
 		finished: false,
         began: false
@@ -59,7 +59,6 @@ export default function Page()
 
     const targetRef = useRef<HTMLDivElement>(null)
 	const secondTargetRef = useRef<HTMLDivElement>(null)
-    const footerRef = useRef<HTMLDivElement>(null)
 
     const { scrollY } = useScroll({
 		target: targetRef,
@@ -71,11 +70,6 @@ export default function Page()
 		offset: ['start end', 'end end']
     })
 
-    const { scrollYProgress: footerScrollYProgress } = useScroll({
-        target: footerRef,
-        offset: ['start start', 'end end']
-    })
-
     const top = useTransform(scrollYProgress, [0, (1/6)], [-250, 25])
     const scale = useTransform(scrollYProgress, [0, (1/6)], [1, 0.75])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
@@ -83,17 +77,18 @@ export default function Page()
     const tryText = useTransform(scrollYProgress, [(5/6), 1], [-100, 0])
 
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
-        if(value >= 0 && value < (1/6)) setImageShown('iphoneHero.png')
-        else if(value >= (1/6) && value < (2/6)) setImageShown('iphoneFirst.png')
-        else if(value >= (2/6) && value < (3/6)) setImageShown('iphoneSecond.png')
-        else if(value >= (3/6) && value < (4/6)) setImageShown('iphoneThird.png')
-        else if(value >= (4/6) && value < (5/6)) setImageShown('iphoneFourth.png')
-        else if(value >= (5/6) && value < 1) setImageShown('iphoneFifth.png')
-        else if(value === 1) setImageShown('iphoneHero.png')
+        console.log(value === (1 - 0.05))
+        if(value >= 0 && value < ((1/6) / 2)) setImageShown('iphoneHero.png')
+        else if(value >= ((1/6) / 2) && value < ((2/6)) - 0.05) setImageShown('iphoneFirst.png')
+        else if(value >= ((2/6) - 0.05) && value < ((3/6)) - 0.05) setImageShown('iphoneSecond.png')
+        else if(value >= ((3/6) - 0.05) && value < ((4/6)) - 0.05) setImageShown('iphoneThird.png')
+        else if(value >= ((4/6) - 0.05) && value < ((5/6)) - 0.05) setImageShown('iphoneFourth.png')
+        else if(value >= ((5/6) - 0.05) && value < (1 - 0.05)) setImageShown('iphoneFifth.png')
+        else if(value >= (1 - 0.05)) setImageShown('iphoneHero.png')
     })
     
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
-        if(value >= (1/6)) {
+        if(value >= (1/6) && !footerShown) {
             if(position !== 'fixed') {
                 setPosition('fixed')
             }
@@ -109,38 +104,25 @@ export default function Page()
         else if(value === 1) {
             if(!signUpFormSubmitted) setSignUpFormShown(true)
         }
-        else if(value <= (5/6)) {
+        else if(value <= 1) {
             setImageDemo({
                 began: false,
                 image: 'iphoneSecond.png',
                 clicked: false,
-                clickPos: 'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full',
+                clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full',
                 finished: false
             })
         }
     })
 
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
-        console.log(scrollYProgress.getPrevious())
-        console.log(value)
         if(imageDemo.finished) {
             if(scrollYProgress.getPrevious()! < value) {
                 setFooterShown(true)
             }
-        }
-    })
-
-    useMotionValueEvent(footerScrollYProgress, 'change', (value) => {
-        if(value === 0) {
-            setFooterShown(false)
-            setImageDemo({
-                began: false,
-                image: 'iphoneSecond.png',
-                clicked: false,
-                clickPos: 'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full',
-                finished: false
-            })
-            window.scroll
+            else if(footerShown) {
+                setFooterShown(false)
+            }
         }
     })
 
@@ -160,18 +142,18 @@ export default function Page()
 			}, 2000)
 		}
         else if(imageDemo.finished) {
-            window.scrollTo({
-                top: document.body.scrollHeight * 0.99,
-            })
+            setFooterShown(true)
         }
 	}, [imageDemo])
+
+    useEffect(() => {
+        if(footerShown) setPosition('absolute')
+    }, [footerShown])
 
     const MotionImage = motion(Image)
 
     return (
         <>
-            {!footerShown && (
-            <> 
             <section className='flex flex-col min-h-[700vh] pt-6 no-scroll-bar px-5 md:px-12'>
                 <section className='flex flex-col max-h-screen flex-1 z-30 min-h-screen'>
                     <Header />
@@ -261,11 +243,29 @@ export default function Page()
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen px-12'>
                         <div className='relative flex flex-col items-center justify-start gap-2 md:gap-4 bg-[#F1E8E6] w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden'>
-                            <div className='max-h-fit overflow-hidden'>
-                                <motion.p style={{ y: tryText }} className='font-semibold text-xl md:text-3xl mb-auto'>
-                                    Let's try a free demo
-                                </motion.p>
-                            </div>
+                            {footerShown ? (
+                                <div className='max-h-fit'>
+                                    <motion.p className='font-semibold text-xl md:text-3xl mb-auto'>
+                                        Let's try a free demo
+                                    </motion.p>
+                                </div>
+                            ) : (
+                                <div className='max-h-fit overflow-hidden'>
+                                    <motion.p style={{ y: tryText }} className='font-semibold text-xl md:text-3xl mb-auto'>
+                                        Let's try a free demo
+                                    </motion.p>
+                                </div>
+                            )}
+                            {footerShown && <MotionImage
+                                src={`/images/${imageShown}`}
+                                alt='Phone'
+                                width={400}
+                                height={818}
+                                // initial={{ left: 'calc(50% - 200px)' }}
+                                // exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
+                                // transition={{ duration: 0.40, ease: 'easeInOut' }}
+                                className='absolute scale-75 top-[25px]'
+                            />}
                             {!imageDemo.finished ? (
                                 <p onMouseDown={() => {
                                     setImageDemo(prev => ({...prev, clicked: true, image: 'demoIphoneTenth.png'}))
@@ -273,7 +273,10 @@ export default function Page()
                             ) : (
                                 <button 
                                     onMouseDown={() => {
-                                        setImageDemo((prev) => ({...prev, image: 'demoIphoneFirst.png', clickPos: 'top-[89%] h-[60px] w-[60px] left-[40%] rounded-full', clicked: false, finished: false}))
+                                        setImageDemo((prev) => ({...prev, image: 'demoIphoneTwelvth.png', clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full', clicked: false, finished: false}))
+                                        setImageShown('demoIphoneTwelvth.png')
+                                        setPosition('fixed')
+                                        setFooterShown(false)
                                     }}
                                     className='md:absolute mt-10 z-50 md:bottom-10 md:right-10 md:rounded-full text-sm md:text-base font-semibold px-2 py-1.5 md:px-6 md:py-3 md:border md:border-black max-md:underline'
                                 >
@@ -282,7 +285,7 @@ export default function Page()
                             )}
                         </div>
                     </div>
-                </motion.section> 
+                </motion.section>
                 {signUpFormShown && (
                     <Dialog open={signUpFormShown}>
                         <DialogContent className='bg-[#F7F3F6] flex flex-col max-md:items-center gap-10 py-10 px-6 max-md:min-w-[320px] max-md:max-w-[320px] md:min-w-[720px] z-[99999999999999]'>
@@ -342,10 +345,8 @@ export default function Page()
                     </Dialog>
                 )}
             </section>
-            </>
-            )}
             {footerShown && signUpFormSubmitted && (
-                <motion.section ref={footerRef} key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-[101vh] flex-col items-center justify-end z-20'>
+                <motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
                     <section className='flex flex-col items-center justify-end gap-8 flex-1'>
                         <Image
                             src="/images/logo.svg"
