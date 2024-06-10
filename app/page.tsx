@@ -115,7 +115,7 @@ export default function Page()
 		offset: ['start end', 'end end']
     })
 
-    const top = useTransform(scrollYProgress, [0, (1/6), 0.98, 0.99], [-250, 25, 25, innerWidth > 768 ? 25 : 215])
+    const top = useTransform(scrollYProgress, [0, (1/6), 0.98, 0.99], [-250, 25, 25, innerWidth > 768 ? 25 : 220])
     const scale = useTransform(scrollYProgress, [0, (1/6), 0.98, 0.99], [1, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 1.5])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
