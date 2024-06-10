@@ -204,7 +204,7 @@ export default function Page()
                             // exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
                             // transition={{ duration: 0.40, ease: 'easeInOut' }}
                         />
-                        {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-red-400 opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                </motion.div>
+                        {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                </motion.div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen'>
                         <div className='flex-1' />
                         <div className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
