@@ -115,17 +115,17 @@ export default function Page()
 		offset: ['start end', 'end end']
     })
 
-    const top = useTransform(scrollYProgress, [0, (1/6), 0.99, 1], [-250, 25, 25, innerWidth > 768 ? 25 : 225])
-    const scale = useTransform(scrollYProgress, [0, (1/6), 0.99, 1], [1, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 1.5])
+    const top = useTransform(scrollYProgress, [0, (1/6), 0.98, 0.99], [-250, 25, 25, innerWidth > 768 ? 25 : 225])
+    const scale = useTransform(scrollYProgress, [0, (1/6), 0.98, 0.99], [1, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 1.5])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
     const tryText = useTransform(scrollYProgress, [(5/6), 1], [-100, 0])
 
-    const firstFeatureOpacity = useTransform(scrollYProgress, [(1/6), 0.21], [1, innerWidth > 768 ? 1 : 0])
-    const secondFeatureOpacity = useTransform(scrollYProgress, [0.30, 0.309], [1, innerWidth > 768 ? 1 : 0])
-    const thirdFeatureOpacity = useTransform(scrollYProgress, [0.468, 0.476], [1, innerWidth > 768 ? 1 : 0])
-    const fourthFeatureOpacity = useTransform(scrollYProgress, [0.635, 0.644], [1, innerWidth > 768 ? 1 : 0])
-    const fifthFeatureOpacity = useTransform(scrollYProgress, [0.805, 0.814], [1, innerWidth > 768 ? 1 : 0])
+    const firstFeatureOpacity = useTransform(scrollYProgress, [(1/6), 0.206], [1, innerWidth > 768 ? 1 : 0])
+    const secondFeatureOpacity = useTransform(scrollYProgress, [0.294, 0.305], [1, innerWidth > 768 ? 1 : 0])
+    const thirdFeatureOpacity = useTransform(scrollYProgress, [0.464, 0.472], [1, innerWidth > 768 ? 1 : 0])
+    const fourthFeatureOpacity = useTransform(scrollYProgress, [0.631, 0.640], [1, innerWidth > 768 ? 1 : 0])
+    const fifthFeatureOpacity = useTransform(scrollYProgress, [0.801, 0.81], [1, innerWidth > 768 ? 1 : 0])
 
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
         console.log(value)
