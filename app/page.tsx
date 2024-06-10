@@ -2,11 +2,11 @@
 import Header from "@/components/Header";
 import { AnimatePresence, useInView, motion, useMotionValueEvent, useScroll, useTransform, useWillChange } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Lenis from 'lenis'
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-import { X } from "lucide-react"
+import Head from "next/head";
 
 const demoImagesRotation = [
 	'iphoneSecond.png',
@@ -40,6 +40,15 @@ const demoImagesClickPos = [
 	'top-[87.5%] h-[45px] left-[53.5%] w-[36.25%]',
 	'top-[87.5%] h-[45px] left-[53.5%] w-[36.25%]',
 	'top-[40rem]',
+]
+
+const featureImages = [
+    'iphoneHero.png',
+    'iphoneFirst.png',
+    'iphoneSecond.png',
+    'iphoneThird.png',
+    'iphoneFourth.png',
+    'iphoneFifth.png',
 ]
 
 export default function Page() 
@@ -150,10 +159,22 @@ export default function Page()
         if(footerShown) setPosition('absolute')
     }, [footerShown])
 
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const MotionImage = motion(Image)
 
     return (
         <>
+            <Head>
+                {demoImagesRotation.map((image) => (
+                    <link key={image} rel="preload" href={`/images/${image}`} as="image" />
+                ))}
+                {featureImages.map((image) => (
+                    <link key={image} rel="preload" href={`/images/${image}`} as="image" />
+                ))}
+            </Head>
             <section className='flex flex-col min-h-[700vh] pt-6 no-scroll-bar px-5 md:px-12'>
                 <section className='flex flex-col max-h-screen flex-1 z-30 min-h-screen'>
                     <Header />
@@ -200,9 +221,7 @@ export default function Page()
                             alt='Phone'
                             width={400}
                             height={818}
-                            // initial={{ left: 'calc(50% - 200px)' }}
-                            // exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
-                            // transition={{ duration: 0.40, ease: 'easeInOut' }}
+                            priority
                         />
                         {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                </motion.div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen'>
