@@ -115,7 +115,7 @@ export default function Page()
 		offset: ['start end', 'end end']
     })
 
-    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ? '5vh' : '-10vh', innerHeight > 768 ? '5vh' : '-10vh', innerWidth > 768 ? innerHeight > 768 ? '5vh' : '-10vh' : '22.5vh'])
+    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ? '5vh' : '-10vh', innerHeight > 768 ? '5vh' : '-10vh', innerWidth > 768 ? innerHeight > 768 ? '5vh' : '-10vh' : '-5vh'])
     const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerWidth > 768 ? 0.75 : 0.95, innerWidth > 768 ? 0.75 : 0.95, innerWidth > 768 ? 0.75 : 1.25])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
