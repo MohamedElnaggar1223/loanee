@@ -19,3 +19,9 @@
 .gradient-footer {
   background: linear-gradient(0deg, rgba(238,229,235,1) 0%, rgba(255,255,255,1) 100%);
 }
+
+@media not all and (min-height: 768px) {
+  .smallerDevices {
+    margin-bottom: 20vh;
+  }
+}

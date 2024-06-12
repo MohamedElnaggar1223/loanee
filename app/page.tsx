@@ -91,9 +91,11 @@ export default function Page()
         began: false
 	})
     const [innerWidth, setInnerWidth] = useState(0)
+    const [innerHeight, setInnerHeight] = useState(0)
 
 	useEffect(() => {
 		setInnerWidth(window.innerWidth)
+        setInnerHeight(window.innerHeight)
 	}, [])
 
     const form = useForm<z.infer<typeof signUpSchema>>({
@@ -113,11 +115,12 @@ export default function Page()
 		offset: ['start end', 'end end']
     })
 
-    const top = useTransform(scrollYProgress, [0, (1/6), 0.98, innerWidth > 768 ? 1 : 0.988], [-250, 25, 25, innerWidth > 768 ? 25 : 212])
-    const scale = useTransform(scrollYProgress, [0, (1/6), 0.98, innerWidth > 768 ? 1 : 0.988], [1, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 0.9, innerWidth > 768 ? 0.75 : 1.5])
+    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ? '5vh' : '-10vh', innerHeight > 768 ? '5vh' : '-10vh', innerWidth > 768 ? innerHeight > 768 ? '5vh' : '-10vh' : '22.5vh'])
+    const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerWidth > 768 ? 0.75 : 0.95, innerWidth > 768 ? 0.75 : 0.95, innerWidth > 768 ? 0.75 : 1.25])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
     const tryText = useTransform(scrollYProgress, [(5/6), 1], [-100, 0])
+    const opacityBg = useTransform(scrollYProgress, [0, (1/6)-0.0001, (1/6), 0.9999, 1], [0, 0, 1, 1, 0])
 
     const firstFeatureOpacity = useTransform(scrollYProgress, [(1/6), 0.206], [1, innerWidth > 768 ? 1 : 0])
     const secondFeatureOpacity = useTransform(scrollYProgress, [0.294, 0.305], [1, innerWidth > 768 ? 1 : 0])
@@ -256,10 +259,18 @@ export default function Page()
                     </section>
                 </section>
                 <motion.section ref={secondTargetRef} className={cn('relative flex-1 flex flex-col items-center justify-center w-full')}>
+                        <motion.div style={{ opacity: opacityBg }} className='fixed z-[4] -top-[25vh] left-0'>
+                            <Image
+                                src='/images/triangleBg.svg'
+                                width={782}
+                                height={1113}
+                                alt='Dubai'
+                            />
+                        </motion.div>
                     <motion.div
                         style={{ top, scale, rotate, left }}
                         // initial={innerWidth > 768 ? {} : { left: 'calc(50% - 100px)' }}
-                        className={cn('-top-[250px] w-[200px] h-[409px] md:w-[400px] md:h-[818px] z-[99999]', position)}
+                        className={cn('-top-[20vh] w-[200px] h-[409px] md:w-[400px] md:h-[818px] z-[99999]', position)}
                     >
                         {innerWidth > 768 ? (
                             <Image
@@ -315,8 +326,15 @@ export default function Page()
                             <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare various financial products to choose the ones that best suit your needs.</p>
                         </motion.div>
                     </div>
-                    <div className='flex-1 flex items-center justify-center w-full min-h-screen md:px-12'>
+                    <div className='flex-1 flex items-center justify-center w-full min-h-screen md:px-2'>
                         <div className='relative flex flex-col items-center justify-start gap-2 md:gap-4 bg-[#F1E8E6] w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden max-md:justify-between max-md:pt-16 max-md:pb-4'>
+                            <Image
+								src='/images/demoTriangle.png'
+								width={782}
+								height={1113}
+								alt='Dubai'
+								className='absolute z-[11] bottom-0'
+                            />
                             {footerShown ? (
                                 <div className='max-h-fit'>
                                     <motion.p className='font-semibold text-xl md:text-3xl mb-auto'>
