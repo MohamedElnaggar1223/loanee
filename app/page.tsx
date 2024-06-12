@@ -115,8 +115,10 @@ export default function Page()
 		offset: ['start end', 'end end']
     })
 
-    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '25vh' : '-5vh'])
-    const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 1.25 : 0.65])
+    // const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '25vh' : '-5vh'])
+    // const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 1.25 : 0.65])
+    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-10vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-10vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-10vh' : '25vh'])
+    const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1.25])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
     const tryText = useTransform(scrollYProgress, [(5/6), 1], [-100, 0])
@@ -259,7 +261,7 @@ export default function Page()
                     </section>
                 </section>
                 <motion.section ref={secondTargetRef} className={cn('relative flex-1 flex flex-col items-center justify-center w-full')}>
-                        <motion.div style={{ opacity: opacityBg }} className='fixed z-[4] -top-[25vh] left-0'>
+                        <motion.div style={{ opacity: opacityBg }} className='fixed z-[4] -top-[18vh] md:-top-[25vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
                             <Image
                                 src='/images/triangleBg.svg'
                                 width={782}
@@ -356,7 +358,7 @@ export default function Page()
                                 // initial={{ left: 'calc(50% - 200px)' }}
                                 // exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
                                 // transition={{ duration: 0.40, ease: 'easeInOut' }}
-                                className='absolute scale-90 md:scale-75 top-[25px]'
+                                className='absolute scale-75 top-[25px]'
                             />}
                             {!imageDemo.finished ? (
                                 <p onMouseDown={() => {
@@ -476,7 +478,21 @@ export default function Page()
             </section>
             {footerShown && signUpFormSubmitted && (
                 <motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
-                    <section className='flex flex-col items-center justify-end gap-6 flex-1'>
+                    <section className='relative flex flex-col items-center justify-end gap-6 flex-1 overflow-hidden w-full'>
+                        <Image
+                            src='/images/footerTop.svg'
+                            width={250}
+                            height={439}
+                            alt='Footer Background Top'
+                            className='absolute z-[10000] right-0 top-0 max-md:max-w-[173px]' 
+                        />
+                        <Image
+                            src='/images/footerBottom.svg'
+                            width={439}
+                            height={439}
+                            alt='Footer Background Top'
+                            className='absolute z-[10000] left-0 bottom-0 max-md:max-w-[173px]' 
+                        />
                         <Image
                             src="/images/logo.svg"
                             alt="Loanee"
@@ -514,40 +530,40 @@ export default function Page()
                             alt='Footer Phones' 
                         />
                     </section>
-                    <div className='px-4 py-6 md:px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full'>
-                        <div className='gap-4 md:gap-10 flex'>
-                            <p className='text-xs md:text-sm cursor-pointer max-md:font-semibold'>Terms</p>
-                            <p className='text-xs md:text-sm cursor-pointer max-md:font-semibold'>Privacy</p>
-                            <p className='text-xs md:text-sm cursor-pointer max-md:font-semibold'>Cookie policy</p>
+                    <div className='px-4 py-6 md:px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full max-md:flex-col'>
+                        <div className='gap-4 md:gap-10 flex max-md:w-full max-md:items-center max-md:justify-center'>
+                            <p className='text-sm cursor-pointer max-md:font-semibold'>Terms</p>
+                            <p className='text-sm cursor-pointer max-md:font-semibold'>Privacy</p>
+                            <p className='text-sm cursor-pointer max-md:font-semibold'>Cookie policy</p>
                         </div>
-                        <div className='gap-5 md:gap-10 flex'>
+                        <div className='gap-5 md:gap-10 flex max-md:w-full max-md:items-center max-md:justify-center'>
                             <Image
                                 src='/images/twitter.png'
                                 width={18}
                                 height={18}
                                 alt='Twitter'
-                                className='cursor-pointer max-md:max-w-3'
+                                className='cursor-pointer max-md:max-w-4'
                             />
                             <Image
                                 src='/images/instagram.png'
                                 width={18}
                                 height={18}
                                 alt='Instagram'
-                                className='cursor-pointer max-md:max-w-3'
+                                className='cursor-pointer max-md:max-w-4'
                             />
                             <Image
                                 src='/images/facebook.png'
                                 width={18}
                                 height={18}
                                 alt='Facebook'
-                                className='cursor-pointer max-md:max-w-3'
+                                className='cursor-pointer max-md:max-w-4'
                             />
                             <Image
                                 src='/images/linkedin.png'
                                 width={18}
                                 height={18}
                                 alt='Linkedin'
-                                className='cursor-pointer max-md:max-w-3'
+                                className='cursor-pointer max-md:max-w-4'
                             />
                         </div>
                     </div>
