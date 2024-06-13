@@ -6,6 +6,9 @@
   display: none;
 }
 
+.heading-font {
+  font-size: clamp(2rem, 2.5rem, 3.5rem);
+}
 
 * {
   -ms-overflow-style: none;

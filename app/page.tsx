@@ -17,6 +17,7 @@ import {
     FormItem,
     FormMessage,
   } from "@/components/ui/form"
+import { countryDialingCodes } from "@/constants";
 
 const signUpSchema = z.object({
     fistName: z.string().min(2, {
@@ -117,18 +118,18 @@ export default function Page()
 
     // const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '25vh' : '-5vh'])
     // const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 1.25 : 0.65])
-    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-10vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-10vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-10vh' : '25vh'])
-    const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1.25])
+    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? '-36vh' : (innerHeight < 768 && innerWidth > 768) ? '-42vh' : '-40vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh'])
+    const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? 1 : (innerHeight < 768 && innerWidth > 768) ? 0.75 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
     const tryText = useTransform(scrollYProgress, [(5/6), 1], [-100, 0])
     const opacityBg = useTransform(scrollYProgress, [0, (1/6)-0.0001, (1/6), 0.9999, 1], [0, 0, 1, 1, 0])
 
-    const firstFeatureOpacity = useTransform(scrollYProgress, [0.1958, 0.1968], [1, innerWidth > 768 ? 1 : 0])
-    const secondFeatureOpacity = useTransform(scrollYProgress, [0.294, 0.305], [1, innerWidth > 768 ? 1 : 0])
-    const thirdFeatureOpacity = useTransform(scrollYProgress, [0.464, 0.472], [1, innerWidth > 768 ? 1 : 0])
-    const fourthFeatureOpacity = useTransform(scrollYProgress, [0.631, 0.640], [1, innerWidth > 768 ? 1 : 0])
-    const fifthFeatureOpacity = useTransform(scrollYProgress, [0.801, 0.81], [1, innerWidth > 768 ? 1 : 0])
+    const firstFeatureOpacity = useTransform(scrollYProgress, [0.19, 0.1945], [1, innerWidth > 768 ? 1 : 0])
+    const secondFeatureOpacity = useTransform(scrollYProgress, [0.34, 0.345], [1, innerWidth > 768 ? 1 : 0])
+    const thirdFeatureOpacity = useTransform(scrollYProgress, [0.50, 0.505], [1, innerWidth > 768 ? 1 : 0])
+    const fourthFeatureOpacity = useTransform(scrollYProgress, [0.68, 0.6815], [1, innerWidth > 768 ? 1 : 0])
+    const fifthFeatureOpacity = useTransform(scrollYProgress, [0.845, 0.85], [1, innerWidth > 768 ? 1 : 0])
 
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
         console.log(value)
@@ -225,9 +226,13 @@ export default function Page()
                 ))}
             </Head>
             <section className='flex flex-col min-h-[700vh] pt-6 no-scroll-bar px-5 md:px-12'>
+                
+                <iframe className='absolute hidden max-w-[25%] h-[22%] max-md:h-[18%] z-[12] top-[36.2%] left-[38%]' src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
+                <iframe className='absolute hidden max-w-[65.25%] h-[25%] max-md:h-[25.75%] z-[12] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]' src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
+
                 <section className='flex flex-col max-h-screen flex-1 z-30 min-h-screen'>
                     <Header />
-                    <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center gap-8 flex-1'>
+                    <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center max-md:gap-6 lg:gap-4 2xl:gap-8 flex-1'>
                         <Image
                             src='/images/fourthDubaiBg.png'
                             fill
@@ -235,28 +240,28 @@ export default function Page()
                             className='rounded-t-3xl w-full h-full object-cover absolute z-[-2]' 
                         />
                         {/* <div className='z-[-1] bg-[rgba(110,37,37,0.70)] w-full h-full top-0 rounded-3xl absolute' /> */}
-                        <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden'>
-                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden text-6xl'>Your personal finance</motion.h1>
-                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden text-6xl'>assistant is on the way</motion.h1>
-                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[32px] px-2 leading-[2.25rem]'>Your personal finance assistant is on the way</motion.h1>
+                        <div className='flex flex-col justify-center items-center py-1 gap-2.5 overflow-hidden'>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden lg:text-5xl 2xl:text-6xl'>Unlock Easy Borrowing:</motion.h1>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden lg:text-5xl 2xl:text-6xl'>Innovative Financial Tool Coming Soon</motion.h1>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[28px] leading-[2.25rem]'>Unlock Easy Borrowing: Innovative Financial Tool Coming Soon</motion.h1>
                         </div>
                         <div className='flex flex-col justify-center items-center overflow-hidden'>
-                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-xl max-md:hidden font-light text-white'>Get an overview of your finances, tips to improve your score, and</motion.h4>
-                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-xl max-md:hidden font-light text-white'>personalised offers. All in one place.</motion.h4>
-                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-sm text-center md:hidden font-light text-white'>Get an overview of your finances, tips to improve your score, and personalised offers. All in one place.</motion.h4>
+                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='lg:text-lg 2xl:text-xl max-md:hidden font-light text-white'>Access easy, fast, and reliable banking products & borrowing with Loanee, </motion.h4>
+                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='lg:text-lg 2xl:text-xl max-md:hidden font-light text-white'>designed for your convenience, Register your interest now.</motion.h4>
+                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-sm text-center md:hidden font-light text-white'>Access easy, fast, and reliable banking products & borrowing with Loanee, designed for your convenience, Register your interest now.</motion.h4>
                         </div>
                         <div className='flex flex-col items-center justify-center gap-4'>
                             <div className='flex items-center justify-between gap-4 max-md:px-6 max-md:h-11'>
                                 <input
                                     type='text'
                                     placeholder='Enter your email'
-                                    className='rounded-[0.5rem] max-md:min-h-full px-3.5 md:p-3.5 border outline-none border-white w-screen max-w-[180px] sm:max-w-[240px] md:max-w-[468px] bg-[#CBBEBD] text-black placeholder:text-black text-sm' 
+                                    className='rounded-[0.5rem] max-md:min-h-full px-3.5 lg:p-2.5 2xl:p-3.5 border outline-none border-white w-screen max-w-[180px] sm:max-w-[240px] md:max-w-[468px] bg-[#CBBEBD] text-black placeholder:text-black text-sm' 
                                 />
-                                <button className='px-4 max-md:min-h-full text-nowrap md:py-3.5 md:px-8 bg-[#ff0000] text-white font-medium rounded-[0.5rem] text-sm'>
+                                <button className='px-4 max-md:min-h-full text-nowrap lg:p-2.5 2xl:py-3.5 2xl:px-8 bg-[#ff0000] text-white font-medium rounded-[0.5rem] text-sm'>
                                     Get Notified
                                 </button>
                             </div>
-                            <p className='text-xs md:text-base font-light text-white'>Get notified on launch of your personal finance assistant</p>
+                            <p className='text-xs lg:text-sm xl:text-base font-light text-white'>Get notified on launch of your personal finance assistant</p>
                         </div>
                     </section>
                 </section>
@@ -275,6 +280,13 @@ export default function Page()
                         className={cn('-top-[20vh] w-[200px] h-[409px] md:w-[400px] md:h-[818px] z-[99999]', position)}
                     >
                         {innerWidth > 768 ? (
+                            // <Image
+                            //     src={`/images/${imageShown}`}
+                            //     alt='Phone'
+                            //     width={400}
+                            //     height={818}
+                            //     priority={true}
+                            // />
                             <Image
                                 src={`/images/${imageShown}`}
                                 alt='Phone'
@@ -291,62 +303,80 @@ export default function Page()
                                 priority={true}
                             />
                         )}  
-                        {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                </motion.div>
+                        {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
+                        {imageDemo.began && imageDemo.image === 'demoIphoneSeventh.png' && (
+                            <>
+                                <iframe className='absolute max-w-[25%] h-[22%] max-md:h-[18%] z-[12] top-[36.2%] left-[38%]' src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
+                                <div className='absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]' />
+                            </>
+                        )}
+                        {imageDemo.began && imageDemo.image === 'demoIphoneSixth.png' && (
+                            <>
+                                <iframe className='absolute max-w-[65.25%] h-[25%] max-md:h-[25.75%] z-[12] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]' src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
+                            </>
+                        )}
+                    </motion.div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
                         <motion.div style={{ opacity: innerWidth > 768 ? 1 : firstFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
-                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Financial Services</p>
-                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Access financial services such as borrowing loans, take a credit card, and opening a bank account.</p>
+                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Instant Financial Services</p>
+                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Access pre-approved financial services like loans, credit cards, and bank account opening efficiently and easily, from a wide range of banks and lenders.</p>
                         </motion.div>
                         
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : secondFeatureOpacity }} className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
-                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Personalized Offers</p>
-                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Receive customized offers based on your credit score and enjoy pre-approved financial products for you.</p>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : secondFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
+                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Pre-approved Personalised Offers</p>
+                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Receive personalized pre-approved banking offers tailored to your credit score. </p>
                         </motion.div>
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : thirdFeatureOpacity }} className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
-                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Secure Access</p>
-                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Ensure secure login and registration through the trusted UAE PASS system, enhancing your safety.</p>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : thirdFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
+                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Peace of Mind</p>
+                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Enhance your security with secure registration, logins and data sharing via the trusted UAE PASS system.</p>
                         </motion.div>
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : fourthFeatureOpacity }} className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
-                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Financial Guide</p>
-                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Gain valuable insights into credit reports and make right financial decisions that align with your goals.</p>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : fourthFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
+                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Know Your Credit Report</p>
+                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Enhance your financial knowledge with insightful credit report analysis and make informed decisions that match your financial goals.</p>
                         </motion.div>
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : fifthFeatureOpacity }} className='flex flex-1 flex-col gap-4 overflow-hidden pl-[15%]'>
-                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Product Comparison</p>
-                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare various financial products to choose the ones that best suit your needs.</p>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : fifthFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
+                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Easy Product Comparison</p>
+                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Streamline your decision-making by easily comparing a range of financial products to find the best fit for your needs.</p>
                         </motion.div>
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen md:px-2'>
-                        <div className='relative flex flex-col items-center justify-start gap-2 md:gap-4 bg-[#F1E8E6] w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden max-md:justify-between max-md:pt-16 max-md:pb-4'>
+                        <div className='relative flex flex-col items-center justify-start gap-2 md:gap-4 w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden max-md:justify-between max-md:pt-16 max-md:pb-4'>
                             <Image
-								src='/images/demoTriangle.png'
+								src='/images/triangleDemo.svg'
 								width={782}
 								height={1113}
 								alt='Dubai'
-								className='absolute z-[11] bottom-0'
+								className='absolute z-[2] opacity-5 bottom-0'
+                            />
+                            <Image
+								src='/images/demoBackground.png'
+								fill
+								alt='demo background'
+								className='absolute z-[1] bottom-0'
                             />
                             {footerShown ? (
-                                <div className='max-h-fit'>
-                                    <motion.p className='font-semibold text-xl md:text-3xl mb-auto'>
-                                        Let's try a free demo
+                                <div className='max-h-fit z-10 text-white'>
+                                    <motion.p className='font-semibold text-xl md:text-3xl mb-auto py-1'>
+                                        Try the Loanee Demo Now
                                     </motion.p>
                                 </div>
                             ) : (
-                                <div className='max-h-fit overflow-hidden'>
+                                <div className='max-h-fit overflow-hidden z-10 text-white'>
                                     <motion.p style={{ y: tryText }} className='font-semibold text-lg md:text-3xl mb-auto'>
-                                        Let's try a free demo
+                                        Try the Loanee Demo Now
                                     </motion.p>
                                 </div>
                             )}
@@ -358,7 +388,7 @@ export default function Page()
                                 // initial={{ left: 'calc(50% - 200px)' }}
                                 // exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
                                 // transition={{ duration: 0.40, ease: 'easeInOut' }}
-                                className='absolute scale-75 top-[25px]'
+                                className='absolute scale-75 top-[25px] z-[15]'
                             />}
                             {!imageDemo.finished ? (
                                 <p onMouseDown={() => {
@@ -369,7 +399,7 @@ export default function Page()
                                             behavior: 'smooth'
                                         })
                                     }, 200)
-                                }} className='underline cursor-pointer mt-10 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm'>Skip Demo</p>
+                                }} className='underline cursor-pointer mt-10 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm text-white'>Skip Demo</p>
                             ) : (
                                 <button 
                                     onMouseDown={() => {
@@ -378,7 +408,7 @@ export default function Page()
                                         setPosition('fixed')
                                         setFooterShown(false)
                                     }}
-                                    className='md:absolute mt-10 z-50 md:bottom-10 md:right-10 md:rounded-full text-sm md:text-base font-semibold px-2 py-1.5 md:px-6 md:py-3 md:border md:border-black max-md:underline'
+                                    className='md:absolute mt-10 z-50 md:bottom-10 md:right-10 md:rounded-full text-sm md:text-base font-semibold px-2 py-1.5 md:px-6 md:py-3 md:border md:border-black max-md:underline text-white'
                                 >
                                     Restart (R)
                                 </button>
@@ -452,11 +482,20 @@ export default function Page()
                                                 render={({ field }) => (
                                                     <FormItem className='relative'>
                                                         <FormControl>
-                                                            <input
-                                                                placeholder="Mobile number" 
-                                                                className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[328px]'
-                                                                {...field} 
-                                                            />
+                                                            <div className='w-screen max-w-[280px] md:max-w-[328px] flex rounded-xl overflow-hidden'>
+                                                                <select defaultValue="+1-284" className='bg-white outline-none px-0 w-fit'>
+                                                                    {countryDialingCodes.map((code) => (
+                                                                        <option key={code} value={code}>
+                                                                            {code}
+                                                                        </option>
+                                                                    ))}
+                                                                </select>
+                                                                <input
+                                                                    placeholder="Mobile number" 
+                                                                    className='bg-white outline-none px-4 py-3.5 flex-1'
+                                                                    {...field} 
+                                                                />
+                                                            </div>
                                                         </FormControl>
                                                         <FormMessage className='text-red-500 absolute -bottom-6 left-2' />
                                                     </FormItem>
@@ -478,36 +517,36 @@ export default function Page()
             </section>
             {footerShown && signUpFormSubmitted && (
                 <motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
-                    <section className='relative flex flex-col items-center justify-end gap-6 flex-1 overflow-hidden w-full'>
+                    <section className='relative flex flex-col items-center justify-end gap-6 2xl:gap-8 flex-1 overflow-hidden w-full'>
                         <Image
                             src='/images/footerTop.svg'
                             width={250}
                             height={439}
                             alt='Footer Background Top'
-                            className='absolute z-[10000] right-0 top-0 max-md:max-w-[173px]' 
+                            className='absolute z-[10000] right-0 top-0 max-md:max-w-[173px]'
                         />
                         <Image
                             src='/images/footerBottom.svg'
                             width={439}
                             height={439}
                             alt='Footer Background Top'
-                            className='absolute z-[10000] left-0 bottom-0 max-md:max-w-[173px]' 
+                            className='absolute z-[10000] left-0 bottom-0 max-md:max-w-[173px]'
                         />
                         <Image
                             src="/images/logo.svg"
                             alt="Loanee"
                             width={195}
                             height={50}
-                            className='max-md:max-w-36'
+                            className='max-md:max-w-36 lg:-mb-6 2xl:-mb-4 max-2xl:w-[140px]'
                         />
-                        <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden'>
-                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold text-6xl'>Your personal finance</motion.h1>
-                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold text-6xl'>assistant is coming soon</motion.h1>
-                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[32px] px-10 leading-[2.25rem]'>Your personal finance assistant is coming soon</motion.h1>
-                            <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text-xl max-md:hidden font-light text-black mt-2'>Get notified and stay tuned!</motion.h4>
+                        <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden lg:-mb-6 2xl:-mb-4'>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Streamlining Your Financial &</motion.h1>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Borrowing Experience, Launching Soon!</motion.h1>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[28px] px-4 leading-[2.25rem]'>Streamlining Your Financial & Borrowing Experience, Launching Soon!</motion.h1>
+                            <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text 2xl:text-xl max-md:hidden font-light text-black mt-2'>Register your details and stay tuned</motion.h4>
                         </div>
-                        <h4	className='text-sm md:hidden font-light text-black mt-4'>Get notified and stay tuned!</h4>
-                        <div className='flex items-center justify-center md:mt-2 gap-4'>
+                        <h4	className='text-sm md:hidden font-light text-black mt-4 lg:-mb-6 2xl:-mb-4'>Register your details and stay tuned</h4>
+                        <div className='flex items-center justify-center md:mt-2 gap-4 lg:-mb-6 2xl:-mb-4'>
                             <Image
                                 src='/images/appstore.png'
                                 width={120} 
@@ -527,7 +566,8 @@ export default function Page()
                             src='/images/footerphones.png'
                             width={533}
                             height={410}
-                            alt='Footer Phones' 
+                            alt='Footer Phones'
+                            className='max-2xl:w-[390px]'
                         />
                     </section>
                     <div className='px-4 py-6 md:px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full max-md:flex-col'>
