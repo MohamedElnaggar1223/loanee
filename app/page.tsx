@@ -266,14 +266,14 @@ export default function Page()
                     </section>
                 </section>
                 <motion.section ref={secondTargetRef} className={cn('relative flex-1 flex flex-col items-center justify-center w-full')}>
-                        <motion.div style={{ opacity: opacityBg }} className='fixed z-[4] -top-[18vh] md:-top-[25vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
-                            <Image
-                                src='/images/triangleBg.svg'
-                                width={782}
-                                height={1113}
-                                alt='Dubai'
-                            />
-                        </motion.div>
+                    <motion.div style={{ opacity: opacityBg }} className='fixed z-[4] -top-[18vh] md:-top-[25vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
+                        <Image
+                            src='/images/triangleBg.svg'
+                            width={782}
+                            height={1113}
+                            alt='Dubai'
+                        />
+                    </motion.div>
                     <motion.div
                         style={{ top, scale, rotate, left }}
                         // initial={innerWidth > 768 ? {} : { left: 'calc(50% - 100px)' }}
@@ -304,7 +304,7 @@ export default function Page()
                             />
                         )}  
                         {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
-                        {imageDemo.began && imageDemo.image === 'demoIphoneSeventh.png' && (
+                        {/* {imageDemo.began && imageDemo.image === 'demoIphoneSeventh.png' && (
                             <>
                                 <iframe className='absolute max-w-[25%] h-[22%] max-md:h-[18%] z-[12] top-[36.2%] left-[38%]' src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
                                 <div className='absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]' />
@@ -314,7 +314,10 @@ export default function Page()
                             <>
                                 <iframe className='absolute max-w-[65.25%] h-[25%] max-md:h-[25.75%] z-[12] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]' src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
                             </>
-                        )}
+                        )} */}
+                        <iframe className={cn('absolute max-w-[25%] h-[22%] max-md:h-[18%] top-[36.2%] left-[38%]', imageDemo.image === 'demoIphoneSeventh.png' ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
+                        <div className={cn('absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]', imageDemo.image === 'demoIphoneSeventh.png' ? 'z-[11]' : 'z-[-1]')} />
+                        <iframe className={cn('absolute max-w-[65.25%] h-[25%] max-md:h-[25.75%] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]', imageDemo.image === 'demoIphoneSixth.png' ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
                     </motion.div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
