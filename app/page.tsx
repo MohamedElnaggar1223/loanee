@@ -93,6 +93,8 @@ export default function Page()
 	})
     const [innerWidth, setInnerWidth] = useState(0)
     const [innerHeight, setInnerHeight] = useState(0)
+    const [seventhLoaded, setSeventhLoaded] = useState(false)
+    const [sixthLoaded, setSixthLoaded] = useState(false)
 
 	useEffect(() => {
 		setInnerWidth(window.innerWidth)
@@ -210,6 +212,22 @@ export default function Page()
         window.scrollTo(0, 0)
     }, [])
 
+    useEffect(() => {
+        if(imageDemo.image === 'demoIphoneSeventh.png') {
+            setTimeout(() => {
+                setSeventhLoaded(true)
+            }, 200)
+        }
+    }, [imageDemo])
+
+    useEffect(() => {
+        if(imageDemo.image === 'demoIphoneSixth.png') {
+            setTimeout(() => {
+                setSixthLoaded(true)
+            }, 200)
+        }
+    }, [imageDemo])
+
     function onSubmit(values: z.infer<typeof signUpSchema>) {
         setSignUpFormShown(false)
         setSignUpFormSubmitted(true)
@@ -315,9 +333,9 @@ export default function Page()
                                 <iframe className='absolute max-w-[65.25%] h-[25%] max-md:h-[25.75%] z-[12] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]' src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
                             </>
                         )} */}
-                        <iframe className={cn('absolute max-w-[25%] h-[22%] max-md:h-[18%] top-[36.2%] left-[38%]', imageDemo.image === 'demoIphoneSeventh.png' ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
-                        <div className={cn('absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]', imageDemo.image === 'demoIphoneSeventh.png' ? 'z-[11]' : 'z-[-1]')} />
-                        <iframe className={cn('absolute max-w-[65.25%] h-[25%] max-md:h-[25.75%] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]', imageDemo.image === 'demoIphoneSixth.png' ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
+                        <iframe className={cn('absolute max-w-[25%] h-[22%] max-md:h-[18%] top-[36.2%] left-[38%]', imageDemo.image === 'demoIphoneSeventh.png' && seventhLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
+                        <div className={cn('absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]', imageDemo.image === 'demoIphoneSeventh.png' && seventhLoaded ? 'z-[11]' : 'z-[-1]')} />
+                        <iframe className={cn('absolute max-w-[65.25%] h-[25%] max-md:h-[25.75%] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]', imageDemo.image === 'demoIphoneSixth.png' && sixthLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
                     </motion.div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
