@@ -54,6 +54,11 @@
   padding: 0.875rem
 }
 
+.mainBg {
+  position: fixed !important;
+  top: 0 !important;
+}
+
 @media not all and (min-height: 768px) and (min-width: 768px) {
   .gapHeroSection {
     gap: 1rem;

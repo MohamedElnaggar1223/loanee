@@ -120,7 +120,7 @@ export default function Page()
 
     // const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '25vh' : '-5vh'])
     // const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 1.25 : 0.65])
-    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? '-32.5vh' : (innerHeight < 768 && innerWidth > 768) ? '-42vh' : '-40vh', (innerHeight > 768 && innerWidth > 768) ? '7vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh'])
+    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? '-32.5vh' : (innerHeight < 768 && innerWidth > 768) ? '-42vh' : '-40vh', (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh'])
     const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? 1 : (innerHeight < 768 && innerWidth > 768) ? 0.75 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.8 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
@@ -244,17 +244,16 @@ export default function Page()
                 ))}
             </Head>
             <section className='flex flex-col min-h-[700vh] pt-6 no-scroll-bar px-5 md:px-12'>
-                
+                <Image
+                    src='/images/heroBg.png'
+                    fill
+                    alt='Dubai'
+                    className='opacity-40 z-[-10] mainBg' 
+                />
                 <iframe className='absolute hidden max-w-[25%] h-[22%] max-md:h-[18%] z-[12] top-[36.2%] left-[38%]' src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
                 <iframe className='absolute hidden max-w-[65.25%] h-[25%] max-md:h-[25.75%] z-[12] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]' src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
 
                 <section className='flex flex-col max-h-screen flex-1 z-30 min-h-screen'>
-                    <Image
-                        src='/images/heroBg.png'
-                        fill
-                        alt='Dubai'
-                        className='opacity-40 z-[-10]' 
-                    />
                     <Header />
                     <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center max-md:gap-6 gapHeroSection flex-1'>
                         <Image
@@ -292,11 +291,11 @@ export default function Page()
                     </section>
                 </section>
                 <motion.section ref={secondTargetRef} className={cn('relative flex-1 flex flex-col items-center justify-center w-full')}>
-                    <motion.div style={{ opacity: opacityBg }} className='fixed z-[4] -top-[18vh] md:-top-[25vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
+                    <motion.div style={{ opacity: opacityBg }} className='fixed z-[4] -top-[10vh] md:-top-[5vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
                         <Image
-                            src='/images/triangleBg.svg'
-                            width={782}
-                            height={1113}
+                            src='/images/featuresTriangle.png'
+                            width={510}
+                            height={900}
                             alt='Dubai'
                         />
                     </motion.div>
@@ -347,38 +346,38 @@ export default function Page()
                     </motion.div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : firstFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
-                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Instant Financial Services</p>
-                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Access pre-approved financial services like loans, credit cards, and bank account opening efficiently and easily, from a wide range of banks and lenders.</p>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : firstFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
+                            <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Instant Financial Services</p>
+                            <p className='font-semibold max-w-[468px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Efficiently access pre-approved loans, credit cards, and bank accounts from various banks and lenders.</p>
                         </motion.div>
                         
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : secondFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
-                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Pre-approved Personalised Offers</p>
-                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Receive personalized pre-approved banking offers tailored to your credit score. </p>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : secondFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
+                            <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Pre-approved Personalised Offers</p>
+                            <p className='font-semibold max-w-[376px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Receive personalized pre-approved banking offers tailored to your credit score.</p>
                         </motion.div>
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : thirdFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
-                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Peace of Mind</p>
-                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Enhance your security with secure registration, logins and data sharing via the trusted UAE PASS system.</p>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : thirdFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
+                            <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Peace of Mind</p>
+                            <p className='font-semibold max-w-[400px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Enhance your security with secure registration, logins and data sharing via the trusted UAE PASS system.</p>
                         </motion.div>
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : fourthFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
-                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Know Your Credit Report</p>
-                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Enhance your financial knowledge with insightful credit report analysis and make informed decisions that match your financial goals.</p>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : fourthFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
+                            <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Know Your Credit Report</p>
+                            <p className='font-semibold max-w-[468px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Boost financial knowledge with credit report analysis and make informed decisions aligned with your goals.</p>
                         </motion.div>
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
-                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : fifthFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[15%]'>
-                            <p className='uppercase font-bold text-[#ff0000] text-sm'>Easy Product Comparison</p>
-                            <p className='font-semibold max-w-[380px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Streamline your decision-making by easily comparing a range of financial products to find the best fit for your needs.</p>
+                        <motion.div style={{ opacity: innerWidth > 768 ? 1 : fifthFeatureOpacity }} className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
+                            <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Easy Product Comparison</p>
+                            <p className='font-semibold max-w-[435px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare financial products to find the best fit for your needs and streamline decision-making.</p>
                         </motion.div>
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen md:px-2'>
