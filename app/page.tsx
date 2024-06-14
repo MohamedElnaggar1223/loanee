@@ -260,9 +260,9 @@ export default function Page()
                         {/* <div className='z-[-1] bg-[rgba(110,37,37,0.70)] w-full h-full top-0 rounded-3xl absolute' /> */}
                         <div className='flex flex-col justify-center items-center gap-6'>
                             <div className='flex flex-col justify-center items-center py-1 gap-2.5 overflow-hidden'>
-                                <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden textHeroSection'>UAE's First Fully</motion.h1>
-                                <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden textHeroSection'>Automated Finance App</motion.h1>
-                                <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[28px] leading-[2.25rem]'>UAE's First Fully Automated Finance App</motion.h1>
+                                <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden textHeroSection'>UAE's first fully</motion.h1>
+                                <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden textHeroSection'>automated finance app</motion.h1>
+                                <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[28px] leading-[2.25rem]'>UAE's first fully automated finance app</motion.h1>
                             </div>
                             <div className='flex flex-col justify-center items-center overflow-hidden'>
                                 <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='subTextHeroSection max-md:hidden font-light text-white'>Welcome to access easy, fast, and reliable banking products &</motion.h4>
@@ -271,7 +271,7 @@ export default function Page()
                             </div>
                         </div>
                         <div className='flex flex-col items-center justify-center gap-4'>
-                            <div className='flex items-center justify-between gap-4 max-md:px-6 max-md:h-11'>
+                            <div className='flex items-center justify-between gap-3 max-md:px-6 max-md:h-11'>
                                 <input
                                     type='text'
                                     placeholder='Enter your email'
