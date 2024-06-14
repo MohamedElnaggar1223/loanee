@@ -125,7 +125,7 @@ export default function Page()
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
     const tryText = useTransform(scrollYProgress, [(5/6), 1], [-100, 0])
-    const opacityBg = useTransform(scrollYProgress, [0, (1/6)-0.0001, (1/6), 0.9999, 1], [0, 0, 1, 1, 0])
+    const opacityBg = useTransform(scrollYProgress, [0, (1/6)-0.0001, (1/6), (5/6)-0.0001, (5/6)], [0, 0, 1, 1, 0])
 
     const firstFeatureOpacity = useTransform(scrollYProgress, [0.19, 0.1945], [1, innerWidth > 768 ? 1 : 0])
     const secondFeatureOpacity = useTransform(scrollYProgress, [0.34, 0.345], [1, innerWidth > 768 ? 1 : 0])
@@ -411,7 +411,7 @@ export default function Page()
                                 // initial={{ left: 'calc(50% - 200px)' }}
                                 // exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
                                 // transition={{ duration: 0.40, ease: 'easeInOut' }}
-                                className='absolute scale-75 top-[25px] z-[15]'
+                                className='absolute scale-75 top-[35px] z-[15]'
                             />}
                             {!imageDemo.finished ? (
                                 <p onMouseDown={() => {
@@ -567,21 +567,23 @@ export default function Page()
                             alt='Footer Background Top'
                             className='absolute z-[10000] left-0 bottom-0 max-md:max-w-[173px]'
                         />
-                        <Image
-                            src="/images/logo.svg"
-                            alt="Loanee"
-                            width={195}
-                            height={50}
-                            className='max-md:max-w-36 max-2xl:w-[140px]'
-                        />
+                        <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
+                            <Image
+                                src="/images/logo.svg"
+                                alt="Loanee"
+                                width={195}
+                                height={50}
+                                className='max-md:max-w-36 max-2xl:w-[140px]'
+                            />
+                        </motion.div>
                         <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden'>
                             <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Streamlining Your Financial &</motion.h1>
                             <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Borrowing Experience, Launching Soon!</motion.h1>
                             <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[28px] px-4 leading-[2.25rem]'>Streamlining Your Financial & Borrowing Experience, Launching Soon!</motion.h1>
                             <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text 2xl:text-xl max-md:hidden font-light text-black mt-2'>Register your details and stay tuned</motion.h4>
                         </div>
-                        <h4	className='text-sm md:hidden font-light text-black mt-4'>Register your details and stay tuned</h4>
-                        <div className='flex items-center justify-center md:mt-2 gap-4'>
+                        <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text-sm md:hidden font-light text-black mt-4'>Register your details and stay tuned</motion.h4>
+                        <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='flex items-center justify-center md:mt-2 gap-4'>
                             <Image
                                 src='/images/appstore.png'
                                 width={120} 
@@ -596,14 +598,16 @@ export default function Page()
                                 alt='App Store' 
                                 className='max-md:max-w-24'
                             />
-                        </div>
-                        <Image
-                            src='/images/footerphones.png'
-                            width={533}
-                            height={410}
-                            alt='Footer Phones'
-                            className='max-2xl:w-[390px]'
-                        />
+                        </motion.div>
+                        <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
+                            <Image
+                                src='/images/footerphones.png'
+                                width={533}
+                                height={410}
+                                alt='Footer Phones'
+                                className='max-2xl:w-[390px]'
+                            />
+                        </motion.div>
                     </section>
                     <div className='px-4 py-6 md:px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full max-md:flex-col'>
                         <div className='gap-4 md:gap-10 flex max-md:w-full max-md:items-center max-md:justify-center'>
