@@ -216,7 +216,7 @@ export default function Page()
         if(imageDemo.image === 'demoIphoneSeventh.png') {
             setTimeout(() => {
                 setSeventhLoaded(true)
-            }, 200)
+            }, 350)
         }
     }, [imageDemo])
 
@@ -224,7 +224,7 @@ export default function Page()
         if(imageDemo.image === 'demoIphoneSixth.png') {
             setTimeout(() => {
                 setSixthLoaded(true)
-            }, 200)
+            }, 350)
         }
     }, [imageDemo])
 
