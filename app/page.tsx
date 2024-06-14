@@ -36,35 +36,70 @@ const signUpSchema = z.object({
     })
 })
 
+// const demoImagesRotation = [
+// 	'demoTwelvth.png',
+// 	'demoThirteenth.png',
+// 	'demoFirst.png',
+// 	'demoSecond.png',
+// 	'demoThird.png',
+// 	'demoFourth.png',
+// 	'demoFifth.png',
+// 	'demoSixth.png',
+// 	'demoSeventh.png',
+// 	'demoEighth.png',
+// 	'demoNinth.png',
+// 	'demoTenth.png',
+// 	'demoEleventh.png',
+// ]
 const demoImagesRotation = [
-	'demoIphoneTwelvth.png',
-	'demoIphoneThirteenth.png',
-	'demoIphoneFirst.png',
-	'demoIphoneSecond.png',
-	'demoIphoneThird.png',
-	'demoIphoneFourth.png',
-	'demoIphoneFifth.png',
-	'demoIphoneSixth.png',
-	'demoIphoneSeventh.png',
-	'demoIphoneEighth.png',
-	'demoIphoneNinth.png',
-	'demoIphoneTenth.png',
-	'demoIphoneEleventh.png',
+	'demoSecondNew.png',
+	'demoThirdNew.png',
+	'demoFourthNew.png',
+	'demoFifthNew.png',
+	'demoSixthNew.png',
+	'demoSeventhNew.png',
+	'demoEighthNew.png',
+	'demoNinthNew.png',
+	'demoTenthNew.png',
+	'demoEleventhNew.png',
+	'demoTwelvethNew.png',
+	'demoThirteenthNew.png',
+	'demoFourteenthNew.png',
+	'demoFifteenthNew.png',
 ]
 
+// const demoImagesClickPos = [
+// 	'top-[85.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+// 	'top-[85.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+// 	'top-[23.45%] h-[35px] md:h-[75px]',
+// 	'top-[23.45%] h-[35px] md:h-[75px]',
+// 	'top-[85%] h-[30px] md:h-[45px]',
+// 	'top-[85%] h-[30px] md:h-[45px]',
+// 	'top-[87.5%] h-[30px] md:h-[45px]',
+// 	'top-[87.5%] h-[30px] md:h-[45px]',
+// 	'top-[800%] h-[30px] md:h-[45px]',
+// 	'top-[75%] h-[25%]',
+// 	'top-[87.5%] h-[30px] md:h-[45px] left-[53.5%] w-[36.25%]',
+// 	'top-[87.5%] h-[30px] md:h-[45px] left-[53.5%] w-[36.25%]',
+// 	'top-[40rem]',
+// ]
+
 const demoImagesClickPos = [
-	'top-[85.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
-	'top-[85.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
-	'top-[23.45%] h-[35px] md:h-[75px]',
-	'top-[23.45%] h-[35px] md:h-[75px]',
-	'top-[85%] h-[30px] md:h-[45px]',
-	'top-[85%] h-[30px] md:h-[45px]',
-	'top-[87.5%] h-[30px] md:h-[45px]',
-	'top-[87.5%] h-[30px] md:h-[45px]',
+	'top-[87.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+	'top-[87.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+	'top-[22.5%] h-[39px] md:h-[75px]',
+	'top-[22.5%] h-[39px] md:h-[75px]',
+	'top-[86.5%] h-[30px] md:h-[45px]',
+	'top-[86.5%] h-[30px] md:h-[45px]',
+	'top-[89.5%] h-[30px] md:h-[45px]',
+	'top-[89.5%] h-[30px] md:h-[45px]',
 	'top-[800%] h-[30px] md:h-[45px]',
-	'top-[75%] h-[25%]',
-	'top-[87.5%] h-[30px] md:h-[45px] left-[53.5%] w-[36.25%]',
-	'top-[87.5%] h-[30px] md:h-[45px] left-[53.5%] w-[36.25%]',
+	'top-[48%] h-[28%]',
+	'top-[48%] h-[28%]',
+	'top-[88.5%] h-[30px] md:h-[48px] left-[53.5%] w-[36.25%]',
+	'top-[88.5%] h-[30px] md:h-[48px] left-[53.5%] w-[36.25%]',
+	'top-[40rem]',
+	'top-[40rem]',
 	'top-[40rem]',
 ]
 
@@ -85,8 +120,8 @@ export default function Page()
     const [signUpFormShown, setSignUpFormShown] = useState(false)
     const [signUpFormSubmitted, setSignUpFormSubmitted] = useState(false)
     const [imageDemo, setImageDemo] = useState({
-		image: 'demoIphoneTwelvth.png',
-		clickPos: 'top-[85.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+		image: 'demoFirstNew.png',
+		clickPos: 'top-[87.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
 		clicked: false,
 		finished: false,
         began: false
@@ -135,14 +170,14 @@ export default function Page()
 
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
         console.log(value)
-        if(value === 1) setImageShown('demoIphoneTwelvth.png')
+        if(value === 1) setImageShown('demoSecondNew.png')
         else if(value >= 0 && value < ((1/6) / 2)) setImageShown('iphoneHero.png')
         else if(value >= ((1/6) / 2) && value < ((2/6)) - 0.05) setImageShown('iphoneFirst.png')
         else if(value >= ((2/6) - 0.05) && value < ((3/6)) - 0.05) setImageShown('iphoneSecond.png')
         else if(value >= ((3/6) - 0.05) && value < ((4/6)) - 0.05) setImageShown('iphoneThird.png')
         else if(value >= ((4/6) - 0.05) && value < ((5/6)) - 0.05) setImageShown('iphoneFourth.png')
         else if(value >= ((5/6) - 0.05) && value < (1 - 0.05)) setImageShown('iphoneFifth.png')
-        else if(value >= (1 - 0.05)) setImageShown('demoIphoneThirteenth.png')
+        else if(value >= (1 - 0.05)) setImageShown('demoFirstNew.png')
     })
     
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
@@ -162,12 +197,21 @@ export default function Page()
         else if((value === 1 || (innerWidth < 768 && value >= 0.98))) {
             if(!signUpFormSubmitted) setSignUpFormShown(true)
         }
-        else if(value <= 1) {
+        else if(value < 1) {
             setImageDemo({
                 began: false,
-                image: 'demoIphoneTwelvth.png',
+                image: 'demoSecondNew.png',
                 clicked: false,
-                clickPos: 'top-[85.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+                clickPos: 'top-[87.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+                finished: false
+            })
+        }
+        else if(value === 1) {
+            setImageDemo({
+                began: false,
+                image: 'demoSecondNew.png',
+                clicked: false,
+                clickPos: 'top-[87.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
                 finished: false
             })
         }
@@ -188,13 +232,13 @@ export default function Page()
 		if(imageDemo.clicked) {
 			const index = demoImagesRotation.indexOf(imageDemo.image)
 			let finished = false
-			if(demoImagesRotation[index + 1] === 'demoIphoneEleventh.png') {
+			if(demoImagesRotation[index + 1] === 'demoFifteenthNew.png') {
 				finished = true
 			}
 			setImageDemo((prev) => ({...prev, image: demoImagesRotation[index + 1], clicked: false, clickPos: demoImagesClickPos[index + 1], finished}))
             setImageShown(demoImagesRotation[index + 1])
         }
-		else if(imageDemo.image === 'demoIphoneSeventh.png') {
+		else if(imageDemo.image === 'demoTenthNew.png') {
 			setTimeout(() => {
 				setImageDemo((prev) => ({...prev, clicked: true}))
 			}, 2000)
@@ -213,7 +257,7 @@ export default function Page()
     }, [])
 
     useEffect(() => {
-        if(imageDemo.image === 'demoIphoneSeventh.png') {
+        if(imageDemo.image === 'demoTenthNew.png') {
             setTimeout(() => {
                 setSeventhLoaded(true)
             }, 350)
@@ -221,7 +265,8 @@ export default function Page()
     }, [imageDemo])
 
     useEffect(() => {
-        if(imageDemo.image === 'demoIphoneSixth.png') {
+        console.log(imageDemo.image)
+        if(imageDemo.image === 'demoNinthNew.png') {
             setTimeout(() => {
                 setSixthLoaded(true)
             }, 350)
@@ -257,7 +302,7 @@ export default function Page()
                     <Header />
                     <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center max-md:gap-6 gapHeroSection flex-1'>
                         <Image
-                            src='/images/fourthDubaiBg.png'
+                            src='/images/bgFinal.png'
                             fill
                             alt='Dubai'
                             className='rounded-t-3xl w-full h-full object-cover absolute z-[-2]' 
@@ -329,21 +374,21 @@ export default function Page()
                                 priority={true}
                             />
                         )}  
-                        {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
-                        {/* {imageDemo.began && imageDemo.image === 'demoIphoneSeventh.png' && (
+                        {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-red-500 opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
+                        {/* {imageDemo.began && imageDemo.image === 'demoSeventh.png' && (
                             <>
                                 <iframe className='absolute max-w-[25%] h-[22%] max-md:h-[18%] z-[12] top-[36.2%] left-[38%]' src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
                                 <div className='absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]' />
                             </>
                         )}
-                        {imageDemo.began && imageDemo.image === 'demoIphoneSixth.png' && (
+                        {imageDemo.began && imageDemo.image === 'demoSixth.png' && (
                             <>
                                 <iframe className='absolute max-w-[65.25%] h-[25%] max-md:h-[25.75%] z-[12] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]' src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
                             </>
                         )} */}
-                        <iframe className={cn('absolute max-w-[25%] h-[22%] max-md:h-[18%] top-[36.2%] left-[38%]', imageDemo.image === 'demoIphoneSeventh.png' && seventhLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
-                        <div className={cn('absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]', imageDemo.image === 'demoIphoneSeventh.png' && seventhLoaded ? 'z-[11]' : 'z-[-1]')} />
-                        <iframe className={cn('absolute max-w-[65.25%] h-[25%] max-md:h-[25.75%] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]', imageDemo.image === 'demoIphoneSixth.png' && sixthLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
+                        <iframe className={cn('absolute max-w-[25%] h-[22%] max-md:h-[18%] top-[36.2%] left-[38%]', imageDemo.image === 'demoTenthNew.png' && seventhLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
+                        <div className={cn('absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]', imageDemo.image === 'demoTenthNew.png' && seventhLoaded ? 'z-[11]' : 'z-[-1]')} />
+                        <iframe className={cn('absolute max-w-[65.25%] h-[27%] max-md:h-[25.75%] bottom-[16%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]', imageDemo.image === 'demoNinthNew.png' && sixthLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
                     </motion.div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen max-md:flex-col'>
                         <div className='flex-1' />
@@ -415,7 +460,7 @@ export default function Page()
                             />}
                             {!imageDemo.finished ? (
                                 <p onMouseDown={() => {
-                                    setImageDemo(prev => ({...prev, clicked: true, image: 'demoIphoneTenth.png'}))
+                                    setImageDemo(prev => ({...prev, clicked: true, image: 'demoFourteenthNew.png'}))
                                     setTimeout(() => {
                                         window.scrollTo({
                                             top: document.body.scrollHeight,
@@ -426,8 +471,8 @@ export default function Page()
                             ) : (
                                 <button 
                                     onMouseDown={() => {
-                                        setImageDemo((prev) => ({...prev, image: 'demoIphoneTwelvth.png', clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full', clicked: false, finished: false}))
-                                        setImageShown('demoIphoneTwelvth.png')
+                                        setImageDemo((prev) => ({...prev, image: 'demoSecondNew.png', clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full', clicked: false, finished: false}))
+                                        setImageShown('demoSecondNew.png')
                                         setPosition('fixed')
                                         setFooterShown(false)
                                     }}
@@ -601,7 +646,7 @@ export default function Page()
                         </motion.div>
                         <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
                             <Image
-                                src='/images/footerphones.png'
+                                src='/images/footerPhonesNew.png'
                                 width={570}
                                 height={430}
                                 alt='Footer Phones'
