@@ -59,6 +59,17 @@
   top: 0 !important;
 }
 
+.demoBigScreen {
+  height: 100vh !important;
+  width: calc(100vh * 400/818) !important;
+}
+
+select {
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
+}
+
 @media not all and (min-height: 768px) and (min-width: 768px) {
   .gapHeroSection {
     gap: 1rem;

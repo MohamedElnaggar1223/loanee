@@ -120,7 +120,7 @@ export default function Page()
 
     // const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '25vh' : '-5vh'])
     // const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 1.25 : 0.65])
-    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? '-32.5vh' : (innerHeight < 768 && innerWidth > 768) ? '-42vh' : '-40vh', (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh'])
+    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? '-32.5vh' : (innerHeight < 768 && innerWidth > 768) ? '-42vh' : '-40vh', (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? 'calc(100vh - 850px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh'])
     const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? 1 : (innerHeight < 768 && innerWidth > 768) ? 0.75 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.8 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
@@ -302,7 +302,7 @@ export default function Page()
                     <motion.div
                         style={{ top, scale, rotate, left }}
                         // initial={innerWidth > 768 ? {} : { left: 'calc(50% - 100px)' }}
-                        className={cn('-top-[20vh] w-[200px] h-[409px] md:w-[400px] md:h-[818px] z-[99999]', position)}
+                        className={cn('-top-[20vh] max-md:w-[200px] max-md:h-[409px] z-[99999]', position)}
                     >
                         {innerWidth > 768 ? (
                             // <Image
@@ -318,6 +318,7 @@ export default function Page()
                                 width={400}
                                 height={818}
                                 priority={true}
+                                className={cn('')}
                             />
                         ) : (
                             <Image
@@ -445,20 +446,23 @@ export default function Page()
                                 Please fill out this form for free demo
                             </DialogHeader>
                             <Form {...form}>
-                                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col max-w-full items-center justify-center">
-                                    <div className='flex flex-col gap-8'>
-                                        <div className='flex max-md:flex-col gap-6'>
+                                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col max-w-full items-center justify-center outline-none">
+                                    <div className='flex flex-col gap-8 outline-none'>
+                                        <div className='flex max-md:flex-col gap-6 outline-none'>
                                             <FormField
                                                 control={form.control}
                                                 name="fistName"
                                                 render={({ field }) => (
-                                                    <FormItem className='relative'>
+                                                    <FormItem className='relative outline-none'>
                                                         <FormControl>
-                                                            <input
-                                                                placeholder="First name" 
-                                                                className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[328px]'
-                                                                {...field} 
-                                                            />
+                                                            <>
+                                                                <p className='text-[0.65rem] text-gray-400 font-semibold absolute top-4 left-3'>First Name</p>
+                                                                <input
+                                                                    placeholder="John Doe" 
+                                                                    className='rounded-xl bg-white outline-none px-4 pb-3.5 pt-6 w-screen max-w-[280px] md:max-w-[328px]'
+                                                                    {...field} 
+                                                                />
+                                                            </>
                                                         </FormControl>
                                                         <FormMessage className='text-red-500 absolute -bottom-6 left-2' />
                                                     </FormItem>
@@ -470,29 +474,35 @@ export default function Page()
                                                 render={({ field }) => (
                                                     <FormItem className='relative'>
                                                         <FormControl>
-                                                            <input
-                                                                placeholder="Job title" 
-                                                                className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[328px]'
-                                                                {...field} 
-                                                            />
+                                                            <>
+                                                                <p className='text-[0.65rem] text-gray-400 font-semibold absolute top-4 left-3'>Job Title</p>
+                                                                <input
+                                                                    placeholder="Financial Manager" 
+                                                                    className='rounded-xl bg-white outline-none px-4 pb-3.5 pt-6 w-screen max-w-[280px] md:max-w-[328px]'
+                                                                    {...field} 
+                                                                />
+                                                            </>
                                                         </FormControl>
                                                         <FormMessage className='text-red-500 absolute -bottom-6 left-2' />
                                                     </FormItem>
                                                 )}
                                             />
                                         </div>
-                                        <div className='flex max-md:flex-col gap-6'>
+                                        <div className='flex max-md:flex-col gap-6 items-center justify-center'>
                                             <FormField
                                                 control={form.control}
                                                 name="email"
                                                 render={({ field }) => (
                                                     <FormItem className='relative'>
                                                         <FormControl>
-                                                            <input
-                                                                placeholder="Email id" 
-                                                                className='rounded-xl bg-white outline-none px-4 py-3.5 w-screen max-w-[280px] md:max-w-[328px]'
-                                                                {...field} 
-                                                            />
+                                                            <>
+                                                                <p className='text-[0.65rem] text-gray-400 font-semibold absolute top-4 left-3'>Email</p>
+                                                                <input
+                                                                    placeholder="Email@gmail.com" 
+                                                                    className='rounded-xl bg-white outline-none px-4 pb-3.5 pt-6 w-screen max-w-[280px] md:max-w-[328px]'
+                                                                    {...field} 
+                                                                />
+                                                            </>
                                                         </FormControl>
                                                         <FormMessage className='text-red-500 absolute -bottom-6 left-2' />
                                                     </FormItem>
@@ -504,20 +514,23 @@ export default function Page()
                                                 render={({ field }) => (
                                                     <FormItem className='relative'>
                                                         <FormControl>
-                                                            <div className='w-screen max-w-[280px] md:max-w-[328px] flex rounded-xl overflow-hidden'>
-                                                                <select defaultValue="+1-284" className='bg-white outline-none px-0 w-fit'>
-                                                                    {countryDialingCodes.map((code) => (
-                                                                        <option key={code} value={code}>
-                                                                            {code}
-                                                                        </option>
-                                                                    ))}
-                                                                </select>
-                                                                <input
-                                                                    placeholder="Mobile number" 
-                                                                    className='bg-white outline-none px-4 py-3.5 flex-1'
-                                                                    {...field} 
-                                                                />
-                                                            </div>
+                                                            <>
+                                                                <p className='text-[0.65rem] text-gray-400 font-semibold absolute top-4 left-3'>Mobile number</p>
+                                                                <div className='w-screen max-w-[280px] md:max-w-[328px] flex rounded-xl overflow-hidden'>
+                                                                    <select defaultValue="+1-284" className='bg-white outline-none pl-4 pb-3.5 flex items-center justify-center pt-6 w-fit'>
+                                                                        {countryDialingCodes.map((code) => (
+                                                                            <option key={code} value={code}>
+                                                                                {code}
+                                                                            </option>
+                                                                        ))}
+                                                                    </select>
+                                                                    <input
+                                                                        placeholder="Mobile number" 
+                                                                        className='bg-white outline-none px-4 pb-3.5 pt-6 flex-1'
+                                                                        {...field} 
+                                                                    />
+                                                                </div>
+                                                            </>
                                                         </FormControl>
                                                         <FormMessage className='text-red-500 absolute -bottom-6 left-2' />
                                                     </FormItem>
