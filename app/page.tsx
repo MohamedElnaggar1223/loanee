@@ -249,6 +249,12 @@ export default function Page()
                 <iframe className='absolute hidden max-w-[65.25%] h-[25%] max-md:h-[25.75%] z-[12] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]' src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
 
                 <section className='flex flex-col max-h-screen flex-1 z-30 min-h-screen'>
+                    <Image
+                        src='/images/heroBg.png'
+                        fill
+                        alt='Dubai'
+                        className='opacity-40 z-[-10]' 
+                    />
                     <Header />
                     <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center max-md:gap-6 gapHeroSection flex-1'>
                         <Image
@@ -270,7 +276,7 @@ export default function Page()
                                 <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-sm text-center md:hidden font-light text-white'>Welcome to access easy, fast, and reliable banking products & borrowing with Loanee, designed for your convenience</motion.h4>
                             </div>
                         </div>
-                        <div className='flex flex-col items-center justify-center gap-4'>
+                        <motion.div initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='flex flex-col items-center justify-center gap-4'>
                             <div className='flex items-center justify-between gap-3 max-md:px-6 max-md:h-11'>
                                 <input
                                     type='text'
@@ -282,7 +288,7 @@ export default function Page()
                                 </button>
                             </div>
                             <p className='text-xs lg:text-sm xl:text-base font-light text-white'>Get notified on launch of your personal finance assistant</p>
-                        </div>
+                        </motion.div>
                     </section>
                 </section>
                 <motion.section ref={secondTargetRef} className={cn('relative flex-1 flex flex-col items-center justify-center w-full')}>
