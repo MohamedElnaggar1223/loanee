@@ -250,7 +250,7 @@ export default function Page()
 
                 <section className='flex flex-col max-h-screen flex-1 z-30 min-h-screen'>
                     <Header />
-                    <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center max-md:gap-6 lg:gap-4 2xl:gap-12 flex-1'>
+                    <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center max-md:gap-6 gapHeroSection flex-1'>
                         <Image
                             src='/images/fourthDubaiBg.png'
                             fill
@@ -259,13 +259,13 @@ export default function Page()
                         />
                         {/* <div className='z-[-1] bg-[rgba(110,37,37,0.70)] w-full h-full top-0 rounded-3xl absolute' /> */}
                         <div className='flex flex-col justify-center items-center py-1 gap-2.5 overflow-hidden'>
-                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden lg:text-5xl 2xl:text-6xl'>UAE's First Fully</motion.h1>
-                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden lg:text-5xl 2xl:text-6xl'>Automated Finance App</motion.h1>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden textHeroSection'>UAE's First Fully</motion.h1>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden textHeroSection'>Automated Finance App</motion.h1>
                             <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[28px] leading-[2.25rem]'>UAE's First Fully Automated Finance App</motion.h1>
                         </div>
                         <div className='flex flex-col justify-center items-center overflow-hidden'>
-                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='lg:text-lg 2xl:text-xl max-md:hidden font-light text-white'>Access easy, fast, and reliable banking products & borrowing with Loanee, </motion.h4>
-                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='lg:text-lg 2xl:text-xl max-md:hidden font-light text-white'>designed for your convenience, Register your interest now.</motion.h4>
+                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='subTextHeroSection max-md:hidden font-light text-white'>Access easy, fast, and reliable banking products & borrowing with Loanee, </motion.h4>
+                            <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='subTextHeroSection max-md:hidden font-light text-white'>designed for your convenience, Register your interest now.</motion.h4>
                             <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-sm text-center md:hidden font-light text-white'>Access easy, fast, and reliable banking products & borrowing with Loanee, designed for your convenience, Register your interest now.</motion.h4>
                         </div>
                         <div className='flex flex-col items-center justify-center gap-4'>
@@ -273,9 +273,9 @@ export default function Page()
                                 <input
                                     type='text'
                                     placeholder='Enter your email'
-                                    className='rounded-[0.5rem] max-md:min-h-full px-3.5 lg:p-2.5 2xl:p-3.5 border outline-none border-white w-screen max-w-[180px] sm:max-w-[240px] md:max-w-[468px] bg-[#CBBEBD] text-black placeholder:text-black text-sm' 
+                                    className='rounded-[0.5rem] max-md:min-h-full emailHeroSection border outline-none border-white w-screen max-w-[180px] sm:max-w-[240px] md:max-w-[468px] bg-[#CBBEBD] text-black placeholder:text-black text-sm' 
                                 />
-                                <button className='px-4 max-md:min-h-full text-nowrap lg:p-2.5 2xl:py-3.5 2xl:px-8 bg-[#ff0000] text-white font-medium rounded-[0.5rem] text-sm'>
+                                <button className='max-md:min-h-full text-nowrap buttonHeroSection bg-[#ff0000] text-white font-medium rounded-[0.5rem] text-sm'>
                                     Get Notified
                                 </button>
                             </div>
@@ -532,7 +532,7 @@ export default function Page()
             </section>
             {footerShown && signUpFormSubmitted && (
                 <motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
-                    <section className='relative flex flex-col items-center justify-end gap-6 2xl:gap-10 flex-1 overflow-hidden w-full'>
+                    <section className='relative flex flex-col items-center justify-end gap-10 flex-1 overflow-hidden w-full'>
                         <Image
                             src='/images/footerTop.svg'
                             width={250}
@@ -554,14 +554,14 @@ export default function Page()
                             height={50}
                             className='max-md:max-w-36 max-2xl:w-[140px]'
                         />
-                        <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden -mb-2.5'>
+                        <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden'>
                             <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Streamlining Your Financial &</motion.h1>
                             <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Borrowing Experience, Launching Soon!</motion.h1>
                             <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[28px] px-4 leading-[2.25rem]'>Streamlining Your Financial & Borrowing Experience, Launching Soon!</motion.h1>
                             <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text 2xl:text-xl max-md:hidden font-light text-black mt-2'>Register your details and stay tuned</motion.h4>
                         </div>
-                        <h4	className='text-sm md:hidden font-light text-black mt-4 -mb-2.5'>Register your details and stay tuned</h4>
-                        <div className='flex items-center justify-center md:mt-2 gap-4 -mb-2.5'>
+                        <h4	className='text-sm md:hidden font-light text-black mt-4'>Register your details and stay tuned</h4>
+                        <div className='flex items-center justify-center md:mt-2 gap-4'>
                             <Image
                                 src='/images/appstore.png'
                                 width={120} 
@@ -582,7 +582,7 @@ export default function Page()
                             width={533}
                             height={410}
                             alt='Footer Phones'
-                            className='max-2xl:w-[390px] -mb-2.5'
+                            className='max-2xl:w-[390px]'
                         />
                     </section>
                     <div className='px-4 py-6 md:px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full max-md:flex-col'>

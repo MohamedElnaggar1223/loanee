@@ -28,3 +28,52 @@
     margin-bottom: 20vh;
   }
 }
+
+.gapHeroSection {
+  gap: 3rem;
+}
+
+.textHeroSection {
+    font-size: 3.75rem/* 60px */;
+    line-height: 1;
+}
+
+.subTextHeroSection {
+    font-size: 1.25rem/* 20px */;
+    line-height: 1.75rem/* 28px */;
+}
+
+.buttonHeroSection {
+  padding-left: 2rem/* 32px */;
+  padding-right: 2rem/* 32px */;
+  padding-top: 0.875rem/* 14px */;
+  padding-bottom: 0.875rem/* 14px */;
+}
+
+.emailHeroSection {
+  padding: 0.875rem
+}
+
+@media not all and (min-height: 768px) and (min-width: 768px) {
+  .gapHeroSection {
+    gap: 1rem;
+  }
+
+  .textHeroSection {
+    font-size: 3rem/* 48px */;
+    line-height: 1;
+  }
+
+  .subTextHeroSection {
+    font-size: 1.125rem/* 18px */;
+    line-height: 1.75rem/* 28px */;
+  }
+
+  .buttonHeroSection {
+    padding: 0.625rem;
+  }
+
+  .emailHeroSection {
+    padding: 0.625rem/* 10px */;
+  }
+}
