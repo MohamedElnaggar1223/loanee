@@ -517,7 +517,7 @@ export default function Page()
                                                             <>
                                                                 <p className='text-[0.65rem] text-gray-400 font-semibold absolute top-4 left-3'>Mobile number</p>
                                                                 <div className='w-screen max-w-[280px] md:max-w-[328px] flex rounded-xl overflow-hidden'>
-                                                                    <select defaultValue="+1-284" className='bg-white outline-none pl-4 pb-3.5 flex items-center justify-center pt-6 w-fit'>
+                                                                    <select defaultValue="+971" className='bg-white outline-none pl-4 pb-3.5 flex items-center justify-center pt-6 w-fit'>
                                                                         {countryDialingCodes.map((code) => (
                                                                             <option key={code} value={code}>
                                                                                 {code}
