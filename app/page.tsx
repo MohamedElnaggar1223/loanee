@@ -121,7 +121,7 @@ export default function Page()
     // const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '25vh' : '-5vh'])
     // const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 1.25 : 0.65])
     const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? '-36vh' : (innerHeight < 768 && innerWidth > 768) ? '-42vh' : '-40vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '5vh' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh'])
-    const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? 1 : (innerHeight < 768 && innerWidth > 768) ? 0.75 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25])
+    const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? 1 : (innerHeight < 768 && innerWidth > 768) ? 0.75 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.8 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
     const tryText = useTransform(scrollYProgress, [(5/6), 1], [-100, 0])
@@ -250,7 +250,7 @@ export default function Page()
 
                 <section className='flex flex-col max-h-screen flex-1 z-30 min-h-screen'>
                     <Header />
-                    <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center max-md:gap-6 lg:gap-4 2xl:gap-8 flex-1'>
+                    <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center max-md:gap-6 lg:gap-4 2xl:gap-12 flex-1'>
                         <Image
                             src='/images/fourthDubaiBg.png'
                             fill
@@ -259,9 +259,9 @@ export default function Page()
                         />
                         {/* <div className='z-[-1] bg-[rgba(110,37,37,0.70)] w-full h-full top-0 rounded-3xl absolute' /> */}
                         <div className='flex flex-col justify-center items-center py-1 gap-2.5 overflow-hidden'>
-                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden lg:text-5xl 2xl:text-6xl'>Unlock Easy Borrowing:</motion.h1>
-                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden lg:text-5xl 2xl:text-6xl'>Innovative Financial Tool Coming Soon</motion.h1>
-                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[28px] leading-[2.25rem]'>Unlock Easy Borrowing: Innovative Financial Tool Coming Soon</motion.h1>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden lg:text-5xl 2xl:text-6xl'>UAE's First Fully</motion.h1>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden lg:text-5xl 2xl:text-6xl'>Automated Finance App</motion.h1>
+                            <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[28px] leading-[2.25rem]'>UAE's First Fully Automated Finance App</motion.h1>
                         </div>
                         <div className='flex flex-col justify-center items-center overflow-hidden'>
                             <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='lg:text-lg 2xl:text-xl max-md:hidden font-light text-white'>Access easy, fast, and reliable banking products & borrowing with Loanee, </motion.h4>
@@ -374,28 +374,22 @@ export default function Page()
                         </motion.div>
                     </div>
                     <div className='flex-1 flex items-center justify-center w-full min-h-screen md:px-2'>
-                        <div className='relative flex flex-col items-center justify-start gap-2 md:gap-4 w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden max-md:justify-between max-md:pt-16 max-md:pb-4'>
+                        <div className='relative bg-[#F1E8E6] flex flex-col items-center justify-start gap-2 md:gap-4 w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden max-md:justify-between max-md:pt-16 max-md:pb-4'>
                             <Image
-								src='/images/triangleDemo.svg'
+								src='/images/demoTriangle.png'
 								width={782}
 								height={1113}
 								alt='Dubai'
-								className='absolute z-[2] opacity-5 bottom-0'
-                            />
-                            <Image
-								src='/images/demoBackground.png'
-								fill
-								alt='demo background'
-								className='absolute z-[1] bottom-0'
+								className='absolute z-[2] bottom-0'
                             />
                             {footerShown ? (
-                                <div className='max-h-fit z-10 text-white'>
+                                <div className='max-h-fit z-10 text-black'>
                                     <motion.p className='font-semibold text-xl md:text-3xl mb-auto py-1'>
                                         Try the Loanee Demo Now
                                     </motion.p>
                                 </div>
                             ) : (
-                                <div className='max-h-fit overflow-hidden z-10 text-white'>
+                                <div className='max-h-fit overflow-hidden z-10 text-black'>
                                     <motion.p style={{ y: tryText }} className='font-semibold text-lg md:text-3xl mb-auto'>
                                         Try the Loanee Demo Now
                                     </motion.p>
@@ -420,7 +414,7 @@ export default function Page()
                                             behavior: 'smooth'
                                         })
                                     }, 200)
-                                }} className='underline cursor-pointer mt-10 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm text-white'>Skip Demo</p>
+                                }} className='underline cursor-pointer mt-10 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm text-black'>Skip Demo</p>
                             ) : (
                                 <button 
                                     onMouseDown={() => {
@@ -429,7 +423,7 @@ export default function Page()
                                         setPosition('fixed')
                                         setFooterShown(false)
                                     }}
-                                    className='md:absolute mt-10 z-50 md:bottom-10 md:right-10 md:rounded-full text-sm md:text-base font-semibold px-2 py-1.5 md:px-6 md:py-3 md:border md:border-black max-md:underline text-white'
+                                    className='md:absolute mt-10 z-50 md:bottom-10 md:right-10 md:rounded-full text-sm md:text-base font-semibold px-2 py-1.5 md:px-6 md:py-3 md:border md:border-black max-md:underline text-black'
                                 >
                                     Restart (R)
                                 </button>
@@ -538,7 +532,7 @@ export default function Page()
             </section>
             {footerShown && signUpFormSubmitted && (
                 <motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
-                    <section className='relative flex flex-col items-center justify-end gap-6 2xl:gap-8 flex-1 overflow-hidden w-full'>
+                    <section className='relative flex flex-col items-center justify-end gap-6 2xl:gap-10 flex-1 overflow-hidden w-full'>
                         <Image
                             src='/images/footerTop.svg'
                             width={250}
@@ -558,16 +552,16 @@ export default function Page()
                             alt="Loanee"
                             width={195}
                             height={50}
-                            className='max-md:max-w-36 lg:-mb-6 2xl:-mb-4 max-2xl:w-[140px]'
+                            className='max-md:max-w-36 max-2xl:w-[140px]'
                         />
-                        <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden lg:-mb-6 2xl:-mb-4'>
+                        <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden -mb-2.5'>
                             <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Streamlining Your Financial &</motion.h1>
                             <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Borrowing Experience, Launching Soon!</motion.h1>
                             <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[28px] px-4 leading-[2.25rem]'>Streamlining Your Financial & Borrowing Experience, Launching Soon!</motion.h1>
                             <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text 2xl:text-xl max-md:hidden font-light text-black mt-2'>Register your details and stay tuned</motion.h4>
                         </div>
-                        <h4	className='text-sm md:hidden font-light text-black mt-4 lg:-mb-6 2xl:-mb-4'>Register your details and stay tuned</h4>
-                        <div className='flex items-center justify-center md:mt-2 gap-4 lg:-mb-6 2xl:-mb-4'>
+                        <h4	className='text-sm md:hidden font-light text-black mt-4 -mb-2.5'>Register your details and stay tuned</h4>
+                        <div className='flex items-center justify-center md:mt-2 gap-4 -mb-2.5'>
                             <Image
                                 src='/images/appstore.png'
                                 width={120} 
@@ -588,7 +582,7 @@ export default function Page()
                             width={533}
                             height={410}
                             alt='Footer Phones'
-                            className='max-2xl:w-[390px]'
+                            className='max-2xl:w-[390px] -mb-2.5'
                         />
                     </section>
                     <div className='px-4 py-6 md:px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full max-md:flex-col'>
