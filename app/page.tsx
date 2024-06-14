@@ -577,9 +577,9 @@ export default function Page()
                             />
                         </motion.div>
                         <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden'>
-                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Streamlining Your Financial &</motion.h1>
-                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Borrowing Experience, Launching Soon!</motion.h1>
-                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[28px] px-4 leading-[2.25rem]'>Streamlining Your Financial & Borrowing Experience, Launching Soon!</motion.h1>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Simplifying your finances</motion.h1>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>coming soon</motion.h1>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[28px] px-4 leading-[2.25rem]'>Simplifying your finances coming soon</motion.h1>
                             <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text 2xl:text-xl max-md:hidden font-light text-black mt-2'>Register your details and stay tuned</motion.h4>
                         </div>
                         <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text-sm md:hidden font-light text-black mt-4'>Register your details and stay tuned</motion.h4>
@@ -602,8 +602,8 @@ export default function Page()
                         <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
                             <Image
                                 src='/images/footerphones.png'
-                                width={533}
-                                height={410}
+                                width={570}
+                                height={430}
                                 alt='Footer Phones'
                                 className='max-2xl:w-[390px]'
                             />
