@@ -374,7 +374,7 @@ export default function Page()
                                 priority={true}
                             />
                         )}  
-                        {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-red-500 opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
+                        {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
                         {/* {imageDemo.began && imageDemo.image === 'demoSeventh.png' && (
                             <>
                                 <iframe className='absolute max-w-[25%] h-[22%] max-md:h-[18%] z-[12] top-[36.2%] left-[38%]' src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
