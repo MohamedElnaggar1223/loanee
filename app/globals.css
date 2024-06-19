@@ -93,3 +93,27 @@ select {
     padding: 0.625rem/* 10px */;
   }
 }
+
+@media (min-height: 1080px) {
+  .gapHeroSection {
+    gap: 4rem;
+  }
+  
+  .textHeroSection {
+    font-size: 4.5rem/* 72px */;
+    line-height: 1;
+  }
+
+  .subTextHeroSection {
+    font-size: 1.5rem/* 24px */;
+    line-height: 2rem/* 32px */;
+  }
+
+  .buttonHeroSection {
+    padding: 1rem;
+  }
+  
+  .emailHeroSection {
+    padding: 1rem;
+  }
+}

@@ -120,7 +120,7 @@ export default function Page()
     const [signUpFormShown, setSignUpFormShown] = useState(false)
     const [signUpFormSubmitted, setSignUpFormSubmitted] = useState(false)
     const [imageDemo, setImageDemo] = useState({
-		image: 'demoFirstNew.png',
+		image: 'demoSecondNew.png',
 		clickPos: 'top-[87.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
 		clicked: false,
 		finished: false,
@@ -155,7 +155,7 @@ export default function Page()
 
     // const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '25vh' : '-5vh'])
     // const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 1.25 : 0.65])
-    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? '-32.5vh' : (innerHeight < 768 && innerWidth > 768) ? '-42vh' : '-40vh', (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', (innerHeight > 768 && innerWidth > 768) ? 'calc(100vh - 780px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh'])
+    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [innerHeight >= 1080 ? '-40vh' : (innerHeight > 768 && innerWidth > 768) ? '-32.5vh' : (innerHeight < 768 && innerWidth > 768) ? '-42vh' : '-40vh', innerHeight >= 1080 ? '10vh' : (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', innerHeight >= 1080 ? '10vh' : (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', innerHeight >= 1080 ? 'calc(50vh - 420px)' : (innerHeight > 768 && innerWidth > 768) ? 'calc(100vh - 780px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh'])
     const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? 1 : (innerHeight < 768 && innerWidth > 768) ? 0.75 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
@@ -169,8 +169,7 @@ export default function Page()
     const fifthFeatureOpacity = useTransform(scrollYProgress, [0.845, 0.85], [1, innerWidth > 768 ? 1 : 0])
 
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
-        console.log(value)
-        if(value === 1) setImageShown('demoSecondNew.png')
+        if(value === 1) setImageShown(imageDemo.image)
         else if(value >= 0 && value < ((1/6) / 2)) setImageShown('iphoneHero.png')
         else if(value >= ((1/6) / 2) && value < ((2/6)) - 0.05) setImageShown('iphoneFirst.png')
         else if(value >= ((2/6) - 0.05) && value < ((3/6)) - 0.05) setImageShown('iphoneSecond.png')
@@ -198,22 +197,34 @@ export default function Page()
             if(!signUpFormSubmitted) setSignUpFormShown(true)
         }
         else if(value < 1) {
-            setImageDemo({
+            // setImageDemo({
+            //     began: false,
+            //     image: 'demoSecondNew.png',
+            //     clicked: false,
+            //     clickPos: 'top-[87.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+            //     finished: false
+            // })
+            setImageDemo(prev => ({
+                ...prev,
                 began: false,
-                image: 'demoSecondNew.png',
                 clicked: false,
-                clickPos: 'top-[87.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
                 finished: false
-            })
+            }))
         }
         else if(value === 1) {
-            setImageDemo({
+            // setImageDemo({
+            //     began: false,
+            //     image: 'demoSecondNew.png',
+            //     clicked: false,
+            //     clickPos: 'top-[87.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
+            //     finished: false
+            // })
+            setImageDemo(prev => ({
+                ...prev,
                 began: false,
-                image: 'demoSecondNew.png',
                 clicked: false,
-                clickPos: 'top-[87.5%] h-[35px] w-[35px] md:h-[80px] md:w-[80px] left-[42%] md:left-[40%] rounded-full',
                 finished: false
-            })
+            }))
         }
     })
 
@@ -265,7 +276,6 @@ export default function Page()
     }, [imageDemo])
 
     useEffect(() => {
-        console.log(imageDemo.image)
         if(imageDemo.image === 'demoNinthNew.png') {
             setTimeout(() => {
                 setSixthLoaded(true)
@@ -310,7 +320,7 @@ export default function Page()
                         {/* <div className='z-[-1] bg-[rgba(110,37,37,0.70)] w-full h-full top-0 rounded-3xl absolute' /> */}
                         <div className='flex flex-col justify-center items-center gap-6'>
                             <div className='flex flex-col justify-center items-center py-1 gap-2.5 overflow-hidden'>
-                                <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden textHeroSection'>UAE's first fully</motion.h1>
+                                <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden textHeroSection'>UAE's First fully</motion.h1>
                                 <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold max-md:hidden textHeroSection'>automated finance app</motion.h1>
                                 <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[28px] leading-[2.25rem]'>UAE's first fully automated finance app</motion.h1>
                             </div>
@@ -336,12 +346,13 @@ export default function Page()
                     </section>
                 </section>
                 <motion.section ref={secondTargetRef} className={cn('relative flex-1 flex flex-col items-center justify-center w-full')}>
-                    <motion.div style={{ opacity: opacityBg }} className='fixed z-[4] -top-[10vh] md:-top-[5vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
+                    <motion.div style={{ opacity: opacityBg }} className='fixed z-[4] md:-top-[0vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
                         <Image
                             src='/images/featuresTriangle.png'
                             width={510}
                             height={900}
                             alt='Dubai'
+                            className='min-h-[100vh]'
                         />
                     </motion.div>
                     <motion.div
@@ -460,7 +471,7 @@ export default function Page()
                             />}
                             {!imageDemo.finished ? (
                                 <p onMouseDown={() => {
-                                    setImageDemo(prev => ({...prev, clicked: true, image: 'demoFourteenthNew.png'}))
+                                    setImageDemo(prev => ({...prev, finished: true}))
                                     setTimeout(() => {
                                         window.scrollTo({
                                             top: document.body.scrollHeight,
@@ -623,8 +634,8 @@ export default function Page()
                         </motion.div>
                         <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden'>
                             <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Simplifying your finances</motion.h1>
-                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>coming soon</motion.h1>
-                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[28px] px-4 leading-[2.25rem]'>Simplifying your finances coming soon</motion.h1>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Coming soon</motion.h1>
+                            <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[28px] px-4 leading-[2.25rem]'>Simplifying your finances Coming soon</motion.h1>
                             <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text 2xl:text-xl max-md:hidden font-light text-black mt-2'>Register your details and stay tuned</motion.h4>
                         </div>
                         <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text-sm md:hidden font-light text-black mt-4'>Register your details and stay tuned</motion.h4>
@@ -647,8 +658,8 @@ export default function Page()
                         <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
                             <Image
                                 src='/images/footerPhonesNew.png'
-                                width={570}
-                                height={430}
+                                width={580}
+                                height={435}
                                 alt='Footer Phones'
                                 className='max-2xl:w-[390px]'
                             />
