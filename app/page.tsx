@@ -130,6 +130,7 @@ export default function Page()
     const [innerHeight, setInnerHeight] = useState(0)
     const [seventhLoaded, setSeventhLoaded] = useState(false)
     const [sixthLoaded, setSixthLoaded] = useState(false)
+    const [restartDisplayed, setRestartDisplayed] = useState(false)
 
 	useEffect(() => {
 		setInnerWidth(window.innerWidth)
@@ -155,7 +156,7 @@ export default function Page()
 
     // const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '25vh' : '-5vh'])
     // const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 1.25 : 0.65])
-    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [innerHeight >= 1080 ? '-40vh' : (innerHeight > 768 && innerWidth > 768) ? '-32.5vh' : (innerHeight < 768 && innerWidth > 768) ? '-42vh' : '-40vh', innerHeight >= 1080 ? '10vh' : (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', innerHeight >= 1080 ? '10vh' : (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', innerHeight >= 1080 ? 'calc(50vh - 420px)' : (innerHeight > 768 && innerWidth > 768) ? 'calc(100vh - 780px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh'])
+    const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [innerHeight >= 920 ? '-40vh' : (innerHeight > 768 && innerWidth > 768) ? '-32.5vh' : (innerHeight < 768 && innerWidth > 768) ? '-42vh' : '-40vh', innerHeight >= 920 ? '10vh' : (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', innerHeight >= 920 ? '10vh' : (innerHeight > 768 && innerWidth > 768) ? '2.75vh' : (innerHeight < 768 && innerWidth > 768) ? '-16.5vh' : '12vh', innerHeight >= 920 ? 'calc(50% - 395px)' : (innerHeight > 768 && innerWidth > 768) ? 'calc(100% - 814px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh'])
     const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [(innerHeight > 768 && innerWidth > 768) ? 1 : (innerHeight < 768 && innerWidth > 768) ? 0.75 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.6 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1, (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25])
     const rotate = useTransform(scrollYProgress, [0, (1/6), (2/6), (3/6), (4/6), (5/6), 1], [0, -4, -2, 0, 2, 4, 0])
     const left = useTransform(scrollYProgress, [0, (1/6), (5/6), 1], [innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(36.2% - 150px)' : 'calc(50% - 100px)', innerWidth > 768 ? 'calc(50% - 200px)' : 'calc(50% - 100px)'])
@@ -239,6 +240,16 @@ export default function Page()
         }
     })
 
+    useMotionValueEvent(scrollYProgress, 'change', (value) => {
+        if(imageDemo.finished && imageDemo.image === 'demoFifteenthNew.png') {
+            setRestartDisplayed(true)
+            console.log(imageDemo)
+        }
+        else {
+            setRestartDisplayed(false)
+        }
+    })
+
     useEffect(() => {
 		if(imageDemo.clicked) {
 			const index = demoImagesRotation.indexOf(imageDemo.image)
@@ -282,6 +293,35 @@ export default function Page()
             }, 350)
         }
     }, [imageDemo])
+
+    // useEffect(() => {
+    //     if(imageDemo.finished && imageDemo.image === 'demoFifteenthNew.png') {
+    //         setRestartDisplayed(true)
+    //         console.log(imageDemo)
+    //     }
+    //     else {
+    //         setRestartDisplayed(false)
+    //     }
+    // }, [imageDemo])
+
+    useEffect(() => {
+        if(restartDisplayed) {
+            const handleKeyPress = (event: KeyboardEvent) => {
+                if (event.key === 'r') {
+                    setImageDemo((prev) => ({...prev, image: 'demoSecondNew.png', clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full', clicked: false, finished: false}))
+                    setImageShown('demoSecondNew.png')
+                    setPosition('fixed')
+                    setFooterShown(false)
+                }
+            }
+
+            window.addEventListener('keydown', handleKeyPress)
+
+            return () => {
+                window.removeEventListener('keydown', handleKeyPress)
+            }
+        }
+    }, [])
 
     function onSubmit(values: z.infer<typeof signUpSchema>) {
         setSignUpFormShown(false)
@@ -360,7 +400,7 @@ export default function Page()
                         // initial={innerWidth > 768 ? {} : { left: 'calc(50% - 100px)' }}
                         className={cn('-top-[20vh] max-md:w-[200px] max-md:h-[409px] z-[99999]', position)}
                     >
-                        {innerWidth > 768 ? (
+                        {!footerShown && (innerWidth > 768 ? (
                             // <Image
                             //     src={`/images/${imageShown}`}
                             //     alt='Phone'
@@ -384,7 +424,7 @@ export default function Page()
                                 height={409}
                                 priority={true}
                             />
-                        )}  
+                        ))}  
                         {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
                         {/* {imageDemo.began && imageDemo.image === 'demoSeventh.png' && (
                             <>
@@ -467,19 +507,11 @@ export default function Page()
                                 // initial={{ left: 'calc(50% - 200px)' }}
                                 // exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
                                 // transition={{ duration: 0.40, ease: 'easeInOut' }}
-                                className='absolute scale-75 top-[35px] z-[15]'
+                                // className={cn('absolute scale-75 top-[35px] z-[15]')}
+                                className={cn('absolute z-[15]')}
+                                style={{ scale: (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25, top: innerHeight >= 920 ? 'calc(50% - 395px)' : (innerHeight > 768 && innerWidth > 768) ? 'calc(100% - 814px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh' }}
                             />}
-                            {!imageDemo.finished ? (
-                                <p onMouseDown={() => {
-                                    setImageDemo(prev => ({...prev, finished: true}))
-                                    setTimeout(() => {
-                                        window.scrollTo({
-                                            top: document.body.scrollHeight,
-                                            behavior: 'smooth'
-                                        })
-                                    }, 200)
-                                }} className='underline cursor-pointer mt-10 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm text-black'>Skip Demo</p>
-                            ) : (
+                            {(imageDemo.finished && imageDemo.image === 'demoFifteenthNew.png') ? (
                                 <button 
                                     onMouseDown={() => {
                                         setImageDemo((prev) => ({...prev, image: 'demoSecondNew.png', clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full', clicked: false, finished: false}))
@@ -491,6 +523,16 @@ export default function Page()
                                 >
                                     Restart (R)
                                 </button>
+                            ) : (
+                                <p onMouseDown={() => {
+                                    setImageDemo(prev => ({...prev, finished: true}))
+                                    setTimeout(() => {
+                                        window.scrollTo({
+                                            top: document.body.scrollHeight,
+                                            behavior: 'smooth'
+                                        })
+                                    }, 200)
+                                }} className='underline cursor-pointer mt-10 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm text-black'>Skip Demo</p>
                             )}
                         </div>
                     </div>
@@ -614,7 +656,7 @@ export default function Page()
                         alt='Dubai'
                         className='opacity-40 z-[-10] mainBg' 
                     />
-                    <section className='relative flex flex-col items-center justify-end gap-10 flex-1 overflow-hidden w-full'>
+                    <section className='relative flex flex-col items-center justify-evenly gap-10 flex-1 overflow-hidden w-full'>
                         <Image
                             src='/images/footerTop.svg'
                             width={250}
