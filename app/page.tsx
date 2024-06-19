@@ -608,6 +608,12 @@ export default function Page()
             </section>
             {footerShown && signUpFormSubmitted && (
                 <motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
+                    <Image
+                        src='/images/heroBg.png'
+                        fill
+                        alt='Dubai'
+                        className='opacity-40 z-[-10] mainBg' 
+                    />
                     <section className='relative flex flex-col items-center justify-end gap-10 flex-1 overflow-hidden w-full'>
                         <Image
                             src='/images/footerTop.svg'
