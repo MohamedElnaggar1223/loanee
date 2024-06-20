@@ -170,6 +170,8 @@ export default function Page()
     const fifthFeatureOpacity = useTransform(scrollYProgress, [0.845, 0.85], [1, innerWidth > 768 ? 1 : 0])
 
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
+        console.log(value)
+        console.log((5/6) - 0.05)
         if(value === 1) setImageShown(imageDemo.image)
         else if(value >= 0 && value < ((1/6) / 2)) setImageShown('iphoneHero.png')
         else if(value >= ((1/6) / 2) && value < ((2/6)) - 0.05) setImageShown('iphoneFirst.png')
@@ -404,7 +406,7 @@ export default function Page()
                     </section>
                 </section>
                 <motion.section ref={secondTargetRef} className={cn('relative flex-1 flex flex-col items-center justify-center w-full')}>
-                    <motion.div initial={{ left: -1000 }} animate={{ left: opacityBg.get() === 0 ? -1000 : 0 }} transition={{ duration: 0.4 }} style={{ opacity: opacityBg }} className='fixed z-[4] md:-top-[0vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
+                    <motion.div initial={{ left: -1000 }} animate={{ left: scrollYProgress.get() >= (5/6)-0.05 ? -1000 : scrollYProgress.get() <= (1/6)+0.005 ? -1000 : opacityBg.get() === 0 ? -1000 : 0 }} transition={{ duration: 0.4 }} style={{ opacity: opacityBg }} className='fixed z-[4] md:-top-[0vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
                         <Image
                             src='/images/featuresTriangle.png'
                             width={510}
