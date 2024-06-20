@@ -294,6 +294,24 @@ export default function Page()
         }
     }, [imageDemo])
 
+    useEffect(() => {
+        const handleKeyPress = (event: KeyboardEvent) => {
+            if(event.key === 'r' && imageDemo.finished && imageDemo.image === 'demoFifteenthNew.png') {
+                console.log(event.key)
+                setImageDemo((prev) => ({...prev, image: 'demoSecondNew.png', clickPos: 'top-[85.5%] h-[80px] w-[80px] left-[40%] rounded-full', clicked: false, finished: false}))
+                setImageShown('demoSecondNew.png')
+                setPosition('fixed')
+                setFooterShown(false)
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyPress)
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress)
+        }
+    }, [imageDemo])
+
     // useEffect(() => {
     //     if(imageDemo.finished && imageDemo.image === 'demoFifteenthNew.png') {
     //         setRestartDisplayed(true)
@@ -386,7 +404,7 @@ export default function Page()
                     </section>
                 </section>
                 <motion.section ref={secondTargetRef} className={cn('relative flex-1 flex flex-col items-center justify-center w-full')}>
-                    <motion.div style={{ opacity: opacityBg }} className='fixed z-[4] md:-top-[0vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
+                    <motion.div initial={{ left: -1000 }} animate={{ left: opacityBg.get() === 0 ? -1000 : 0 }} transition={{ duration: 0.4 }} style={{ opacity: opacityBg }} className='fixed z-[4] md:-top-[0vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
                         <Image
                             src='/images/featuresTriangle.png'
                             width={510}
@@ -477,7 +495,19 @@ export default function Page()
                             <p className='font-semibold max-w-[435px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare financial products to find the best fit for your needs and streamline decision-making.</p>
                         </motion.div>
                     </div>
-                    <div className='flex-1 flex items-center justify-center w-full min-h-screen md:px-2'>
+                    <div className='relative flex-1 flex items-center justify-center w-full min-h-screen md:px-2'>
+                        {footerShown && <Image
+                            src={`/images/${imageShown}`}
+                            alt='Phone'
+                            width={400}
+                            height={818}
+                            // initial={{ left: 'calc(50% - 200px)' }}
+                            // exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
+                            // transition={{ duration: 0.40, ease: 'easeInOut' }}
+                            // className={cn('absolute scale-75 top-[35px] z-[15]')}
+                            className={cn('absolute z-[15]')}
+                            style={{ scale: (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25, top: innerHeight >= 920 ? 'calc(50% - 395px)' : (innerHeight > 768 && innerWidth > 768) ? 'calc(100% - 814px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh' }}
+                        />}
                         <div className='relative bg-[#F1E8E6] flex flex-col items-center justify-start gap-2 md:gap-4 w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden max-md:justify-between max-md:pt-16 max-md:pb-4'>
                             <Image
 								src='/images/demoTriangle.png'
@@ -499,18 +529,6 @@ export default function Page()
                                     </motion.p>
                                 </div>
                             )}
-                            {footerShown && <Image
-                                src={`/images/${imageShown}`}
-                                alt='Phone'
-                                width={400}
-                                height={818}
-                                // initial={{ left: 'calc(50% - 200px)' }}
-                                // exit={{ rotate: -4, position: 'fixed', bottom: '-550px', y: 'calc(50vh - 228px)', left: 'calc(36.2% - 150px)', opacity: 0.95, width: '300px', height: '614px'}}
-                                // transition={{ duration: 0.40, ease: 'easeInOut' }}
-                                // className={cn('absolute scale-75 top-[35px] z-[15]')}
-                                className={cn('absolute z-[15]')}
-                                style={{ scale: (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25, top: innerHeight >= 920 ? 'calc(50% - 395px)' : (innerHeight > 768 && innerWidth > 768) ? 'calc(100% - 814px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh' }}
-                            />}
                             {(imageDemo.finished && imageDemo.image === 'demoFifteenthNew.png') ? (
                                 <button 
                                     onMouseDown={() => {
@@ -615,7 +633,7 @@ export default function Page()
                                                             <>
                                                                 <p className='text-[0.65rem] text-gray-400 font-semibold absolute top-4 left-3'>Mobile number</p>
                                                                 <div className='w-screen max-w-[280px] md:max-w-[328px] flex rounded-xl overflow-hidden'>
-                                                                    <select defaultValue="+971" className='bg-white outline-none pl-4 pb-3.5 flex items-center justify-center pt-6 w-fit'>
+                                                                    <select defaultValue="+971" className='bg-white outline-none pl-4 pb-3.5 flex items-center justify-center pt-6 max-w-fit'>
                                                                         {countryDialingCodes.map((code) => (
                                                                             <option key={code} value={code}>
                                                                                 {code}
@@ -656,7 +674,7 @@ export default function Page()
                         alt='Dubai'
                         className='opacity-40 z-[-10] mainBg' 
                     />
-                    <section className='relative flex flex-col items-center justify-evenly gap-10 flex-1 overflow-hidden w-full'>
+                    <section className='relative flex flex-col items-center justify-end gap-10 flex-1 overflow-hidden w-full'>
                         <Image
                             src='/images/footerTop.svg'
                             width={250}
