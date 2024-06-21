@@ -845,7 +845,7 @@ export default function Page()
                     <iframe className='absolute hidden max-w-[25%] h-[22%] max-md:h-[18%] z-[12] top-[36.2%] left-[38%]' src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
                     <iframe className='absolute hidden max-w-[65.25%] h-[25%] max-md:h-[25.75%] z-[12] bottom-[18%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]' src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
     
-                    <section className='flex flex-col flex-1 z-30 min-h-screen max-h-screen overflow-hidden snappy-section'>
+                    <section className='flex flex-col flex-1 z-30 min-h-[100dvh] max-h-[100dvh] overflow-hidden snappy-section'>
                         <Header />
                         <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center max-md:gap-6 gapHeroSection flex-1'>
                             <Image
@@ -948,7 +948,7 @@ export default function Page()
                             <div className={cn('absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]', imageDemo.image === 'demoTenthNew.png' && seventhLoaded ? 'z-[11]' : 'z-[-1]')} />
                             <iframe className={cn('absolute max-w-[65.25%] h-[27%] max-md:h-[25.75%] bottom-[16%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]', imageDemo.image === 'demoNinthNew.png' && sixthLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
                         </motion.div> */}
-                        <motion.div className='flex-1 flex items-center justify-center gap-12 w-full min-h-screen max-md:flex-col snappy-section'>
+                        <motion.div className='flex-1 flex items-center justify-center gap-12 w-full min-h-[100dvh] max-md:flex-col snappy-section'>
                             <motion.div ref={mobileFirstTargetRef} initial={{ rotate: 4 }} animate={{ rotate: mobileFirstInView ? 0 : 4 }} transition={{ delay: 0.4, duration: 0.5 }}>
                                 <Image
                                     src={`/images/iphoneFirst.png`}
@@ -965,7 +965,7 @@ export default function Page()
                             </div>
                             
                         </motion.div>
-                        <motion.div className='flex-1 flex items-center justify-center gap-12 w-full min-h-screen max-md:flex-col snappy-section'>
+                        <motion.div className='flex-1 flex items-center justify-center gap-12 w-full min-h-[100dvh] max-md:flex-col snappy-section'>
                             <motion.div ref={mobileSecondTargetRef} initial={{ rotate: 4 }} animate={{ rotate: mobileSecondInView ? 0 : 4 }} transition={{ delay: 0.4, duration: 0.5 }}>
                                 <Image
                                     src={`/images/iphoneSecond.png`}
@@ -981,7 +981,7 @@ export default function Page()
                                 <p className='font-semibold max-w-[376px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Receive personalized pre-approved banking offers tailored to your credit score.</p>
                             </div>
                         </motion.div>
-                        <motion.div className='flex-1 flex items-center justify-center gap-12 w-full min-h-screen max-md:flex-col snappy-section'>
+                        <motion.div className='flex-1 flex items-center justify-center gap-12 w-full min-h-[100dvh] max-md:flex-col snappy-section'>
                             <motion.div ref={mobileThirdTargetRef} initial={{ rotate: 4 }} animate={{ rotate: mobileThirdInView ? 0 : 4 }} transition={{ delay: 0.4, duration: 0.5 }}>
                                 <Image
                                     src={`/images/iphoneThird.png`}
@@ -997,7 +997,7 @@ export default function Page()
                                 <p className='font-semibold max-w-[400px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Enhance your security with secure registration, logins and data sharing via the trusted UAE PASS system.</p>
                             </div>
                         </motion.div>
-                        <motion.div className='flex-1 flex items-center justify-center gap-12 w-full min-h-screen max-md:flex-col snappy-section'>
+                        <motion.div className='flex-1 flex items-center justify-center gap-12 w-full min-h-[100dvh] max-md:flex-col snappy-section'>
                             <motion.div ref={mobileFourthTargetRef} initial={{ rotate: 4 }} animate={{ rotate: mobileFourthInView ? 0 : 4 }} transition={{ delay: 0.4, duration: 0.5 }}>
                                 <Image
                                     src={`/images/iphoneFourth.png`}
@@ -1013,7 +1013,7 @@ export default function Page()
                                 <p className='font-semibold max-w-[468px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Boost financial knowledge with credit report analysis and make informed decisions aligned with your goals.</p>
                             </div>
                         </motion.div>
-                        <motion.div className='flex-1 flex items-center justify-center gap-12 w-full min-h-screen max-md:flex-col snappy-section'>
+                        <motion.div className='flex-1 flex items-center justify-center gap-12 w-full min-h-[100dvh] max-md:flex-col snappy-section'>
                             <motion.div ref={mobileFifthTargetRef} initial={{ rotate: 4 }} animate={{ rotate: mobileFifthInView ? 0 : 4 }} transition={{ delay: 0.4, duration: 0.5 }}>
                                 <Image
                                     src={`/images/iphoneFifth.png`}
@@ -1029,7 +1029,7 @@ export default function Page()
                                 <p className='font-semibold max-w-[435px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare financial products to find the best fit for your needs and streamline decision-making.</p>
                             </div>
                         </motion.div>
-                        <div className='relative flex-1 flex items-center justify-center w-full min-h-screen md:px-2'>
+                        <div className='relative flex-1 flex items-center justify-center w-full min-h-[100dvh] md:px-2'>
                             {/* {footerShown && <Image
                                 src={`/images/${imageShown}`}
                                 alt='Phone'
