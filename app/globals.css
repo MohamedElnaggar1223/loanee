@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
 *::-webkit-scrollbar {
   display: none;
 }
@@ -68,6 +74,17 @@ select {
   -moz-appearance:none; /* Firefox */
   -webkit-appearance:none; /* Safari and Chrome */
   appearance:none;
+}
+
+.snappy {
+  scroll-snap-type: y mandatory;
+  overflow: scroll;
+  height: 100dvh;
+}
+
+.snappy-section {
+  scroll-snap-align: end;
+  scroll-snap-stop: always;
 }
 
 @media not all and (min-height: 768px) and (min-width: 768px) {
