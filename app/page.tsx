@@ -1044,7 +1044,7 @@ export default function Page()
                                         Try the Loanee Demo Now
                                     </motion.p>
                                 </div>
-                                <div className='relative z-[999999999999999999999]'>
+                                <div className='relative z-[999999]'>
                                     <Image
                                         src={`/images/${imageDemo.image}`}
                                         alt='Phone'
