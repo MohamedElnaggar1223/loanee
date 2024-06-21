@@ -148,11 +148,47 @@ export default function Page()
     })
 
 	const secondTargetRef = useRef<HTMLDivElement>(null)
+	const mobileFirstTargetRef = useRef<HTMLDivElement>(null)
+	const mobileSecondTargetRef = useRef<HTMLDivElement>(null)
+	const mobileThirdTargetRef = useRef<HTMLDivElement>(null)
+	const mobileFourthTargetRef = useRef<HTMLDivElement>(null)
+	const mobileFifthTargetRef = useRef<HTMLDivElement>(null)
 
 	const { scrollYProgress } = useScroll({
 		target: secondTargetRef,
 		offset: ['start end', 'end end']
     })
+
+    const { scrollYProgress: mobileFirstScrollYProgress } = useScroll({
+        target: mobileFirstTargetRef,
+        offset: ['center end', 'end end']
+    })
+
+    const { scrollYProgress: mobileSecondScrollYProgress } = useScroll({
+        target: mobileSecondTargetRef,
+        offset: ['center end', 'end end']
+    })
+
+    const { scrollYProgress: mobileThirdScrollYProgress } = useScroll({
+        target: mobileThirdTargetRef,
+        offset: ['center end', 'end end']
+    })
+
+    const { scrollYProgress: mobileFourthScrollYProgress } = useScroll({
+        target: mobileFourthTargetRef,
+        offset: ['center end', 'end end']
+    })
+
+    const { scrollYProgress: mobileFifthScrollYProgress } = useScroll({
+        target: mobileFifthTargetRef,
+        offset: ['center end', 'end end']
+    })
+
+    const mobileFirstRotate = useTransform(mobileFirstScrollYProgress, [0, 1], [4, 0])
+    const mobileSecondRotate = useTransform(mobileSecondScrollYProgress, [0, 1], [4, 0])
+    const mobileThirdRotate = useTransform(mobileThirdScrollYProgress, [0, 1], [4, 0])
+    const mobileFourthRotate = useTransform(mobileFourthScrollYProgress, [0, 1], [4, 0])
+    const mobileFifthRotate = useTransform(mobileFifthScrollYProgress, [0, 1], [4, 0])
 
     // const top = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], ['-24vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '12vh' : '-10vh', innerHeight > 768 ?  innerWidth > 768 ? '5vh' : '25vh' : '-5vh'])
     // const scale = useTransform(scrollYProgress, [0, (1/6), innerWidth > 768 ? 0.98 : 0.9, innerWidth > 768 ? 1 : 0.981], [1, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 0.95 : 0.65, innerHeight > 768 ? innerWidth > 768 ? 0.75 : 1.25 : 0.65])
@@ -901,77 +937,87 @@ export default function Page()
                             <div className={cn('absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]', imageDemo.image === 'demoTenthNew.png' && seventhLoaded ? 'z-[11]' : 'z-[-1]')} />
                             <iframe className={cn('absolute max-w-[65.25%] h-[27%] max-md:h-[25.75%] bottom-[16%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]', imageDemo.image === 'demoNinthNew.png' && sixthLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
                         </motion.div> */}
-                        <div className='flex-1 flex items-center justify-around w-full min-h-screen max-md:flex-col'>
-                            <Image
-                                src={`/images/iphoneFirst.png`}
-                                alt='Phone'
-                                width={250}
-                                height={420}
-                                priority={true}
-                                className={cn('mb-2')}
-                            />
+                        <motion.div ref={mobileFirstTargetRef} className='flex-1 flex items-center justify-around w-full min-h-screen max-md:flex-col my-12'>
+                            <motion.div style={{ rotate: mobileFirstRotate }}>
+                                <Image
+                                    src={`/images/iphoneFirst.png`}
+                                    alt='Phone'
+                                    width={250}
+                                    height={420}
+                                    priority={true}
+                                    className={cn('mb-2')}
+                                />
+                            </motion.div>
                             <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
                                 <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Instant Financial Services</p>
                                 <p className='font-semibold max-w-[468px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Efficiently access pre-approved loans, credit cards, and bank accounts from various banks and lenders.</p>
                             </div>
                             
-                        </div>
-                        <div className='flex-1 flex items-center justify-around w-full min-h-screen max-md:flex-col'>
-                            <Image
-                                src={`/images/iphoneSecond.png`}
-                                alt='Phone'
-                                width={250}
-                                height={420}
-                                priority={true}
-                                className={cn('mb-2')}
-                            />
+                        </motion.div>
+                        <motion.div ref={mobileSecondTargetRef} className='flex-1 flex items-center justify-around w-full min-h-screen max-md:flex-col my-12'>
+                            <motion.div style={{ rotate: mobileSecondRotate }}>
+                                <Image
+                                    src={`/images/iphoneSecond.png`}
+                                    alt='Phone'
+                                    width={250}
+                                    height={420}
+                                    priority={true}
+                                    className={cn('mb-2')}
+                                />
+                            </motion.div>
                             <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
                                 <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Pre-approved Personalised Offers</p>
                                 <p className='font-semibold max-w-[376px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Receive personalized pre-approved banking offers tailored to your credit score.</p>
                             </div>
-                        </div>
-                        <div className='flex-1 flex items-center justify-around w-full min-h-screen max-md:flex-col'>
-                            <Image
-                                src={`/images/iphoneThird.png`}
-                                alt='Phone'
-                                width={250}
-                                height={420}
-                                priority={true}
-                                className={cn('mb-2')}
-                            />
+                        </motion.div>
+                        <motion.div ref={mobileThirdTargetRef} className='flex-1 flex items-center justify-around w-full min-h-screen max-md:flex-col my-12'>
+                            <motion.div style={{ rotate: mobileThirdRotate }}>
+                                <Image
+                                    src={`/images/iphoneThird.png`}
+                                    alt='Phone'
+                                    width={250}
+                                    height={420}
+                                    priority={true}
+                                    className={cn('mb-2')}
+                                />
+                            </motion.div>
                             <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
                                 <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Peace of Mind</p>
                                 <p className='font-semibold max-w-[400px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Enhance your security with secure registration, logins and data sharing via the trusted UAE PASS system.</p>
                             </div>
-                        </div>
-                        <div className='flex-1 flex items-center justify-around w-full min-h-screen max-md:flex-col'>
-                            <Image
-                                src={`/images/iphoneFourth.png`}
-                                alt='Phone'
-                                width={250}
-                                height={420}
-                                priority={true}
-                                className={cn('mb-2')}
-                            />
+                        </motion.div>
+                        <motion.div ref={mobileFourthTargetRef} className='flex-1 flex items-center justify-around w-full min-h-screen max-md:flex-col my-12'>
+                            <motion.div style={{ rotate: mobileFourthRotate }}>
+                                <Image
+                                    src={`/images/iphoneFourth.png`}
+                                    alt='Phone'
+                                    width={250}
+                                    height={420}
+                                    priority={true}
+                                    className={cn('mb-2')}
+                                />
+                            </motion.div>
                             <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
                                 <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Know Your Credit Report</p>
                                 <p className='font-semibold max-w-[468px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Boost financial knowledge with credit report analysis and make informed decisions aligned with your goals.</p>
                             </div>
-                        </div>
-                        <div className='flex-1 flex items-center justify-around w-full min-h-screen max-md:flex-col'>
-                            <Image
-                                src={`/images/iphoneFifth.png`}
-                                alt='Phone'
-                                width={250}
-                                height={420}
-                                priority={true}
-                                className={cn('mb-2')}
-                            />
+                        </motion.div>
+                        <motion.div ref={mobileFifthTargetRef} className='flex-1 flex items-center justify-around w-full min-h-screen max-md:flex-col my-12'>
+                            <motion.div style={{ rotate: mobileFifthRotate }}>
+                                <Image
+                                    src={`/images/iphoneFifth.png`}
+                                    alt='Phone'
+                                    width={250}
+                                    height={420}
+                                    priority={true}
+                                    className={cn('mb-2')}
+                                />
+                            </motion.div>
                             <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
                                 <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Easy Product Comparison</p>
                                 <p className='font-semibold max-w-[435px] text-[24px] leading-[2.25rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare financial products to find the best fit for your needs and streamline decision-making.</p>
                             </div>
-                        </div>
+                        </motion.div>
                         <div className='relative flex-1 flex items-center justify-center w-full min-h-screen md:px-2'>
                             {/* {footerShown && <Image
                                 src={`/images/${imageShown}`}
@@ -993,29 +1039,21 @@ export default function Page()
                                     alt='Dubai'
                                     className='absolute z-[2] bottom-0'
                                 />
-                                {footerShown ? (
-                                    <div className='max-h-fit z-10 text-black'>
-                                        <motion.p className='font-semibold text-xl md:text-3xl mb-auto py-1'>
-                                            Try the Loanee Demo Now
-                                        </motion.p>
-                                    </div>
-                                ) : (
-                                    <div className='max-h-fit overflow-hidden z-10 text-black'>
-                                        <motion.p style={{ y: tryText }} className='font-semibold text-lg md:text-3xl mb-auto'>
-                                            Try the Loanee Demo Now
-                                        </motion.p>
-                                    </div>
-                                )}
+                                <div className='max-h-fit z-10 text-black'>
+                                    <motion.p className='font-semibold text-xl md:text-3xl mb-auto py-1'>
+                                        Try the Loanee Demo Now
+                                    </motion.p>
+                                </div>
                                 <div className='relative'>
                                     <Image
-                                        src={`/images/${imageShown}`}
+                                        src={`/images/${imageDemo.image}`}
                                         alt='Phone'
                                         width={250}
                                         height={420}
                                         priority={true}
                                         className={cn('mb-2')}
                                     />
-                                    {imageDemo.began && <div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-red opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
+                                    {<div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-red opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
                                     <iframe className={cn('absolute max-w-[25%] h-[22%] max-md:h-[18%] top-[36.2%] left-[38%]', imageDemo.image === 'demoTenthNew.png' && seventhLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
                                     <div className={cn('absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]', imageDemo.image === 'demoTenthNew.png' && seventhLoaded ? 'z-[11]' : 'z-[-1]')} />
                                     <iframe className={cn('absolute max-w-[65.25%] h-[27%] max-md:h-[25.75%] bottom-[16%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]', imageDemo.image === 'demoNinthNew.png' && sixthLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
@@ -1165,7 +1203,7 @@ export default function Page()
                             alt='Dubai'
                             className='opacity-40 z-[-10] mainBg' 
                         />
-                        <section className='relative flex flex-col items-center justify-end gap-10 flex-1 overflow-hidden w-full'>
+                        <section className='relative flex flex-col items-center justify-end gap-6 flex-1 overflow-hidden w-full'>
                             <Image
                                 src='/images/footerTop.svg'
                                 width={250}
