@@ -835,7 +835,7 @@ export default function Page()
                         <link key={image} rel="preload" href={`/images/${image}`} as="image" />
                     ))}
                 </Head>
-                <section className='flex flex-col pt-6 no-scroll-bar px-5 md:px-12 snappy'>
+                <section className='flex flex-col pt-6 no-scroll-bar md:px-12 snappy'>
                     <Image
                         src='/images/heroBg.png'
                         fill
@@ -892,7 +892,7 @@ export default function Page()
                             </motion.div>
                         </section>
                     </section>
-                    <motion.section ref={secondTargetRef} className={cn('relative flex-1 flex flex-col items-center justify-center w-full snappy-section')}>
+                    <motion.section ref={secondTargetRef} className={cn('relative flex-1 px-5 flex flex-col items-center justify-center w-full snappy-section')}>
                         <motion.div initial={{ left: -1000 }} animate={{ left: scrollYProgress.get() >= (5/6)-0.05 ? -1000 : scrollYProgress.get() <= (1/6)+0.005 ? -1000 : opacityBg.get() === 0 ? -1000 : 0 }} transition={{ duration: 0.4 }} style={{ opacity: opacityBg }} className='fixed z-[4] md:-top-[0vh] max-md:-right-10 md:left-0 max-md:max-w-[256px] max-md:max-h-[417px] max-md:scale-x-[-1]'>
                             <Image
                                 src='/images/featuresTriangle.png'
