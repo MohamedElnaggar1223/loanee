@@ -1050,7 +1050,7 @@ export default function Page()
                                 className={cn('absolute z-[15]')}
                                 style={{ scale: (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25, top: innerHeight >= 920 ? 'calc(50% - 395px)' : (innerHeight > 768 && innerWidth > 768) ? 'calc(100% - 814px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh' }}
                             />} */}
-                            <div className='relative bg-[#F1E8E6] py-8 flex flex-col items-center justify-around gap-2 md:gap-4 w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden max-md:justify-between'>
+                            <div className='relative bg-[#F1E8E6] py-6 flex flex-col items-center justify-center gap-6 md:gap-4 w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden'>
                                 <Image
                                     src='/images/demoTriangle.png'
                                     width={782}
@@ -1067,8 +1067,8 @@ export default function Page()
                                     <Image
                                         src={`/images/${imageDemo.image}`}
                                         alt='Phone'
-                                        width={240}
-                                        height={420}
+                                        width={230}
+                                        height={410}
                                         priority={true}
                                         className={cn('mb-2')}
                                     />
