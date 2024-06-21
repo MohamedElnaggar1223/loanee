@@ -153,6 +153,7 @@ export default function Page()
 	const mobileThirdTargetRef = useRef<HTMLDivElement>(null)
 	const mobileFourthTargetRef = useRef<HTMLDivElement>(null)
 	const mobileFifthTargetRef = useRef<HTMLDivElement>(null)
+	const demoTargetRef = useRef<HTMLDivElement>(null)
 
 	const { scrollYProgress } = useScroll({
 		target: secondTargetRef,
@@ -213,6 +214,11 @@ export default function Page()
     const mobileThirdInView = useInView(mobileThirdTargetRef)
     const mobileFourthInView = useInView(mobileFourthTargetRef)
     const mobileFifthInView = useInView(mobileFifthTargetRef)
+    const demoInView = useInView(demoTargetRef)
+
+    useEffect(() => {
+        if(demoInView && !signUpFormSubmitted) setSignUpFormShown(true)
+    }, [demoInView])
 
     useMotionValueEvent(scrollYProgress, 'change', (value) => {
         console.log(value)
@@ -1029,7 +1035,7 @@ export default function Page()
                                 <p className='font-semibold max-w-[435px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare financial products to find the best fit for your needs and streamline decision-making.</p>
                             </div>
                         </motion.div>
-                        <div className='relative flex-1 flex items-center justify-center w-full min-h-[100dvh] md:px-2'>
+                        <div className='relative flex-1 flex items-center justify-center w-full min-h-[100dvh] md:px-2 snappy-section'>
                             {/* {footerShown && <Image
                                 src={`/images/${imageShown}`}
                                 alt='Phone'
@@ -1055,7 +1061,7 @@ export default function Page()
                                         Try the Loanee Demo Now
                                     </motion.p>
                                 </div>
-                                <div className='relative z-[999999]'>
+                                <div ref={demoTargetRef} className='relative z-[999999]'>
                                     <Image
                                         src={`/images/${imageDemo.image}`}
                                         alt='Phone'
@@ -1095,6 +1101,110 @@ export default function Page()
                             </div>
                         </div>
                     </motion.section>
+                    {footerShown && signUpFormSubmitted && (
+                        <motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex snappy-section gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
+                            <Image
+                                src='/images/heroBg.png'
+                                fill
+                                alt='Dubai'
+                                className='opacity-40 z-[-10] mainBg' 
+                            />
+                            <section className='relative flex flex-col items-center justify-end gap-6 flex-1 overflow-hidden w-full'>
+                                <Image
+                                    src='/images/footerTop.svg'
+                                    width={250}
+                                    height={439}
+                                    alt='Footer Background Top'
+                                    className='absolute z-[10000] right-0 top-0 max-md:max-w-[173px]'
+                                />
+                                <Image
+                                    src='/images/footerBottom.svg'
+                                    width={439}
+                                    height={439}
+                                    alt='Footer Background Top'
+                                    className='absolute z-[10000] left-0 bottom-0 max-md:max-w-[173px]'
+                                />
+                                <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
+                                    <Image
+                                        src="/images/logo.svg"
+                                        alt="Loanee"
+                                        width={195}
+                                        height={50}
+                                        className='max-md:max-w-36 max-2xl:w-[140px]'
+                                    />
+                                </motion.div>
+                                <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden'>
+                                    <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Simplifying your finances</motion.h1>
+                                    <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Coming soon</motion.h1>
+                                    <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[28px] px-4 leading-[2.25rem]'>Simplifying your finances Coming soon</motion.h1>
+                                    <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text 2xl:text-xl max-md:hidden font-light text-black mt-2'>Register your details and stay tuned</motion.h4>
+                                </div>
+                                <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text-sm md:hidden font-light text-black mt-4'>Register your details and stay tuned</motion.h4>
+                                <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='flex items-center justify-center md:mt-2 gap-4'>
+                                    <Image
+                                        src='/images/appstore.png'
+                                        width={120} 
+                                        height={40}
+                                        alt='App Store'
+                                        className='max-md:max-w-24'
+                                    />
+                                    <Image
+                                        src='/images/playstore.png'
+                                        width={120} 
+                                        height={40}
+                                        alt='App Store' 
+                                        className='max-md:max-w-24'
+                                    />
+                                </motion.div>
+                                <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
+                                    <Image
+                                        src='/images/footerPhonesNew.png'
+                                        width={580}
+                                        height={435}
+                                        alt='Footer Phones'
+                                        className='max-2xl:w-[390px]'
+                                    />
+                                </motion.div>
+                            </section>
+                            <div className='px-4 py-6 md:px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full max-md:flex-col'>
+                                <div className='gap-4 md:gap-10 flex max-md:w-full max-md:items-center max-md:justify-center'>
+                                    <p className='text-sm cursor-pointer max-md:font-semibold'>Terms</p>
+                                    <p className='text-sm cursor-pointer max-md:font-semibold'>Privacy</p>
+                                    <p className='text-sm cursor-pointer max-md:font-semibold'>Cookie policy</p>
+                                </div>
+                                <div className='gap-5 md:gap-10 flex max-md:w-full max-md:items-center max-md:justify-center'>
+                                    <Image
+                                        src='/images/twitter.png'
+                                        width={18}
+                                        height={18}
+                                        alt='Twitter'
+                                        className='cursor-pointer max-md:max-w-4'
+                                    />
+                                    <Image
+                                        src='/images/instagram.png'
+                                        width={18}
+                                        height={18}
+                                        alt='Instagram'
+                                        className='cursor-pointer max-md:max-w-4'
+                                    />
+                                    <Image
+                                        src='/images/facebook.png'
+                                        width={18}
+                                        height={18}
+                                        alt='Facebook'
+                                        className='cursor-pointer max-md:max-w-4'
+                                    />
+                                    <Image
+                                        src='/images/linkedin.png'
+                                        width={18}
+                                        height={18}
+                                        alt='Linkedin'
+                                        className='cursor-pointer max-md:max-w-4'
+                                    />
+                                </div>
+                            </div>
+                        </motion.section>
+                    )}
                     {signUpFormShown && (
                         <Dialog open={signUpFormShown}>
                             <DialogContent className='bg-[#F7F3F6] flex flex-col max-md:items-center gap-10 py-10 px-6 max-md:min-w-[320px] max-md:max-w-[320px] md:min-w-[720px] z-[99999999999999]'>
@@ -1206,110 +1316,7 @@ export default function Page()
                         </Dialog>
                     )}
                 </section>
-                {footerShown && signUpFormSubmitted && (
-                    <motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
-                        <Image
-                            src='/images/heroBg.png'
-                            fill
-                            alt='Dubai'
-                            className='opacity-40 z-[-10] mainBg' 
-                        />
-                        <section className='relative flex flex-col items-center justify-end gap-6 flex-1 overflow-hidden w-full'>
-                            <Image
-                                src='/images/footerTop.svg'
-                                width={250}
-                                height={439}
-                                alt='Footer Background Top'
-                                className='absolute z-[10000] right-0 top-0 max-md:max-w-[173px]'
-                            />
-                            <Image
-                                src='/images/footerBottom.svg'
-                                width={439}
-                                height={439}
-                                alt='Footer Background Top'
-                                className='absolute z-[10000] left-0 bottom-0 max-md:max-w-[173px]'
-                            />
-                            <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
-                                <Image
-                                    src="/images/logo.svg"
-                                    alt="Loanee"
-                                    width={195}
-                                    height={50}
-                                    className='max-md:max-w-36 max-2xl:w-[140px]'
-                                />
-                            </motion.div>
-                            <div className='flex flex-col justify-center items-center gap-2.5 overflow-hidden'>
-                                <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Simplifying your finances</motion.h1>
-                                <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black max-md:hidden font-bold lg:text-4xl 2xl:text-6xl'>Coming soon</motion.h1>
-                                <motion.h1 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='text-black font-bold md:hidden text-center text-[28px] px-4 leading-[2.25rem]'>Simplifying your finances Coming soon</motion.h1>
-                                <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text 2xl:text-xl max-md:hidden font-light text-black mt-2'>Register your details and stay tuned</motion.h4>
-                            </div>
-                            <motion.h4 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}	className='text-sm md:hidden font-light text-black mt-4'>Register your details and stay tuned</motion.h4>
-                            <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }} className='flex items-center justify-center md:mt-2 gap-4'>
-                                <Image
-                                    src='/images/appstore.png'
-                                    width={120} 
-                                    height={40}
-                                    alt='App Store'
-                                    className='max-md:max-w-24'
-                                />
-                                <Image
-                                    src='/images/playstore.png'
-                                    width={120} 
-                                    height={40}
-                                    alt='App Store' 
-                                    className='max-md:max-w-24'
-                                />
-                            </motion.div>
-                            <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
-                                <Image
-                                    src='/images/footerPhonesNew.png'
-                                    width={580}
-                                    height={435}
-                                    alt='Footer Phones'
-                                    className='max-2xl:w-[390px]'
-                                />
-                            </motion.div>
-                        </section>
-                        <div className='px-4 py-6 md:px-20 gap-8 items-center justify-between bg-[#F7F4F6] flex w-full max-md:flex-col'>
-                            <div className='gap-4 md:gap-10 flex max-md:w-full max-md:items-center max-md:justify-center'>
-                                <p className='text-sm cursor-pointer max-md:font-semibold'>Terms</p>
-                                <p className='text-sm cursor-pointer max-md:font-semibold'>Privacy</p>
-                                <p className='text-sm cursor-pointer max-md:font-semibold'>Cookie policy</p>
-                            </div>
-                            <div className='gap-5 md:gap-10 flex max-md:w-full max-md:items-center max-md:justify-center'>
-                                <Image
-                                    src='/images/twitter.png'
-                                    width={18}
-                                    height={18}
-                                    alt='Twitter'
-                                    className='cursor-pointer max-md:max-w-4'
-                                />
-                                <Image
-                                    src='/images/instagram.png'
-                                    width={18}
-                                    height={18}
-                                    alt='Instagram'
-                                    className='cursor-pointer max-md:max-w-4'
-                                />
-                                <Image
-                                    src='/images/facebook.png'
-                                    width={18}
-                                    height={18}
-                                    alt='Facebook'
-                                    className='cursor-pointer max-md:max-w-4'
-                                />
-                                <Image
-                                    src='/images/linkedin.png'
-                                    width={18}
-                                    height={18}
-                                    alt='Linkedin'
-                                    className='cursor-pointer max-md:max-w-4'
-                                />
-                            </div>
-                        </div>
-                    </motion.section>
-                )}
+                
                 </>
             )}
         </>
