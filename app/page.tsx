@@ -965,7 +965,7 @@ export default function Page()
                                     className={cn('mb-2')}
                                 />
                             </motion.div>
-                            <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
+                            <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 -mt-8 overflow-hidden md:pl-[18%]'>
                                 <p className='uppercase font-extrabold text-[#ff0000] text-xs'>Pre-approved Personalised Offers</p>
                                 <p className='font-semibold max-w-[376px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Receive personalized pre-approved banking offers tailored to your credit score.</p>
                             </div>
@@ -981,7 +981,7 @@ export default function Page()
                                     className={cn('mb-2')}
                                 />
                             </motion.div>
-                            <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
+                            <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 -mt-8 overflow-hidden md:pl-[18%]'>
                                 <p className='uppercase font-extrabold text-[#ff0000] text-xs'>Peace of Mind</p>
                                 <p className='font-semibold max-w-[400px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Enhance your security with secure registration, logins and data sharing via the trusted UAE PASS system.</p>
                             </div>
@@ -997,7 +997,7 @@ export default function Page()
                                     className={cn('mb-2')}
                                 />
                             </motion.div>
-                            <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
+                            <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 -mt-8 overflow-hidden md:pl-[18%]'>
                                 <p className='uppercase font-extrabold text-[#ff0000] text-xs'>Know Your Credit Report</p>
                                 <p className='font-semibold max-w-[468px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Boost financial knowledge with credit report analysis and make informed decisions aligned with your goals.</p>
                             </div>
@@ -1013,7 +1013,7 @@ export default function Page()
                                     className={cn('mb-2')}
                                 />
                             </motion.div>
-                            <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
+                            <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 -mt-8 overflow-hidden md:pl-[18%]'>
                                 <p className='uppercase font-extrabold text-[#ff0000] text-xs'>Easy Product Comparison</p>
                                 <p className='font-semibold max-w-[435px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare financial products to find the best fit for your needs and streamline decision-making.</p>
                             </div>
@@ -1053,7 +1053,7 @@ export default function Page()
                                         priority={true}
                                         className={cn('mb-2')}
                                     />
-                                    {<div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-red-400 opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
+                                    {<div onMouseDown={() => setImageDemo(prev => ({...prev, clicked: !prev.clicked}))} className={cn('bg-transparent opacity-20 w-full absolute cursor-pointer z-[9999999999]', imageDemo.clickPos)} />}                
                                     <iframe className={cn('absolute max-w-[25%] h-[22%] max-md:h-[18%] top-[36.2%] left-[38%]', imageDemo.image === 'demoTenthNew.png' && seventhLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/750089d4-57f1-4eee-905f-320f4d1bd426/dJ9Ay5cVnY.json"/>                    
                                     <div className={cn('absolute bg-[#f8f7f7] z-[11] w-[15%] h-[7.5%] top-[41.1%] left-[42%]', imageDemo.image === 'demoTenthNew.png' && seventhLoaded ? 'z-[11]' : 'z-[-1]')} />
                                     <iframe className={cn('absolute max-w-[65.25%] h-[27%] max-md:h-[25.75%] bottom-[16%] left-[17.85%] bg-gradient-to-b from-[#F5F3F3] to-[#FAFAFA]', imageDemo.image === 'demoNinthNew.png' && sixthLoaded ? 'z-[12]' : 'z-[-1]')} src="https://lottie.host/embed/3b0bcb06-2fa8-4678-8fda-ba680b1fa639/pUiwIQlYOj.json"></iframe>                
@@ -1066,7 +1066,7 @@ export default function Page()
                                             setPosition('fixed')
                                             setFooterShown(false)
                                         }}
-                                        className='md:absolute mt-4 z-50 md:bottom-10 md:right-10 md:rounded-full text-sm md:text-base font-semibold px-2 py-1.5 md:px-6 md:py-3 md:border md:border-black max-md:underline text-black'
+                                        className='md:absolute mt-2 z-50 md:bottom-10 md:right-10 md:rounded-full text-sm md:text-base font-semibold px-2 py-1.5 md:px-6 md:py-3 md:border md:border-black max-md:underline text-black'
                                     >
                                         Restart (R)
                                     </button>
@@ -1079,7 +1079,7 @@ export default function Page()
                                                 behavior: 'smooth'
                                             })
                                         }, 200)
-                                    }} className='underline cursor-pointer mt-4 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm text-black'>Skip Demo</p>
+                                    }} className='underline cursor-pointer mt-2 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm text-black'>Skip Demo</p>
                                 )}
                             </div>
                         </div>
