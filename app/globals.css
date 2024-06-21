@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  height: 100vh;
-  overflow: hidden;
+@media (max-width: 620px) {
+  html,
+  body {
+    height: 100vh;
+    overflow: hidden;
+  }
 }
-
 *::-webkit-scrollbar {
   display: none;
 }
