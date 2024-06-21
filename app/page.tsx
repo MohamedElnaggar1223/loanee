@@ -154,6 +154,7 @@ export default function Page()
 	const mobileFourthTargetRef = useRef<HTMLDivElement>(null)
 	const mobileFifthTargetRef = useRef<HTMLDivElement>(null)
 	const demoTargetRef = useRef<HTMLDivElement>(null)
+	const footerTargetRef = useRef<HTMLDivElement>(null)
 
 	const { scrollYProgress } = useScroll({
 		target: secondTargetRef,
@@ -215,6 +216,7 @@ export default function Page()
     const mobileFourthInView = useInView(mobileFourthTargetRef)
     const mobileFifthInView = useInView(mobileFifthTargetRef)
     const demoInView = useInView(demoTargetRef)
+    const footerInView = useInView(footerTargetRef)
 
     useEffect(() => {
         if(demoInView && !signUpFormSubmitted) setSignUpFormShown(true)
@@ -1091,10 +1093,7 @@ export default function Page()
                                     <p onMouseDown={() => {
                                         setImageDemo(prev => ({...prev, finished: true}))
                                         setTimeout(() => {
-                                            window.scrollTo({
-                                                top: document.body.scrollHeight - (innerHeight * 1.75),
-                                                behavior: 'smooth'
-                                            })
+                                            footerTargetRef.current?.scrollIntoView({ behavior: 'smooth'})
                                         }, 200)
                                     }} className='underline cursor-pointer -mt-2 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm text-black'>Skip Demo</p>
                                 )}
@@ -1102,7 +1101,7 @@ export default function Page()
                         </div>
                     </motion.section>
                     {footerShown && signUpFormSubmitted && (
-                        <motion.section key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex snappy-section gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
+                        <motion.section ref={footerTargetRef} key="footer" initial={{ y: '100vh' }} animate={{ y: '0' }} transition={{ duration: 0.75 }} exit={{ y: '100vh' }} className='flex snappy-section gradient-footer sticky top-0 min-h-screen flex-col items-center justify-end z-20'>
                             <Image
                                 src='/images/heroBg.png'
                                 fill
