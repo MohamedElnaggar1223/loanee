@@ -1037,7 +1037,7 @@ export default function Page()
                                 <p className='font-semibold max-w-[435px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare financial products to find the best fit for your needs and streamline decision-making.</p>
                             </div>
                         </motion.div>
-                        <div className='relative flex-1 flex items-center justify-center w-full min-h-[100dvh] md:px-2 snappy-section'>
+                        <div className='relative flex-1 flex items-center justify-center w-full min-h-[100dvh] md:px-2 snappy-section py-12'>
                             {/* {footerShown && <Image
                                 src={`/images/${imageShown}`}
                                 alt='Phone'
@@ -1050,7 +1050,7 @@ export default function Page()
                                 className={cn('absolute z-[15]')}
                                 style={{ scale: (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25, top: innerHeight >= 920 ? 'calc(50% - 395px)' : (innerHeight > 768 && innerWidth > 768) ? 'calc(100% - 814px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh' }}
                             />} */}
-                            <div className='relative bg-[#F1E8E6] flex flex-col items-center justify-around gap-2 md:gap-4 w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden max-md:justify-between max-md:pt-6 max-md:pb-4'>
+                            <div className='relative bg-[#F1E8E6] py-8 flex flex-col items-center justify-around gap-2 md:gap-4 w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden max-md:justify-between'>
                                 <Image
                                     src='/images/demoTriangle.png'
                                     width={782}
@@ -1067,8 +1067,8 @@ export default function Page()
                                     <Image
                                         src={`/images/${imageDemo.image}`}
                                         alt='Phone'
-                                        width={280}
-                                        height={430}
+                                        width={240}
+                                        height={420}
                                         priority={true}
                                         className={cn('mb-2')}
                                     />
