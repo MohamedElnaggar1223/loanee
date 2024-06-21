@@ -855,12 +855,12 @@ export default function Page()
     
                     <section className='flex flex-col flex-1 z-30 min-h-[100dvh] max-h-[100dvh] overflow-hidden snappy-section'>
                         <Header />
-                        <section className='relative rounded-t-3xl flex flex-col pt-20 px-4 items-center max-md:gap-6 gapHeroSection flex-1'>
+                        <section className='relative flex flex-col pt-20 px-4 items-center max-md:gap-6 gapHeroSection flex-1'>
                             <Image
                                 src='/images/bgFinal.png'
                                 fill
                                 alt='Dubai'
-                                className='rounded-t-3xl w-full h-full object-cover absolute z-[-2]' 
+                                className='w-full h-full object-cover absolute z-[-2]' 
                             />
                             {/* <div className='z-[-1] bg-[rgba(110,37,37,0.70)] w-full h-full top-0 rounded-3xl absolute' /> */}
                             <div className='flex flex-col justify-center items-center gap-6'>
@@ -870,9 +870,9 @@ export default function Page()
                                     <motion.h1 style={{ opacity: mobileHeroOpacity }} initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[28px] leading-[2.25rem]'>UAE's first fully automated finance app</motion.h1>
                                 </div>
                                 <div className='flex flex-col justify-center items-center overflow-hidden'>
-                                    <motion.h4 style={{ opacity: mobileHeroOpacity }} initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='subTextHeroSection max-md:hidden font-light text-white'>Welcome to access easy, fast, and reliable banking products &</motion.h4>
+                                    <motion.h4 style={{ opacity: mobileHeroOpacity }} initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='subTextHeroSection max-md:hidden font-light text-white'>Access easy, fast, and reliable banking products &</motion.h4>
                                     <motion.h4 style={{ opacity: mobileHeroOpacity }} initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='subTextHeroSection max-md:hidden font-light text-white'>borrowing with Loanee, designed for your convenience</motion.h4>
-                                    <motion.h4 style={{ opacity: mobileHeroOpacity }} initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-sm text-center md:hidden font-light text-white'>Welcome to access easy, fast, and reliable banking products & borrowing with Loanee, designed for your convenience</motion.h4>
+                                    <motion.h4 style={{ opacity: mobileHeroOpacity }} initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-sm text-center md:hidden font-light text-white'>Access easy, fast, and reliable banking products & borrowing with Loanee, designed for your convenience</motion.h4>
                                 </div>
                             </div>
                             <motion.div initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='flex flex-col items-center justify-center gap-4'>
@@ -968,7 +968,7 @@ export default function Page()
                                 />
                             </motion.div>
                             <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
-                                <p className='uppercase font-extrabold text-[#ff0000] text-xs'>Instant Financial Services</p>
+                                <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Instant Financial Services</p>
                                 <p className='font-semibold max-w-[468px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Efficiently access pre-approved loans, credit cards, and bank accounts from various banks and lenders.</p>
                             </div>
                             
@@ -985,7 +985,7 @@ export default function Page()
                                 />
                             </motion.div>
                             <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
-                                <p className='uppercase font-extrabold text-[#ff0000] text-xs'>Pre-approved Personalised Offers</p>
+                                <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Pre-approved Personalised Offers</p>
                                 <p className='font-semibold max-w-[376px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Receive personalized pre-approved banking offers tailored to your credit score.</p>
                             </div>
                         </motion.div>
@@ -1001,7 +1001,7 @@ export default function Page()
                                 />
                             </motion.div>
                             <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
-                                <p className='uppercase font-extrabold text-[#ff0000] text-xs'>Peace of Mind</p>
+                                <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Peace of Mind</p>
                                 <p className='font-semibold max-w-[400px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Enhance your security with secure registration, logins and data sharing via the trusted UAE PASS system.</p>
                             </div>
                         </motion.div>
@@ -1017,7 +1017,7 @@ export default function Page()
                                 />
                             </motion.div>
                             <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
-                                <p className='uppercase font-extrabold text-[#ff0000] text-xs'>Know Your Credit Report</p>
+                                <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Know Your Credit Report</p>
                                 <p className='font-semibold max-w-[468px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Boost financial knowledge with credit report analysis and make informed decisions aligned with your goals.</p>
                             </div>
                         </motion.div>
@@ -1033,7 +1033,7 @@ export default function Page()
                                 />
                             </motion.div>
                             <div className='flex max-md:overflow-hidden md:flex-1 flex-col gap-4 overflow-hidden md:pl-[18%]'>
-                                <p className='uppercase font-extrabold text-[#ff0000] text-xs'>Easy Product Comparison</p>
+                                <p className='uppercase font-extrabold text-[#ff0000] text-sm'>Easy Product Comparison</p>
                                 <p className='font-semibold max-w-[435px] text-[18px] leading-[2rem] md:text-[32px] md:leading-[2.75rem]'>Easily compare financial products to find the best fit for your needs and streamline decision-making.</p>
                             </div>
                         </motion.div>
