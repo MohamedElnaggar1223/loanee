@@ -621,7 +621,7 @@ export default function Page()
                         <Dialog open={signUpFormShown}>
                             <DialogContent className='bg-[#F7F3F6] flex flex-col max-md:items-center gap-10 py-10 px-6 max-md:min-w-[320px] max-md:max-w-[320px] md:min-w-[720px] z-[99999999999999]'>
                                 <DialogHeader className='font-bold text-lg'>
-                                    Fill out this form and join the Loanee community, to try demo.
+                                    Fill out this form and join the Loanee community, to try the demo.
                                 </DialogHeader>
                                 <Form {...form}>
                                     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col max-w-full items-center justify-center outline-none">
@@ -1208,7 +1208,7 @@ export default function Page()
                         <Dialog open={signUpFormShown}>
                             <DialogContent className='bg-[#F7F3F6] flex flex-col max-md:items-center gap-10 py-10 px-6 max-md:min-w-[320px] max-md:max-w-[320px] md:min-w-[720px] z-[99999999999999]'>
                                 <DialogHeader className='font-bold text-lg'>
-                                    Fill out this form and join the Loanee community, to try demo.
+                                    Fill out this form and join the Loanee community, to try the demo.
                                 </DialogHeader>
                                 <Form {...form}>
                                     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col max-w-full items-center justify-center outline-none">
