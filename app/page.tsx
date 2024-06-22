@@ -29,7 +29,7 @@ const signUpSchema = z.object({
     email: z.string().email({
         message: 'Invalid email'
     }),
-    mobile: z.string().min(10, {
+    mobile: z.string().min(6, {
         message: 'Invalid mobile number'
     }).refine(value => {
         return /^\d+$/.test(value)
