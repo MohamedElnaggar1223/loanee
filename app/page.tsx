@@ -445,9 +445,9 @@ export default function Page()
                                     <motion.h1 initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='text-white font-bold md:hidden text-center text-[28px] leading-[2.25rem]'>UAE's first fully automated finance app</motion.h1>
                                 </div>
                                 <div className='flex flex-col justify-center items-center overflow-hidden'>
-                                    <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='subTextHeroSection max-md:hidden font-light text-white'>Welcome to access easy, fast, and reliable banking products &</motion.h4>
+                                    <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='subTextHeroSection max-md:hidden font-light text-white'>Access easy, fast, and reliable banking products &</motion.h4>
                                     <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='subTextHeroSection max-md:hidden font-light text-white'>borrowing with Loanee, designed for your convenience</motion.h4>
-                                    <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-sm text-center md:hidden font-light text-white'>Welcome to access easy, fast, and reliable banking products & borrowing with Loanee, designed for your convenience</motion.h4>
+                                    <motion.h4 initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: 0.75 }} className='text-sm text-center md:hidden font-light text-white'>Access easy, fast, and reliable banking products & borrowing with Loanee, designed for your convenience</motion.h4>
                                 </div>
                             </div>
                             <motion.div initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75 }} className='flex flex-col items-center justify-center gap-4'>
