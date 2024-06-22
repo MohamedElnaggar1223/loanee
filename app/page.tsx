@@ -408,7 +408,7 @@ export default function Page()
 
     return (
         <>
-            {innerWidth > 620 ? (
+            {innerWidth > 960 ? (
                 <>
                 <Head>
                     {demoImagesRotation.map((image) => (
