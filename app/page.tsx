@@ -1050,7 +1050,7 @@ export default function Page()
                                 className={cn('absolute z-[15]')}
                                 style={{ scale: (innerHeight > 768 && innerWidth > 768) ? 0.75 : (innerHeight < 768 && innerWidth > 768) ? 0.55 : 1.25, top: innerHeight >= 920 ? 'calc(50% - 395px)' : (innerHeight > 768 && innerWidth > 768) ? 'calc(100% - 814px)' : (innerHeight < 768 && innerWidth > 768) ? '-12vh' : '25vh' }}
                             />} */}
-                            <div className='relative bg-[#F1E8E6] py-6 flex flex-col items-center justify-center gap-6 md:gap-4 w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden'>
+                            <div className='relative bg-[#F1E8E6] py-6 flex flex-col items-center justify-center gap-4 md:gap-4 w-full h-[95vh] md:pt-10 md:pb-16 rounded-3xl overflow-hidden'>
                                 <Image
                                     src='/images/demoTriangle.png'
                                     width={782}
@@ -1095,7 +1095,7 @@ export default function Page()
                                         setTimeout(() => {
                                             footerTargetRef.current?.scrollIntoView({ behavior: 'smooth'})
                                         }, 200)
-                                    }} className='underline cursor-pointer -mt-2 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm text-black'>Skip Demo</p>
+                                    }} className='underline cursor-pointer -mt-3.5 z-50 md:absolute md:bottom-10 right-4 md:right-10 font-semibold max-md:text-sm text-black'>Skip Demo</p>
                                 )}
                             </div>
                         </div>
@@ -1155,7 +1155,7 @@ export default function Page()
                                         className='max-md:max-w-24'
                                     />
                                 </motion.div>
-                                <motion.div initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
+                                <motion.div className='z-[9999999]' initial={{ y: 200 }} animate={{ y: 0 }} transition={{ duration: 0.75, delay: 0.75 }}>
                                     <Image
                                         src='/images/footerPhonesNew.png'
                                         width={580}
