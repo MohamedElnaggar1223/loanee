@@ -404,7 +404,6 @@ export default function Page()
     useMotionValueEvent(mobileFirstScrollYProgress, 'change', (value) => {
         console.log(value)
     })
-    
 
     function onSubmit(values: z.infer<typeof signUpSchema>) {
         setSignUpFormShown(false)
