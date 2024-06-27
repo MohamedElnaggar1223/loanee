@@ -13,7 +13,7 @@ export const sendMail = (data: z.infer<typeof signUpSchema>) => {
             to: 'hello@loanee.ae',
             // to: 'maelnaggar1223@gmail.com',
             subject: 'New sign up',
-            html: `<p><strong>Email:</strong> ${data.email} <strong>First name:</strong> ${data.fistName} <strong>Number:</strong> ${data.mobile} <strong>Job title:</strong> ${data.jobTitle}</p>`
+            html: `<p><strong>Email:</strong> ${data.email} <strong>First name:</strong> ${data.fistName} <strong>Number:</strong> ${data.countryCode}${data.mobile} <strong>Job title:</strong> ${data.jobTitle}</p>`
         })
     }
     catch (error)

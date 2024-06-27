@@ -14,5 +14,6 @@ export const signUpSchema = z.object({
         message: 'Invalid mobile number'
     }).refine(value => {
         return /^\d+$/.test(value)
-    })
+    }),
+    countryCode: z.string()
 })

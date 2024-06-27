@@ -132,7 +132,8 @@ export default function Page()
             fistName: '',
             jobTitle: '',
             email: '',
-            mobile: ''
+            mobile: '',
+            countryCode: '+971'
         },
     })
 
@@ -694,7 +695,7 @@ export default function Page()
                                                                 <>
                                                                     <p className='text-[0.65rem] text-gray-400 font-semibold absolute top-4 left-3'>Mobile number</p>
                                                                     <div className='w-screen max-w-[280px] md:max-w-[328px] flex rounded-xl overflow-hidden'>
-                                                                        <select defaultValue="+971" className='bg-white outline-none pl-4 pb-3.5 flex items-center justify-center pt-6 max-w-fit'>
+                                                                        <select onChange={(e) => form.setValue('countryCode', e.target.value)} defaultValue="+971" className='bg-white outline-none pl-4 pb-3.5 flex items-center justify-center pt-6 max-w-fit'>
                                                                             {countryDialingCodes.map((code) => (
                                                                                 <option key={code} value={code}>
                                                                                     {code}
