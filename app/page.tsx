@@ -18,8 +18,11 @@ import {
     FormMessage,
   } from "@/components/ui/form"
 import { countryDialingCodes } from "@/constants";
+import { sendMail } from "@/lib/actions";
+import { db } from "@/firebase/config";
+import { addDoc, collection } from "firebase/firestore";
 
-const signUpSchema = z.object({
+export const signUpSchema = z.object({
     fistName: z.string().min(2, {
         message: 'Invalid first name'
     }),
@@ -114,6 +117,8 @@ const featureImages = [
 
 export default function Page() 
 {
+    const [email, setEmail] = useState('' as string)
+
     const [position, setPosition] = useState<'fixed' | 'absolute'>('absolute')
     const [imageShown, setImageShown] = useState('iphoneHero.png')
     const [footerShown, setFooterShown] = useState(false)
@@ -404,6 +409,15 @@ export default function Page()
     function onSubmit(values: z.infer<typeof signUpSchema>) {
         setSignUpFormShown(false)
         setSignUpFormSubmitted(true)
+        sendMail(values)
+    }
+
+    const handleGetNotified = async () => {
+        const notificationCollection = collection(db, 'notifications')
+
+        await addDoc(notificationCollection, { email })
+
+        setEmail('')
     }
 
     return (
@@ -455,9 +469,11 @@ export default function Page()
                                     <input
                                         type='text'
                                         placeholder='Enter your email'
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         className='rounded-[0.5rem] max-md:min-h-full emailHeroSection border outline-none border-white w-screen max-w-[180px] sm:max-w-[240px] md:max-w-[468px] bg-[#CBBEBD] text-black placeholder:text-black text-sm' 
                                     />
-                                    <button className='max-md:min-h-full text-nowrap buttonHeroSection bg-[#ff0000] text-white font-medium rounded-[0.5rem] text-sm'>
+                                    <button onClick={handleGetNotified} className='max-md:min-h-full text-nowrap buttonHeroSection bg-[#ff0000] text-white font-medium rounded-[0.5rem] text-sm'>
                                         Get Notified
                                     </button>
                                 </div>
