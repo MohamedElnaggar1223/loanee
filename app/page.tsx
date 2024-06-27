@@ -390,10 +390,10 @@ export default function Page()
         console.log(value)
     })
 
-    function onSubmit(values: z.infer<typeof signUpSchema>) {
+    async function onSubmit(values: z.infer<typeof signUpSchema>) {
         setSignUpFormShown(false)
         setSignUpFormSubmitted(true)
-        sendMail(values)
+        await sendMail(values)
     }
 
     const handleGetNotified = async () => {
