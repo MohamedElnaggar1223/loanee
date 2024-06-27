@@ -21,23 +21,7 @@ import { countryDialingCodes } from "@/constants";
 import { sendMail } from "@/lib/actions";
 import { db } from "@/firebase/config";
 import { addDoc, collection } from "firebase/firestore";
-
-export const signUpSchema = z.object({
-    fistName: z.string().min(2, {
-        message: 'Invalid first name'
-    }),
-    jobTitle: z.string().min(2, {
-        message: 'Invalid job title'
-    }),
-    email: z.string().email({
-        message: 'Invalid email'
-    }),
-    mobile: z.string().min(6, {
-        message: 'Invalid mobile number'
-    }).refine(value => {
-        return /^\d+$/.test(value)
-    })
-})
+import { signUpSchema } from "@/lib/validations";
 
 // const demoImagesRotation = [
 // 	'demoTwelvth.png',
