@@ -10,7 +10,7 @@ export const sendMail = async (data: z.infer<typeof signUpSchema>) => {
     {
         const { data: emailData } = await resend.emails.send({
             from: 'onboarding@resend.dev',
-            to: 'maelnaggar1223@gmail.com',
+            to: 'hello@loanee.ae',
             // to: 'maelnaggar1223@gmail.com',
             subject: 'New sign up',
             html: `<p><strong>Email:</strong> ${data.email} <strong>First name:</strong> ${data.fistName} <strong>Number:</strong> ${data.countryCode}${data.mobile} <strong>Job title:</strong> ${data.jobTitle}</p>`
