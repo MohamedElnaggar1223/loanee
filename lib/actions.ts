@@ -1,4 +1,5 @@
 'use server'
+
 import { signUpSchema } from './validations';
 import { Resend } from 'resend';
 import z from 'zod'
