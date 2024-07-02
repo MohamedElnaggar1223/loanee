@@ -22,6 +22,7 @@ import { sendMail } from "@/lib/actions";
 import { db } from "@/firebase/config";
 import { addDoc, collection } from "firebase/firestore";
 import { signUpSchema } from "@/lib/validations";
+import { Check } from "lucide-react";
 
 // const demoImagesRotation = [
 // 	'demoTwelvth.png',
@@ -102,6 +103,7 @@ const featureImages = [
 export default function Page() 
 {
     const [email, setEmail] = useState('' as string)
+    const [notified, setNotified] = useState(false)
 
     const [position, setPosition] = useState<'fixed' | 'absolute'>('absolute')
     const [imageShown, setImageShown] = useState('iphoneHero.png')
@@ -397,6 +399,8 @@ export default function Page()
     }
 
     const handleGetNotified = async () => {
+        setNotified(true)
+
         const notificationCollection = collection(db, 'notifications')
 
         await addDoc(notificationCollection, { email })
@@ -455,10 +459,11 @@ export default function Page()
                                         placeholder='Enter your email'
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
+                                        disabled={notified}
                                         className='rounded-[0.5rem] max-md:min-h-full emailHeroSection border outline-none border-white w-screen max-w-[180px] sm:max-w-[240px] md:max-w-[468px] bg-[#CBBEBD] text-black placeholder:text-black text-sm' 
                                     />
                                     <button onClick={handleGetNotified} className='max-md:min-h-full text-nowrap buttonHeroSection bg-[#ff0000] text-white font-medium rounded-[0.5rem] text-sm'>
-                                        Get Notified
+                                        {notified ? <Check size={23} stroke="#008900" /> : 'Get Notified'}
                                     </button>
                                 </div>
                                 <p className='text-xs lg:text-sm xl:text-base font-light text-white'>Get notified on launch of your personal finance assistant</p>
